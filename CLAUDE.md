@@ -23,8 +23,9 @@ React 19 + Vite + Tailwind CSS v4 + Framer Motion. Static site, no backend. Depl
   ```
 
 ## Current stage
-deploy — repo created and pushed to `KirtiK07/kirti-portfolio` with explicit go-ahead from
-the user; deploying to Vercel next.
+done — pushed to `KirtiK07/kirti-portfolio`, deployed to Vercel, live at
+https://kirti-portfolio-zeta.vercel.app, and linked from the resume. Old `KirtiK07/Portfolio`
+repo archived.
 
 ## Open questions
 - Custom domain vs. default `*.vercel.app` URL — none requested, using Vercel default for now.
