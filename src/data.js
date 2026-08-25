@@ -82,6 +82,23 @@ export const projects = [
     demo: 'https://codesense-ai-46bajkw35e5m7xtpvwtwvj.streamlit.app/',
     repo: 'https://github.com/KirtiK07/CodeSense-AI',
   },
+  {
+    name: 'RAG Hallucination Guardrail',
+    repoName: 'rag-hallucination-guardrail',
+    tag: 'GenAI · RAG',
+    problem:
+      'RAG systems confidently state things the retrieved context never actually said — most portfolio RAG projects never check.',
+    description:
+      'A verification layer that scores every RAG answer against its retrieved context and flags unsupported ones — two independent verifiers (NLI cross-encoder vs. embedding similarity) benchmarked against a hand-built 60-entry eval set, not simulated numbers.',
+    metrics: [
+      { label: 'NLI verifier F1', value: '0.725' },
+      { label: 'Hallucination recall', value: '96.7%' },
+      { label: 'No-guardrail baseline', value: '0.0 F1' },
+    ],
+    stack: ['FastAPI', 'sentence-transformers', 'Cross-Encoder NLI', 'Groq', 'Streamlit'],
+    demo: null,
+    repo: 'https://github.com/KirtiK07/rag-hallucination-guardrail',
+  },
 ]
 
 export const experience = [

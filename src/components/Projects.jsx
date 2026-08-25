@@ -8,7 +8,7 @@ export default function Projects() {
         <div className="mb-12">
           <p className="mono text-sm text-[var(--color-accent)] mb-2">Featured work</p>
           <h2 className="text-3xl font-bold text-[var(--color-text)]">
-            Four projects, each with a real number attached.
+            Five projects, each with a real number attached.
           </h2>
         </div>
 
@@ -55,14 +55,20 @@ export default function Projects() {
               </div>
 
               <div className="mt-auto flex gap-3 text-sm">
-                <a
-                  href={p.demo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 font-medium text-[var(--color-accent)] hover:brightness-110"
-                >
-                  Live demo →
-                </a>
+                {p.demo ? (
+                  <a
+                    href={p.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 font-medium text-[var(--color-accent)] hover:brightness-110"
+                  >
+                    Live demo →
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 text-[var(--color-text-dim)]/60">
+                    Demo coming soon
+                  </span>
+                )}
                 <a
                   href={p.repo}
                   target="_blank"
