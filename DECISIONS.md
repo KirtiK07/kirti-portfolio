@@ -33,3 +33,20 @@ value on a project like this.
 `@import url(fonts...)` has to come before `@import "tailwindcss"` in `index.css` — a plain
 CSS rule (`@import` must precede all other rules) that Tailwind's own compiler still enforces
 and warns on if violated.
+
+## November 2026 redesign: static datasheet page
+Replaced the React page with one static `index.html`. This supersedes the stack, featured-project
+and dark-only decisions above.
+
+- **No React, Tailwind or Framer Motion.** A page with one small interaction doesn't need them, and
+  plain HTML renders without any JS. Vite stays only so the existing Vercel project settings keep
+  working unchanged.
+- **Six featured projects, each with errata.** The repos already publish their weak numbers, so the
+  page leads with that instead of hiding it. Candor joined the featured set.
+- **Light and dark themes.** The theme follows the visitor's system setting, with a toggle.
+- **Voice agent "worst of 5" instead of p95.** The repo's p95 recovery (3,155 ms) comes from
+  extrapolating over 5 samples and exceeds the slowest real run (2,800 ms), so the page shows the
+  observed worst case.
+- **Voice agent demo not linked.** The hosted demo returned `FUNCTION_INVOCATION_FAILED` on
+  2026-11-09. Add the link back in `index.html` once it's fixed.
+- **Resume PDF not hosted.** It contains a phone number, so publishing it is the owner's call.

@@ -1,24 +1,778 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kirti Kolare — AI/ML Engineer</title>
-    <meta
-      name="description"
-      content="Kirti Kolare — AI/ML Engineer building LLM applications, agents, and voice systems. Featured projects with real benchmarked results."
-    />
-    <meta property="og:title" content="Kirti Kolare — AI/ML Engineer" />
-    <meta
-      property="og:description"
-      content="LLM routing, voice agents, and NL-to-SQL — projects that ship with a benchmark, not just a demo."
-    />
-    <meta property="og:type" content="website" />
-    <meta name="theme-color" content="#0b0f14" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kirti Kolare</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Kirti Kolare, AI/ML engineer and backend developer in Pune. LLM, agent and voice systems, each published with its benchmarks and its known weak spots.">
+<meta property="og:title" content="Kirti Kolare, AI/ML Engineer">
+<meta property="og:description" content="LLM, agent and voice systems, each published with its benchmarks and its known weak spots.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kirti-portfolio-zeta.vercel.app/">
+<link rel="canonical" href="https://kirti-portfolio-zeta.vercel.app/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231D3FCC'/%3E%3Cpath d='M9 7v18M23 7 12 16l11 9' fill='none' stroke='%23FFE45C' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout concept: the portfolio is a component datasheet. A cover with a
+   characteristics table, then one numbered sheet per project, each ending in a
+   highlighter-yellow errata band. */
+:root {
+  --paper: #E6EBF1;
+  --sheet: #F7F9FB;
+  --ink: #101A33;
+  --muted: #47536C;
+  --rule: #B6C1D0;
+  --accent: #1D3FCC;
+  --bar-2: #7A879E;
+  --track: #DFE5EC;
+  --mark: #FFE45C;
+  --mark-ink: #16171F;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --gutter: clamp(16px, 4vw, 48px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0A1120; --sheet: #111A2E; --ink: #E9EEF8; --muted: #A5B1C8; --rule: #2F3C57;
+    --accent: #9FB2FF; --bar-2: #76839C; --track: #1E2A42; --mark: #F7DC52; --mark-ink: #16171F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0A1120; --sheet: #111A2E; --ink: #E9EEF8; --muted: #A5B1C8; --rule: #2F3C57;
+  --accent: #9FB2FF; --bar-2: #76839C; --track: #1E2A42; --mark: #F7DC52; --mark-ink: #16171F;
+  color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+.wrap {
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.mono { font-family: var(--mono); font-size: .8125rem; letter-spacing: .01em; }
+.label {
+  font-family: var(--mono); font-size: .75rem; font-weight: 500;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+}
+.skip { position: absolute; left: -999px; top: 0; background: var(--mark); color: var(--mark-ink); padding: 8px 12px; z-index: 20; }
+.skip:focus { left: 8px; top: 8px; }
+
+/* Top bar */
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--paper); border-bottom: 1px solid var(--rule);
+}
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-block: 10px; }
+.bar nav { display: flex; gap: 4px 18px; flex-wrap: wrap; align-items: center; }
+.bar a { color: var(--ink); text-decoration: none; font-family: var(--mono); font-size: .8125rem; }
+.bar a:hover { text-decoration: underline; }
+.bar .id { font-weight: 600; }
+#theme {
+  font: 500 .75rem var(--mono); color: var(--ink); background: transparent; cursor: pointer;
+  border: 1px solid var(--rule); padding: 6px 10px; min-height: 32px;
+}
+#theme:hover { border-color: var(--ink); }
+
+/* Cover */
+.cover { padding-block: clamp(32px, 6vw, 72px) clamp(32px, 5vw, 56px); }
+.ruler {
+  height: 12px; margin-bottom: 16px;
+  background:
+    repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 10%) 0 0/100% 12px no-repeat,
+    repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 1%) 0 0/100% 6px no-repeat;
+}
+.name {
+  font-family: var(--display); font-weight: 800; font-stretch: 125%;
+  font-size: clamp(2.2rem, 9.3vw, 7.5rem); line-height: .94; letter-spacing: -.02em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.cover-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 5vw, 72px); margin-top: clamp(24px, 4vw, 44px); }
+.thesis {
+  font-family: var(--display); font-weight: 600; font-stretch: 88%;
+  font-size: clamp(1.625rem, 3.3vw, 2.625rem); line-height: 1.12; letter-spacing: -.005em; text-wrap: balance;
+}
+.lede { margin-top: 18px; max-width: 58ch; color: var(--muted); }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.btn {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px;
+  font: 500 .875rem var(--mono); text-decoration: none; cursor: pointer;
+  border: 1px solid var(--ink); color: var(--ink); background: transparent;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+.btn.primary:hover { background: var(--ink); border-color: var(--ink); }
+.now { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 14px; align-content: start; }
+.now li { font-size: .9688rem; line-height: 1.5; min-width: 0; }
+.now strong { display: block; font-weight: 600; }
+
+/* Tables */
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; }
+th, td { text-align: left; vertical-align: baseline; padding: 11px 16px 11px 0; border-bottom: 1px solid var(--rule); }
+th:last-child, td:last-child { padding-right: 0; }
+thead th { font: 500 .75rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); }
+tbody th { font-weight: 500; }
+.val { font: 600 1.125rem var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cond { color: var(--muted); font-size: .9375rem; line-height: 1.4; }
+.chars { min-width: 680px; }
+.chars-wrap { margin-top: clamp(28px, 5vw, 48px); }
+.chars-title { font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 1.125rem; margin-bottom: 10px; }
+
+/* Section head */
+.sect-head { padding-block: clamp(32px, 5vw, 56px) 20px; border-top: 2px solid var(--ink); }
+.sect-title { font-family: var(--display); font-weight: 800; font-stretch: 112%; font-size: clamp(1.625rem, 3.6vw, 2.5rem); line-height: 1.05; letter-spacing: -.01em; }
+.sect-note { margin-top: 10px; color: var(--muted); max-width: 66ch; }
+
+/* Datasheet */
+.sheets { display: grid; gap: clamp(24px, 3vw, 36px); padding-bottom: clamp(40px, 6vw, 72px); }
+.sheet { background: var(--sheet); border: 1px solid var(--rule); min-width: 0; }
+.sheet-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 4px 20px; flex-wrap: wrap;
+  padding: 10px clamp(16px, 2.5vw, 28px); border-bottom: 1px solid var(--rule);
+}
+.sheet-body { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 3.5vw, 48px); padding: clamp(20px, 2.8vw, 32px) clamp(16px, 2.5vw, 28px); }
+.sheet h3 { font-family: var(--display); font-weight: 800; font-stretch: 100%; font-size: clamp(1.625rem, 3vw, 2.25rem); line-height: 1.05; letter-spacing: -.01em; text-wrap: balance; }
+.claim { margin-top: 14px; font-weight: 500; }
+.detail { margin-top: 10px; color: var(--muted); }
+.stack { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 16px; color: var(--muted); font-family: var(--mono); font-size: .75rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-family: var(--mono); font-size: .875rem; }
+.actions a { padding-block: 4px; }
+figure { min-width: 0; }
+figcaption { font-family: var(--display); font-weight: 700; font-size: 1rem; line-height: 1.3; margin-bottom: 12px; }
+figcaption span { display: block; font-family: var(--body); font-weight: 400; font-size: .875rem; color: var(--muted); margin-top: 2px; }
+
+/* Bars: every chart shares one component, drawn on a zero baseline */
+.panels { display: grid; gap: 20px; }
+.panels.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.panels.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.panel-title { font: 500 .75rem var(--mono); color: var(--muted); margin-bottom: 8px; }
+.bars { display: grid; gap: 10px; }
+.row { display: grid; gap: 3px; cursor: default; }
+.row-top { display: flex; justify-content: space-between; gap: 8px; font-size: .8125rem; line-height: 1.3; }
+.row-top b { font: 600 .8125rem var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.track { height: 12px; background: var(--track); }
+.fill { display: block; height: 100%; background: var(--bar-2); border-radius: 0 4px 4px 0; }
+.row.hi .fill { background: var(--accent); }
+.row.hi .row-top { font-weight: 600; }
+.row:hover .fill { filter: brightness(1.12); }
+.tip {
+  position: fixed; z-index: 30; max-width: 260px; padding: 6px 9px; pointer-events: none;
+  background: var(--ink); color: var(--paper); font: 400 .75rem/1.35 var(--mono);
+}
+
+/* Run timeline */
+.runs { display: grid; gap: 7px; }
+.run { display: grid; grid-template-columns: 44px minmax(0, 1fr) 62px; gap: 8px; align-items: center; font: 400 .75rem var(--mono); font-variant-numeric: tabular-nums; cursor: default; }
+.run-track { display: flex; gap: 2px; height: 14px; }
+.run-track i { display: block; height: 100%; }
+.run-track .cut { background: var(--accent); min-width: 2px; }
+.run-track .rec { background: var(--bar-2); border-radius: 0 4px 4px 0; }
+.run span:last-child { text-align: right; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 10px; font-size: .8125rem; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; background: var(--bar-2); }
+.legend i.a { background: var(--accent); }
+
+/* Replay */
+.replay { margin-top: 24px; border-top: 2px solid var(--ink); padding-top: 14px; }
+.replay-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.replay h4 { font-family: var(--display); font-weight: 700; font-size: 1rem; }
+.turns { display: grid; gap: 8px; margin-top: 12px; }
+.turn { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 8px; font-size: .9375rem; line-height: 1.45; }
+.turn > span { font: 500 .75rem/1.9 var(--mono); color: var(--muted); }
+.turn.stopped p::after { content: " [audio stopped]"; font: 600 .75rem var(--mono); color: var(--accent); }
+#agentText .unsaid { color: var(--muted); opacity: .55; }
+.clock { height: 6px; background: var(--track); margin-top: 14px; }
+.clock i { display: block; height: 100%; width: 0; background: var(--accent); }
+#readout { margin-top: 8px; min-height: 2.8em; color: var(--muted); font-family: var(--mono); font-size: .8125rem; line-height: 1.4; }
+
+/* Waffle and coverage cells */
+.cells { display: flex; flex-wrap: wrap; gap: 4px; }
+.cells i { width: 22px; height: 22px; display: block; border: 2px solid var(--accent); }
+.cells i.on { background: var(--accent); }
+.cells.small i { width: 14px; height: 14px; border-width: 1.5px; }
+.cell-group { display: grid; gap: 6px; }
+.cell-group + .cell-group { margin-top: 16px; }
+.cell-group p { font-size: .875rem; color: var(--muted); }
+.cell-group p b { color: var(--ink); font-weight: 600; }
+pre.sql {
+  margin: 16px 0 0; padding: 12px 14px; overflow-x: auto; background: var(--track);
+  font: 400 .8125rem/1.55 var(--mono); color: var(--ink);
+}
+
+/* Pipeline */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; counter-reset: s; }
+.steps li { counter-increment: s; border: 1px solid var(--rule); padding: 8px 10px; font-size: .875rem; line-height: 1.3; min-width: 0; }
+.steps li::before { content: counter(s); display: block; font: 500 .75rem var(--mono); color: var(--muted); margin-bottom: 2px; }
+.steps li.check { background: var(--accent); border-color: var(--accent); color: var(--sheet); font-weight: 500; }
+.steps li.check::before { color: inherit; }
+
+/* Errata */
+.errata { background: var(--mark); color: var(--mark-ink); display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 16px; padding: 14px clamp(16px, 2.5vw, 28px); }
+.errata h4 { font: 600 .75rem/1.9 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.errata ul { display: grid; gap: 6px; }
+.errata li { font-size: .9375rem; line-height: 1.45; }
+.errata code { font: 500 .8125rem var(--mono); overflow-wrap: anywhere; }
+
+/* Other builds, experience */
+.ledger th { font-weight: 600; white-space: nowrap; padding-right: 20px; }
+.ledger { min-width: 720px; }
+.ledger td.cond { min-width: 340px; }
+.cv { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 72px); padding-bottom: clamp(40px, 6vw, 72px); }
+.job { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 20px; padding-block: 14px; border-top: 1px solid var(--rule); }
+.job:first-of-type { border-top: 2px solid var(--ink); }
+.job h4 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
+.job p { color: var(--muted); font-size: .9688rem; line-height: 1.5; margin-top: 4px; }
+.job .mono { color: var(--muted); padding-top: 3px; }
+.side h3 { font-family: var(--display); font-weight: 700; font-size: 1.125rem; border-top: 2px solid var(--ink); padding-top: 12px; }
+.side-block + .side-block { margin-top: 28px; }
+.side li { padding-block: 8px; border-bottom: 1px solid var(--rule); font-size: .9688rem; line-height: 1.45; }
+.side li span { display: block; color: var(--muted); font-size: .875rem; }
+
+/* Contact */
+.contact { background: var(--accent); color: var(--paper); }
+.contact .wrap { padding-block: clamp(32px, 5vw, 56px); display: grid; gap: 18px; }
+.contact h2 { font-family: var(--display); font-weight: 800; font-stretch: 112%; font-size: clamp(1.625rem, 4vw, 2.75rem); line-height: 1.05; text-wrap: balance; max-width: 22ch; }
+.contact a, .contact button { color: inherit; }
+.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font: 500 clamp(.9375rem, 2.2vw, 1.25rem) var(--mono); }
+.mail a { overflow-wrap: anywhere; }
+#copy { font: 500 .75rem var(--mono); min-height: 36px; padding: 6px 12px; background: transparent; border: 1px solid currentColor; cursor: pointer; }
+.contact-links { display: flex; flex-wrap: wrap; gap: 6px 20px; font: 400 .875rem var(--mono); }
+.contact :focus-visible { outline-color: var(--paper); }
+footer { padding-block: 16px; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .cover-grid, .sheet-body, .cv { grid-template-columns: minmax(0, 1fr); }
+  .panels.three { grid-template-columns: minmax(0, 1fr); }
+  .errata { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 520px) {
+  .panels.two { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .job { grid-template-columns: minmax(0, 1fr); }
+  .bar nav a.opt { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to projects</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="id" href="#top">Kirti Kolare</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a class="opt" href="#other">Other builds</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <button id="theme" type="button">Dark</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="cover wrap">
+    <div class="ruler" aria-hidden="true"></div>
+    <h1 class="name">Kirti Kolare</h1>
+    <div class="cover-grid">
+      <div>
+        <p class="thesis">I build LLM, agent and voice systems, then measure them.</p>
+        <p class="lede">I'm an AI/ML engineer and backend developer in Pune, with four internships behind me. The figures below come from benchmarks and tests in each project's public repo. Every project also lists its errata: the numbers that came out weak and the things it can't do yet.</p>
+        <div class="links">
+          <a class="btn primary" href="#work">Read the project sheets</a>
+          <a class="btn" href="https://github.com/KirtiK07">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/kirtikolare">LinkedIn</a>
+        </div>
+      </div>
+      <ul class="now" aria-label="Current and recent work">
+        <li><strong>MSc Computer Science, Indira University</strong>CGPA 9.0/10, finishing July 2027.</li>
+        <li><strong>Most recently: AI/ML Engineering Intern, Wrrk.ai</strong>Analytics, unified inbox, email and residential-proxy modules for an AI workspace that combines CRM, WhatsApp and voice/chat. July to October 2026.</li>
+        <li><strong>Exploring long-context agent memory</strong>A rolling-summary and retrieval hybrid reached 100% recall on a needle-in-a-haystack test where plain truncation got 37.5%, at the same token budget. That benchmark isn't public yet.</li>
+      </ul>
+    </div>
+
+    <div class="chars-wrap">
+      <h2 class="chars-title">Typical characteristics</h2>
+      <div class="scroll" tabindex="0" role="region" aria-label="Headline benchmark results">
+        <table class="chars">
+          <thead><tr><th scope="col">Parameter</th><th scope="col">Value</th><th scope="col">Test conditions</th><th scope="col">Sheet</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Time for agent audio to stop when interrupted, median</th><td class="val">77 ms</td><td class="cond">5 scripted barge-ins, real STT, LLM and TTS</td><td><a href="#voice">Voice agent</a></td></tr>
+            <tr><th scope="row">LLM cost against an always-capable model</th><td class="val">&minus;23%</td><td class="cond">40 distinct queries, real API calls</td><td><a href="#router">LLM router</a></td></tr>
+            <tr><th scope="row">Hallucinations caught, recall</th><td class="val">96.7%</td><td class="cond">60 hand-built entries, precision 58%</td><td><a href="#guardrail">RAG guardrail</a></td></tr>
+            <tr><th scope="row">SQL safety checks classified correctly</th><td class="val">16/16</td><td class="cond">11 must block, 5 must allow</td><td><a href="#querypal">QueryPal</a></td></tr>
+            <tr><th scope="row">Defect-risk model ROC-AUC</th><td class="val">0.731</td><td class="cond">2,177 held-out NASA JM1 modules</td><td><a href="#codesense">CodeSense AI</a></td></tr>
+            <tr><th scope="row">Cost per tailored resume</th><td class="val">~$0.01</td><td class="cond">Typical run on gpt-4.1-mini</td><td><a href="#candor">Candor</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="wrap">
+    <div class="sect-head">
+      <h2 class="sect-title">Project sheets</h2>
+      <p class="sect-note">Hosted demos run on free tiers, so one may ask you to wake it up first, which can take about a minute.</p>
+    </div>
+
+    <div class="sheets">
+
+      <!-- demo intentionally not linked: voice-triage-agent.vercel.app returned FUNCTION_INVOCATION_FAILED on 2026-11-09. Add it to .actions once fixed. -->
+      <article class="sheet" id="voice">
+        <div class="sheet-head"><span class="label">Sheet 1 of 6</span><span class="mono">voice-triage-agent</span></div>
+        <div class="sheet-body">
+          <div>
+            <h3>Interruptible Voice Agent</h3>
+            <p class="claim">A support-triage agent that stops talking the moment a caller cuts in, then answers what they just said.</p>
+            <p class="detail">Most voice demos talk over the caller or lose track of the turn. Here a voice activity detector listens during playback in 32 ms frames and cancels the in-flight LLM and speech stream, and transcription only starts after that. Cutoff and recovery are reported separately because they fail for different reasons.</p>
+            <p class="stack"><span>FastAPI</span><span>WebSocket</span><span>Silero VAD</span><span>faster-whisper</span><span>Groq</span><span>Piper TTS</span><span>AudioWorklet</span></p>
+            <p class="actions"><a href="https://github.com/KirtiK07/voice-triage-agent">Source</a><a href="https://github.com/KirtiK07/voice-triage-agent/blob/HEAD/eval/results/latest.json">Raw results</a><a href="https://github.com/KirtiK07/voice-triage-agent/blob/HEAD/DECISIONS.md">Design decisions</a></p>
+          </div>
+          <figure>
+            <figcaption>Each interruption, to scale<span>Milliseconds from barge-in detected. Recovery ends when the new reply's audio starts.</span></figcaption>
+            <div class="runs">
+              <div class="run" data-tip="Run 1: audio stopped at 6 ms, new reply at 1,866 ms"><span>Run 1</span><div class="run-track"><i class="cut" style="width:.22%"></i><i class="rec" style="width:66.43%"></i></div><span>1,866</span></div>
+              <div class="run" data-tip="Run 2: audio stopped at 108 ms, new reply at 2,207 ms"><span>Run 2</span><div class="run-track"><i class="cut" style="width:3.85%"></i><i class="rec" style="width:74.97%"></i></div><span>2,207</span></div>
+              <div class="run" data-tip="Run 3: audio stopped at 107 ms, new reply at 2,294 ms"><span>Run 3</span><div class="run-track"><i class="cut" style="width:3.81%"></i><i class="rec" style="width:78.1%"></i></div><span>2,294</span></div>
+              <div class="run" data-tip="Run 4: audio stopped at 77 ms, new reply at 2,800 ms"><span>Run 4</span><div class="run-track"><i class="cut" style="width:2.76%"></i><i class="rec" style="width:97.24%"></i></div><span>2,800</span></div>
+              <div class="run" data-tip="Run 5: audio stopped at 1 ms, new reply at 2,193 ms"><span>Run 5</span><div class="run-track"><i class="cut" style="width:.03%"></i><i class="rec" style="width:78.3%"></i></div><span>2,193</span></div>
+            </div>
+            <p class="legend"><span><i class="a"></i>Audio stops</span><span><i></i>Until the new reply starts</span></p>
+            <div class="scroll" style="margin-top:18px">
+              <table>
+                <thead><tr><th scope="col">Parameter</th><th scope="col">Median</th><th scope="col">Worst of 5</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Cutoff latency</th><td class="val">77 ms</td><td class="val">108 ms</td></tr>
+                  <tr><th scope="row">Recovery latency</th><td class="val">2,207 ms</td><td class="val">2,800 ms</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="replay" id="replay">
+              <div class="replay-head">
+                <h4>Try the timing</h4>
+                <button class="btn primary" id="replayBtn" type="button">Play the call</button>
+              </div>
+              <div class="turns">
+                <div class="turn"><span>Caller</span><p>Our invoices page has been down since this morning.</p></div>
+                <div class="turn" id="agentTurn"><span>Agent</span><p id="agentText">Thanks for reporting this. I'm marking the ticket as high urgency under billing, and I'll need your account ID to continue.</p></div>
+                <div class="turn" id="callerTwo" hidden><span>Caller</span><p>Wait, it's the whole dashboard, not only invoices.</p></div>
+                <div class="turn" id="agentTwo" hidden><span>Agent</span><p id="agentTwoText"></p></div>
+              </div>
+              <div class="clock" aria-hidden="true"><i id="clockFill"></i></div>
+              <p id="readout" aria-live="polite">Press play, then interrupt whenever you like. The script is illustrative and no model is running. The delays are the measured medians, at real speed.</p>
+            </div>
+          </figure>
+        </div>
+        <div class="errata"><h4>Errata</h4><ul>
+          <li>A new reply takes over two seconds to start. The STT, LLM and TTS round trip is the bottleneck, and a caller will notice the gap.</li>
+          <li>Five scripted scenarios are enough to show the design works. They are too few to predict real tail latency.</li>
+        </ul></div>
+      </article>
+
+      <article class="sheet" id="router">
+        <div class="sheet-head"><span class="label">Sheet 2 of 6</span><span class="mono">llm-cost-router</span></div>
+        <div class="sheet-body">
+          <div>
+            <h3>Cost-Aware LLM Router</h3>
+            <p class="claim">Sends each query to the cheapest model that can handle it, and answers near-duplicates from a semantic cache.</p>
+            <p class="detail">Teams often send every request to their most expensive model. This gateway checks the cache first, because a hit needs no model call. On a miss, a logistic regression over local embeddings picks the tier. Providers and cache backends sit behind interfaces, so adding a provider means adding one file.</p>
+            <p class="stack"><span>FastAPI</span><span>Redis Stack</span><span>sentence-transformers</span><span>scikit-learn</span><span>Groq</span><span>Gemini</span><span>Streamlit</span></p>
+            <p class="actions"><a href="https://xfybiaxpku9llzdj2wjrpj.streamlit.app/">Live demo</a><a href="https://github.com/KirtiK07/llm-cost-router">Source</a><a href="https://github.com/KirtiK07/llm-cost-router/blob/HEAD/eval/results/latest.json">Raw results</a></p>
+          </div>
+          <figure>
+            <figcaption>Router against the two single-model options<span>40 queries, half simple and half complex. The classifier routed 40 of 40 correctly.</span></figcaption>
+            <div class="panels three">
+              <div><p class="panel-title">$ per 1,000 queries</p><div class="bars">
+                <div class="row hi" data-tip="Router: $1.332 per 1,000 queries, 23% below always capable"><div class="row-top"><span>Router</span><b>$1.332</b></div><div class="track"><i class="fill" style="width:76.8%"></i></div></div>
+                <div class="row" data-tip="Always capable (Gemini): $1.733 per 1,000 queries"><div class="row-top"><span>Always capable</span><b>$1.733</b></div><div class="track"><i class="fill" style="width:100%"></i></div></div>
+                <div class="row" data-tip="Always cheap (Groq): $0.375 per 1,000 queries"><div class="row-top"><span>Always cheap</span><b>$0.375</b></div><div class="track"><i class="fill" style="width:21.7%"></i></div></div>
+              </div></div>
+              <div><p class="panel-title">p50 latency, ms</p><div class="bars">
+                <div class="row hi" data-tip="Router: 4,135 ms median, the lowest of the three"><div class="row-top"><span>Router</span><b>4,135</b></div><div class="track"><i class="fill" style="width:63.3%"></i></div></div>
+                <div class="row" data-tip="Always capable (Gemini): 5,157 ms median"><div class="row-top"><span>Always capable</span><b>5,157</b></div><div class="track"><i class="fill" style="width:78.9%"></i></div></div>
+                <div class="row" data-tip="Always cheap (Groq): 6,537 ms median"><div class="row-top"><span>Always cheap</span><b>6,537</b></div><div class="track"><i class="fill" style="width:100%"></i></div></div>
+              </div></div>
+              <div><p class="panel-title">p95 latency, ms</p><div class="bars">
+                <div class="row hi" data-tip="Router: 9,978 ms at p95, slower than always capable"><div class="row-top"><span>Router</span><b>9,978</b></div><div class="track"><i class="fill" style="width:59.9%"></i></div></div>
+                <div class="row" data-tip="Always capable (Gemini): 7,453 ms at p95"><div class="row-top"><span>Always capable</span><b>7,453</b></div><div class="track"><i class="fill" style="width:44.7%"></i></div></div>
+                <div class="row" data-tip="Always cheap (Groq): 16,660 ms at p95"><div class="row-top"><span>Always cheap</span><b>16,660</b></div><div class="track"><i class="fill" style="width:100%"></i></div></div>
+              </div></div>
+            </div>
+          </figure>
+        </div>
+        <div class="errata"><h4>Errata</h4><ul>
+          <li>The router's p95 latency (9,978 ms) is worse than always using the capable model (7,453 ms), because simple queries inherit the cheap tier's slow tail.</li>
+          <li>Cache hit rate in this benchmark is 0%. The eval set has no duplicates by design, so the cache's savings remain unmeasured.</li>
+          <li>100% classifier accuracy is on a small hand-labeled set of 40. Real traffic will be messier.</li>
+        </ul></div>
+      </article>
+
+      <article class="sheet" id="guardrail">
+        <div class="sheet-head"><span class="label">Sheet 3 of 6</span><span class="mono">rag-hallucination-guardrail</span></div>
+        <div class="sheet-body">
+          <div>
+            <h3>RAG Hallucination Guardrail</h3>
+            <p class="claim">Checks every RAG answer against the text it was retrieved from and flags claims that text doesn't support.</p>
+            <p class="detail">Two verifiers are benchmarked against each other: an NLI cross-encoder that treats support as an entailment problem, and an embedding-similarity baseline that reuses the retriever's own model. Every eval entry runs real retrieval, so a retrieval miss can cause a false negative, as it would in production.</p>
+            <p class="stack"><span>FastAPI</span><span>sentence-transformers</span><span>NLI cross-encoder</span><span>Groq</span><span>scikit-learn</span><span>Streamlit</span></p>
+            <p class="actions"><a href="https://github.com/KirtiK07/rag-hallucination-guardrail">Source</a><a href="https://github.com/KirtiK07/rag-hallucination-guardrail/blob/HEAD/eval/results/latest.json">Raw results</a><a href="https://github.com/KirtiK07/rag-hallucination-guardrail/blob/HEAD/DECISIONS.md">Design decisions</a></p>
+          </div>
+          <figure>
+            <figcaption>Two verifiers on the same 60 entries<span>"Unsupported" is the positive class. Thresholds were not tuned on this set. With no guardrail, all four scores are 0 except accuracy at 0.50.</span></figcaption>
+            <div class="panels two">
+              <div><p class="panel-title">Recall</p><div class="bars">
+                <div class="row hi" data-tip="NLI cross-encoder recall: 0.967"><div class="row-top"><span>NLI cross-encoder</span><b>0.967</b></div><div class="track"><i class="fill" style="width:96.7%"></i></div></div>
+                <div class="row" data-tip="Embedding similarity recall: 0.700"><div class="row-top"><span>Embedding similarity</span><b>0.700</b></div><div class="track"><i class="fill" style="width:70%"></i></div></div>
+              </div></div>
+              <div><p class="panel-title">Precision</p><div class="bars">
+                <div class="row hi" data-tip="NLI cross-encoder precision: 0.580"><div class="row-top"><span>NLI cross-encoder</span><b>0.580</b></div><div class="track"><i class="fill" style="width:58%"></i></div></div>
+                <div class="row" data-tip="Embedding similarity precision: 0.656"><div class="row-top"><span>Embedding similarity</span><b>0.656</b></div><div class="track"><i class="fill" style="width:65.6%"></i></div></div>
+              </div></div>
+              <div><p class="panel-title">F1</p><div class="bars">
+                <div class="row hi" data-tip="NLI cross-encoder F1: 0.725"><div class="row-top"><span>NLI cross-encoder</span><b>0.725</b></div><div class="track"><i class="fill" style="width:72.5%"></i></div></div>
+                <div class="row" data-tip="Embedding similarity F1: 0.677"><div class="row-top"><span>Embedding similarity</span><b>0.677</b></div><div class="track"><i class="fill" style="width:67.7%"></i></div></div>
+              </div></div>
+              <div><p class="panel-title">Accuracy</p><div class="bars">
+                <div class="row hi" data-tip="NLI cross-encoder accuracy: 0.633"><div class="row-top"><span>NLI cross-encoder</span><b>0.633</b></div><div class="track"><i class="fill" style="width:63.3%"></i></div></div>
+                <div class="row" data-tip="Embedding similarity accuracy: 0.667"><div class="row-top"><span>Embedding similarity</span><b>0.667</b></div><div class="track"><i class="fill" style="width:66.7%"></i></div></div>
+              </div></div>
+            </div>
+          </figure>
+        </div>
+        <div class="errata"><h4>Errata</h4><ul>
+          <li>The NLI verifier catches almost everything but is noisy: 42% of what it flags is actually supported.</li>
+          <li>It verifies the whole answer at once, so it can't point to which claim is unsupported.</li>
+          <li>The corpus is small, drawn from the docs of two sibling projects, and the eval set has only 60 entries.</li>
+        </ul></div>
+      </article>
+
+      <article class="sheet" id="querypal">
+        <div class="sheet-head"><span class="label">Sheet 4 of 6</span><span class="mono">QueryPal</span></div>
+        <div class="sheet-body">
+          <div>
+            <h3>QueryPal</h3>
+            <p class="claim">Upload a spreadsheet, ask a question in plain English, and get the SQL, a results table, a chart and a one-line takeaway.</p>
+            <p class="detail">Each account gets its own Postgres schema, so tenants can't see each other's data. If a query fails on a schema mismatch, the real database error goes back to the model for one automatic correction. A separate validator allows only reads, whatever the model was told to do.</p>
+            <p class="stack"><span>Streamlit</span><span>LangChain</span><span>Groq (Llama 3.3)</span><span>Supabase Postgres</span><span>SQLAlchemy</span><span>Plotly</span></p>
+            <p class="actions"><a href="https://6j5dr9asfjw4ooeqwlhvp5.streamlit.app/">Live demo</a><a href="https://github.com/KirtiK07/QueryPal">Source</a><a href="https://github.com/KirtiK07/QueryPal/blob/HEAD/tests/test_validator.py">Safety tests</a></p>
+          </div>
+          <figure>
+            <figcaption>Safety validator: 16 of 16 correct<span>Each square is one labeled test query, and every one was classified correctly.</span></figcaption>
+            <div class="cell-group" data-tip="Non-SELECT statements, stacked or smuggled DROP and TRUNCATE, empty input">
+              <div class="cells" role="img" aria-label="11 of 11 queries correctly blocked"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+              <p><b>11 blocked.</b> Non-SELECT statements, smuggled DROP and TRUNCATE, empty input.</p>
+            </div>
+            <div class="cell-group" data-tip="Plain SELECTs, an aggregate with GROUP BY and LIMIT, a column name containing a blocked word">
+              <div class="cells" role="img" aria-label="5 of 5 queries correctly allowed"><i></i><i></i><i></i><i></i><i></i></div>
+              <p><b>5 allowed.</b> Plain SELECTs, an aggregate, a column name that contains a blocked word.</p>
+            </div>
+            <pre class="sql" tabindex="0"><code>You:  How many companies are in each region?
+
+SELECT region, COUNT(*) AS company_count
+FROM companies
+GROUP BY region
+ORDER BY company_count DESC
+LIMIT 100;</code></pre>
+          </figure>
+        </div>
+        <div class="errata"><h4>Errata</h4><ul>
+          <li>The validator scans with a regex, so it wrongly rejects <code>WHERE status = 'update pending'</code>. A test tracks this, and a real SQL parser would fix it.</li>
+          <li>The 16/16 covers safety only. End-to-end SQL accuracy and how often the retry rescues a query are not benchmarked yet.</li>
+        </ul></div>
+      </article>
+
+      <article class="sheet" id="codesense">
+        <div class="sheet-head"><span class="label">Sheet 5 of 6</span><span class="mono">CodeSense-AI</span></div>
+        <div class="sheet-body">
+          <div>
+            <h3>CodeSense AI</h3>
+            <p class="claim">Code review with two independent opinions: a risk score learned from real defect history, and an LLM reviewer that reads the code.</p>
+            <p class="detail">A Random Forest trained on 10,885 NASA JM1 modules scores code from its complexity metrics. Gemini reviews the code separately and never sees that score. SMOTE is applied only to the training split, so the test set keeps its real class imbalance. Built as my MSc research project.</p>
+            <p class="stack"><span>scikit-learn</span><span>imbalanced-learn</span><span>Radon</span><span>Lizard</span><span>Gemini</span><span>Streamlit</span></p>
+            <p class="actions"><a href="https://codesense-ai-46bajkw35e5m7xtpvwtwvj.streamlit.app/">Live demo</a><a href="https://github.com/KirtiK07/CodeSense-AI">Source</a><a href="https://github.com/KirtiK07/CodeSense-AI#model-performance">Model performance</a></p>
+          </div>
+          <figure>
+            <figcaption>Model performance<span>Held-out test split of 2,177 JM1 modules. Precision, recall and F1 are for the defective class.</span></figcaption>
+            <div class="bars">
+              <div class="row" data-tip="Accuracy 0.783"><div class="row-top"><span>Accuracy</span><b>0.783</b></div><div class="track"><i class="fill" style="width:78.3%"></i></div></div>
+              <div class="row hi" data-tip="ROC-AUC 0.731, in line with published Random Forest results on JM1"><div class="row-top"><span>ROC-AUC</span><b>0.731</b></div><div class="track"><i class="fill" style="width:73.1%"></i></div></div>
+              <div class="row" data-tip="Precision on the defective class 0.430"><div class="row-top"><span>Precision</span><b>0.430</b></div><div class="track"><i class="fill" style="width:43%"></i></div></div>
+              <div class="row" data-tip="F1 on the defective class 0.404"><div class="row-top"><span>F1</span><b>0.404</b></div><div class="track"><i class="fill" style="width:40.4%"></i></div></div>
+              <div class="row" data-tip="Recall on the defective class 0.380"><div class="row-top"><span>Recall</span><b>0.380</b></div><div class="track"><i class="fill" style="width:38%"></i></div></div>
+            </div>
+            <div style="margin-top:22px">
+              <p class="panel-title">Model features measured directly, by language</p>
+              <div class="cell-group">
+                <div class="cells small" role="img" aria-label="20 of 21 features measured for Python"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+                <p><b>Python: 20 of 21</b> (Radon)</p>
+              </div>
+              <div class="cell-group">
+                <div class="cells small" role="img" aria-label="4 of 21 features measured for other languages"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <p><b>Java, JS, TS, C, C++: 4 of 21</b> (Lizard). The rest use training-set medians.</p>
+              </div>
+            </div>
+          </figure>
+        </div>
+        <div class="errata"><h4>Errata</h4><ul>
+          <li>Recall on defective code is 0.38, so at the default threshold the model misses more than half of defective modules. The app uses risk bands instead of a hard cutoff, and tuning those bands for recall is the next fix.</li>
+          <li>Risk scores outside Python rest mostly on estimated features. The UI tells users this directly.</li>
+        </ul></div>
+      </article>
+
+      <article class="sheet" id="candor">
+        <div class="sheet-head"><span class="label">Sheet 6 of 6</span><span class="mono">candor</span></div>
+        <div class="sheet-body">
+          <div>
+            <h3>Candor</h3>
+            <p class="claim">Tailors a resume to a job description, works in only what the resume supports, and fact-checks every change.</p>
+            <p class="detail">Skills you don't have are listed as gaps and blocked if the model tries to add them. You get ATS-safe DOCX and PDF files, a diff of every change with reasons, and a fact-check report. If a provider runs out of credit or hits a rate limit, the run continues on the next one and tells you it switched.</p>
+            <p class="stack"><span>Streamlit</span><span>Gemini</span><span>Groq</span><span>OpenAI</span><span>Supabase</span><span>SQLite</span></p>
+            <p class="actions"><a href="https://candor-fyobbhgqtb3m7ntsdhwdte.streamlit.app/">Live app (sign-in required)</a><a href="https://github.com/KirtiK07/candor">Source</a></p>
+          </div>
+          <figure>
+            <figcaption>The tailoring pipeline<span>Highlighted steps exist to catch invented claims.</span></figcaption>
+            <ol class="steps">
+              <li>Extract the resume</li>
+              <li>Analyze the JD, gaps and keyword evidence</li>
+              <li>Rewrite under hard rules</li>
+              <li>Fit to the page limit</li>
+              <li class="check">AI fact check of every change</li>
+              <li class="check">Repair flagged claims</li>
+              <li class="check">Rule-based fact check</li>
+              <li>ATS score</li>
+              <li>Cover letter (optional)</li>
+            </ol>
+            <div class="scroll" style="margin-top:16px">
+              <table>
+                <tbody>
+                  <tr><th scope="row">LLM providers, with automatic failover</th><td class="val">3</td></tr>
+                  <tr><th scope="row">Regional resume formats</th><td class="val">4</td></tr>
+                  <tr><th scope="row">Typical cost per run, gpt-4.1-mini</th><td class="val">~$0.01</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </figure>
+        </div>
+        <div class="errata"><h4>Errata</h4><ul>
+          <li>There's no published benchmark of how many invented claims the fact checks catch. The test suite runs offline against a fake LLM.</li>
+          <li>Scanned, image-only PDFs can't be parsed, so that text has to be pasted in.</li>
+          <li>The hosted app sits behind a login to protect API credit, so you can't try it without an account.</li>
+        </ul></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="other" class="wrap">
+    <div class="sect-head">
+      <h2 class="sect-title">Other builds</h2>
+      <p class="sect-note">Smaller or earlier projects, without formal benchmarks.</p>
+    </div>
+    <div class="scroll" tabindex="0" role="region" aria-label="Other projects" style="padding-bottom:clamp(40px,6vw,72px)">
+      <table class="ledger">
+        <thead><tr><th scope="col">Project</th><th scope="col">What it does</th><th scope="col">Built with</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><a href="https://github.com/KirtiK07/SchemaCraft">SchemaCraft</a></th><td class="cond">Turns a plain-English app description into a JSON database schema. Runs fully offline, at no cost per generation.</td><td class="mono">Ollama, Llama 3, LangChain, Gradio</td></tr>
+          <tr><th scope="row"><a href="https://github.com/KirtiK07/AI-toned-writer-assistant">AI Writing Assistant</a></th><td class="cond">Local writing tool with six tones plus length, format and audience controls, exposed as a REST endpoint other products can call.</td><td class="mono">Flask, Ollama, JavaScript</td></tr>
+          <tr><th scope="row"><a href="https://github.com/KirtiK07/RBFSS">RBFSS</a></th><td class="cond">File sharing with role-based access enforced in three layers: middleware, controller attributes and service-level ownership checks. Includes audit logs.</td><td class="mono">ASP.NET Core, EF Core, SQL Server</td></tr>
+          <tr><th scope="row"><a href="https://github.com/KirtiK07/vector-search-mongodb">Vector Search</a></th><td class="cond">Similarity search over MongoDB records using GloVe embeddings and a FAISS index, so queries match on meaning.</td><td class="mono">Node.js, MongoDB, FAISS</td></tr>
+          <tr><th scope="row"><a href="https://github.com/KirtiK07/project-samarth">Project Samarth</a></th><td class="cond">Answers plain-English questions about Indian government crop and rainfall data, with source citations on every answer.</td><td class="mono">Flask, Groq, Llama 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="sect-head"><h2 class="sect-title">Experience</h2></div>
+    <div class="cv">
+      <div>
+        <div class="job"><span class="mono">Jul &ndash; Oct 2026</span><div><h4>AI/ML Engineering Intern, Wrrk.ai</h4><p>Built and maintained analytics, unified inbox, email and residential-proxy modules for an all-in-one AI workspace that brings together CRM, WhatsApp and voice/chat. Guided new interns and potential clients through product demos.</p></div></div>
+        <div class="job"><span class="mono">Jan &ndash; Mar 2025</span><div><h4>AI Intern, Enzigma Solutions LLP</h4><p>Built a semantic vector search pipeline on MongoDB to replace keyword matching. Redesigned LLM prompt templates across production use cases to make outputs more consistent and accurate. Evaluated model outputs with engineers and presented findings to stakeholders.</p></div></div>
+        <div class="job"><span class="mono">Jun &ndash; Aug 2024</span><div><h4>Python Developer Intern, JhaMobi Technologies</h4><p>Built and deployed a full-stack book rental platform in Django and Bootstrap during an 8-week internship, covering catalog, checkout and accounts.</p></div></div>
+        <div class="job"><span class="mono">Jun &ndash; Aug 2023</span><div><h4>UI/UX Designer, Marva AI LLP</h4><p>Designed a food recommendation app in Figma from user flows to high-fidelity prototypes, then built the responsive front end.</p></div></div>
+      </div>
+      <div class="side">
+        <div class="side-block">
+          <h3>Education</h3>
+          <ul>
+            <li>MSc Computer Science, CGPA 9.0/10<span>School of Information Technology, Indira University, 2025&ndash;2027</span></li>
+            <li>BSc Data Science, CGPA 8.9/10<span>Symbiosis Skills &amp; Professional University, 2022&ndash;2025</span></li>
+          </ul>
+        </div>
+        <div class="side-block">
+          <h3>Also</h3>
+          <ul>
+            <li>Climate Corps Summer School 2026<span>Represented Indira University at Korea University, Seoul, in a cohort from 49 countries. Wrote an AI &amp; Energy research proposal.</span></li>
+            <li>PG LinkedIn Learning Ambassador<span>Indira University</span></li>
+          </ul>
+        </div>
+        <div class="side-block">
+          <h3>Tools</h3>
+          <ul>
+            <li>Languages &amp; frameworks<span>Python, Java, JavaScript, SQL, C++, FastAPI, Flask, Django, Streamlit</span></li>
+            <li>AI/ML<span>LLM APIs (Claude, Gemini, Groq), LangChain, RAG, prompt engineering, embeddings, vector search, scikit-learn</span></li>
+            <li>Data &amp; analytics<span>Pandas, NumPy, Power BI, Tableau, Excel</span></li>
+            <li>Databases &amp; infrastructure<span>PostgreSQL, MySQL, MongoDB, Redis, Supabase, SQLAlchemy, Docker, AWS, WebSockets</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Building something that has to work outside the demo? Let's talk.</h2>
+    <p class="mail"><a id="mail" href="mailto:kirti.kolare.work@gmail.com">kirti.kolare.work@gmail.com</a><button id="copy" type="button">Copy address</button></p>
+    <p class="contact-links"><a href="https://github.com/KirtiK07">GitHub</a><a href="https://linkedin.com/in/kirtikolare">LinkedIn</a><span>Pune, India</span></p>
+  </div>
+</section>
+<footer class="wrap mono">Results checked against each repo's published eval files on 9 November 2026.</footer>
+
+<div class="tip" id="tip" hidden></div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  // Theme
+  var themeBtn = document.getElementById('theme');
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function syncTheme() { themeBtn.textContent = isDark() ? 'Light' : 'Dark'; }
+  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  syncTheme();
+  themeBtn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncTheme();
+  });
+
+  // Chart tooltips
+  var tip = document.getElementById('tip');
+  document.addEventListener('pointermove', function (e) {
+    var el = e.target.closest ? e.target.closest('[data-tip]') : null;
+    if (!el) { tip.hidden = true; return; }
+    tip.textContent = el.getAttribute('data-tip');
+    tip.hidden = false;
+    var x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
+    var y = e.clientY - tip.offsetHeight - 12;
+    tip.style.left = Math.max(8, x) + 'px';
+    tip.style.top = (y < 8 ? e.clientY + 18 : y) + 'px';
+  });
+
+  // Copy email
+  var copyBtn = document.getElementById('copy');
+  copyBtn.addEventListener('click', function () {
+    var addr = document.getElementById('mail').textContent;
+    function done() { copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.textContent = 'Copy address'; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById('mail'));
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = 'Press Ctrl+C';
+    }
+    if (navigator.clipboard) navigator.clipboard.writeText(addr).then(done, fallback); else fallback();
+  });
+
+  // Barge-in replay. Delays are the measured medians from the repo's eval results.
+  var CUTOFF_MS = 77, RECOVERY_MS = 2207, WORD_MS = 170;
+  var FIRST = "Thanks for reporting this. I'm marking the ticket as high urgency under billing, and I'll need your account ID to continue.".split(' ');
+  var SECOND = "Understood, the whole dashboard is down. I've changed this to critical urgency, category outage.".split(' ');
+  var btn = document.getElementById('replayBtn'), agentTurn = document.getElementById('agentTurn');
+  var agentText = document.getElementById('agentText'), callerTwo = document.getElementById('callerTwo');
+  var agentTwo = document.getElementById('agentTwo'), agentTwoText = document.getElementById('agentTwoText');
+  var fill = document.getElementById('clockFill'), readout = document.getElementById('readout');
+  var state = 'idle', timers = [], raf = 0, said = 0;
+
+  function clearAll() { timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(raf); }
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function renderFirst() {
+    agentText.textContent = FIRST.slice(0, said).join(' ');
+    if (said < FIRST.length) {
+      var rest = document.createElement('span');
+      rest.className = 'unsaid';
+      rest.textContent = ' ' + FIRST.slice(said).join(' ');
+      agentText.appendChild(rest);
+    }
+  }
+  function stream(words, onWord, onEnd) {
+    var i = 0;
+    (function next() {
+      i++;
+      onWord(i);
+      if (i < words.length) later(next, WORD_MS); else onEnd();
+    })();
+  }
+  function play() {
+    clearAll();
+    state = 'playing';
+    said = 0;
+    agentTurn.classList.remove('stopped');
+    callerTwo.hidden = agentTwo.hidden = true;
+    agentTwoText.textContent = '';
+    fill.style.width = '0';
+    btn.textContent = 'Interrupt the agent';
+    readout.textContent = 'The agent is speaking. Cut in whenever you like.';
+    stream(FIRST, function (i) { said = i; renderFirst(); }, function () {
+      state = 'done';
+      btn.textContent = 'Play again';
+      readout.textContent = 'You let it finish. Play again and cut in mid-sentence.';
+    });
+  }
+  function interrupt() {
+    clearAll();
+    state = 'recovering';
+    btn.disabled = true;
+    btn.textContent = 'Agent is recovering';
+    callerTwo.hidden = false;
+    var start = performance.now();
+    later(function () {
+      agentTurn.classList.add('stopped');
+      agentText.textContent = FIRST.slice(0, said).join(' ');
+      readout.textContent = 'Audio stopped at 77 ms. Transcribing and generating a new reply.';
+    }, CUTOFF_MS);
+    (function tick() {
+      var t = performance.now() - start;
+      fill.style.width = Math.min(100, t / RECOVERY_MS * 100) + '%';
+      if (t < RECOVERY_MS) raf = requestAnimationFrame(tick);
+    })();
+    later(function () {
+      agentTwo.hidden = false;
+      readout.textContent = 'Audio stopped at 77 ms. New reply started at 2,207 ms. Both are measured medians.';
+      stream(SECOND, function (i) { agentTwoText.textContent = SECOND.slice(0, i).join(' '); }, function () {
+        state = 'done';
+        btn.disabled = false;
+        btn.textContent = 'Play again';
+      });
+    }, RECOVERY_MS);
+  }
+  btn.addEventListener('click', function () {
+    if (state === 'playing') interrupt(); else if (state !== 'recovering') play();
+  });
+})();
+</script>
+</body>
 </html>

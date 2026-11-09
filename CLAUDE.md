@@ -2,12 +2,12 @@
 
 ## What this project is
 Kirti Kolare's personal portfolio site — the page a recruiter lands on after clicking the
-resume/LinkedIn link. One scroll: hero, 4 featured projects with real benchmarked metrics
-pulled from their own repos, an experience timeline, and contact. Replaces the old
+resume/LinkedIn link. One scroll: cover, 6 project datasheets with real benchmarked metrics
+pulled from their own repos, other builds, experience, and contact. Replaces the old
 `KirtiK07/Portfolio` repo/site.
 
 ## Stack
-React 19 + Vite + Tailwind CSS v4 + Framer Motion. Static site, no backend. Deployed on Vercel.
+Single static `index.html` (all content, CSS and JS inline), built by Vite. No backend. Deployed on Vercel.
 
 ## Workflow rules (inherited from parent workspace)
 - Work in stages: plan → scaffold → build → test → document → deploy.
