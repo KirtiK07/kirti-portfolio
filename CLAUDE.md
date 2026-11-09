@@ -2,12 +2,12 @@
 
 ## What this project is
 Kirti Kolare's personal portfolio site — the page a recruiter lands on after clicking the
-resume/LinkedIn link. One screen: a 3D solar system where 6 planets are projects with real benchmarked metrics
-pulled from their own repos, plus other builds, experience, and contact. Replaces the old
+resume/LinkedIn link. One screen: a 3D universe where planets are sections and the projects planet has six creature
+residents, each a project with real benchmarked metrics pulled from its own repo. Replaces the old
 `KirtiK07/Portfolio` repo/site.
 
 ## Stack
-Single static `index.html` (content, CSS and JS inline) using Three.js from a pinned CDN URL, built by Vite. Plain version in `public/datasheet.html`. No backend. Deployed on Vercel.
+Single static `index.html` (content, CSS and JS inline) using Three.js from a pinned CDN URL, built by Vite. No backend. Deployed on Vercel.
 
 ## Workflow rules (inherited from parent workspace)
 - Work in stages: plan → scaffold → build → test → document → deploy.

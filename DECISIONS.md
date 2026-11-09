@@ -66,3 +66,21 @@ supersedes the static layout and light/dark theme decisions in the redesign abov
 - **Dark only.** The subject is space, so a light theme would not suit it.
 - **Plain version kept at `/datasheet.html`.** It serves screen readers and slow devices. Devices
   without WebGL fall back to the buttons and panels, and reduced-motion users get a still view.
+
+## November 2026: sections as planets, projects as creatures
+The owner asked for a more dynamic universe and no plain version. This supersedes the
+"one planet per project" and "plain version kept" decisions above.
+
+- **Plain version removed** at the owner's request. Devices without WebGL still get the
+  section buttons and panels, so all content stays reachable.
+- **Every section is a planet.** Experience has one moon per internship, Skills has one crystal
+  colour per group, Education has one satellite per chapter, and Contact has a beacon. The
+  matching tab lights up its moon, crystals or satellite.
+- **Projects are creatures** standing on the projects planet. Their features carry meaning
+  (QueryPal has 16 eyes for its 16 safety tests, Candor's halo has 3 gold beads for its 3
+  fact-check steps). Tabs change what the creature does, and Errata makes it shrink and look
+  away, so weak spots still get their own visible moment.
+- **Close-up camera uses the planet's surface normal as "up"**, so a resident stands upright on
+  screen wherever it is on the planet.
+- **Type:** Cormorant Garamond for headings, Jost for text, IBM Plex Mono for small labels.
+- **Three distant galaxies** are decorative only. They hold no content.
