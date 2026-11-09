@@ -49,4 +49,5 @@ and dark-only decisions above.
   observed worst case.
 - **Voice agent demo not linked.** The hosted demo returned `FUNCTION_INVOCATION_FAILED` on
   2026-11-09. Add the link back in `index.html` once it's fixed.
-- **Resume PDF not hosted.** It contains a phone number, so publishing it is the owner's call.
+- **Public resume has no phone number.** `public/Kirti-Kolare-Resume.pdf` is a copy with the number
+  deleted from the file, not covered up. Remake it the same way whenever the resume changes.
