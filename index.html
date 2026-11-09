@@ -352,7 +352,7 @@ pre { margin: 0; padding: 10px 12px; overflow-x: auto; background: var(--track);
         Overview: figs([['77 ms', 'Audio stops after an interruption, median'], ['2.2 s', 'New reply starts, median'], ['5', 'Scripted barge-ins with real STT, LLM and TTS']]) +
           '<p>Most voice demos talk over the caller or lose track of the turn. Here a voice activity detector listens during playback in 32 ms frames and cancels the in-flight LLM and speech stream. Transcription only starts after that.</p>' +
           stack(['FastAPI', 'WebSocket', 'Silero VAD', 'faster-whisper', 'Groq', 'Piper TTS', 'AudioWorklet']) +
-          actions([['Source', GH + 'voice-triage-agent', 1], ['Raw results', GH + 'voice-triage-agent/blob/HEAD/eval/results/latest.json'], ['Design decisions', GH + 'voice-triage-agent/blob/HEAD/DECISIONS.md']]),
+          actions([['Source', GH + 'voice-triage-agent', 1], ['Live demo (currently offline)', 'https://voice-triage-agent.vercel.app/'], ['Raw results', GH + 'voice-triage-agent/blob/HEAD/eval/results/latest.json'], ['Design decisions', GH + 'voice-triage-agent/blob/HEAD/DECISIONS.md']]),
         Results: '<figure><figcaption>Each interruption, to scale<span>Milliseconds from barge-in detected. Recovery ends when the new reply\'s audio starts.</span></figcaption><div class="runs">' +
           run(1, '6', '1,866', .22, 66.43) + run(2, '108', '2,207', 3.85, 74.97) + run(3, '107', '2,294', 3.81, 78.1) + run(4, '77', '2,800', 2.76, 97.24) + run(5, '1', '2,193', .03, 78.3) +
           '</div><p class="legend"><span><i class="a"></i>Audio stops</span><span><i></i>Until the new reply starts</span></p></figure>' +
@@ -442,14 +442,15 @@ pre { margin: 0; padding: 10px 12px; overflow-x: auto; background: var(--track);
     ['AI Writing Assistant', 'AI-toned-writer-assistant', 'Local writing tool with six tones plus length, format and audience controls, exposed as a REST endpoint other products can call.', 'Flask, Ollama, JavaScript'],
     ['RBFSS', 'RBFSS', 'File sharing with role-based access enforced in three layers: middleware, controller attributes and service-level ownership checks.', 'ASP.NET Core, EF Core, SQL Server'],
     ['Vector Search', 'vector-search-mongodb', 'Similarity search over MongoDB records using GloVe embeddings and a FAISS index, so queries match on meaning.', 'Node.js, MongoDB, FAISS'],
-    ['Project Samarth', 'project-samarth', 'Answers plain-English questions about Indian government crop and rainfall data, with source citations on every answer.', 'Flask, Groq, Llama 3']
+    ['Project Samarth', 'project-samarth', 'Answers plain-English questions about Indian government crop and rainfall data, with source citations on every answer.', 'Flask, Groq, Llama 3', 'https://project-samarth-chi.vercel.app/'],
+    ['Food Recommendation App', 'Food-recommendation-app', 'Front end for a food recommendation app, with sign-up, taste preferences, customer search, restaurant menu and feedback pages.', 'HTML, CSS, Bootstrap, JavaScript', 'https://kirtik07.github.io/Food-recommendation-app/']
   ];
   function buildsHtml(lit) {
     return '<ul class="log">' + BUILDS.map(function (b, i) {
-      return '<li' + (i === lit ? ' class="lit"' : '') + '><a href="' + GH + b[1] + '" target="_blank" rel="noopener">' + b[0] + '</a><p>' + b[2] + '</p><small>' + b[3] + '</small></li>';
-    }).join('') + '</ul>';
+      return '<li' + (i === lit ? ' class="lit"' : '') + '><a href="' + GH + b[1] + '" target="_blank" rel="noopener">' + b[0] + '</a>' + (b[4] ? ' &middot; <a href="' + b[4] + '" target="_blank" rel="noopener">Live demo</a>' : '') + '<p>' + b[2] + '</p><small>' + b[3] + '</small></li>';
+    }).join('') + '</ul>' + WAKE;
   }
-  var BELT = { id: 'belt', name: 'Other builds', title: 'The outer belt', repo: 'smaller and earlier projects', hue: '#D8C7A6', metric: '5 more projects', claim: 'Five smaller projects, without formal benchmarks.', tabs: {} };
+  var BELT = { id: 'belt', name: 'Other builds', title: 'The outer belt', repo: 'smaller and earlier projects', hue: '#D8C7A6', metric: '6 more projects', claim: 'Six smaller projects, without formal benchmarks.', tabs: {} };
 
   var STAR = {
     id: 'star', name: 'About me', title: 'Kirti Kolare', repo: 'the star at the center', hue: '#FFD27A', metric: 'About, contact',

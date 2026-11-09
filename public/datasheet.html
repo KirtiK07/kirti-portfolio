@@ -339,8 +339,6 @@ footer { padding-block: 16px; color: var(--muted); }
     </div>
 
     <div class="sheets">
-
-      <!-- demo intentionally not linked: voice-triage-agent.vercel.app returned FUNCTION_INVOCATION_FAILED on 2026-11-09. Add it to .actions once fixed. -->
       <article class="sheet" id="voice">
         <div class="sheet-head"><span class="label">Sheet 1 of 6</span><span class="mono">voice-triage-agent</span></div>
         <div class="sheet-body">
@@ -349,7 +347,7 @@ footer { padding-block: 16px; color: var(--muted); }
             <p class="claim">A support-triage agent that stops talking the moment a caller cuts in, then answers what they just said.</p>
             <p class="detail">Most voice demos talk over the caller or lose track of the turn. Here a voice activity detector listens during playback in 32 ms frames and cancels the in-flight LLM and speech stream, and transcription only starts after that. Cutoff and recovery are reported separately because they fail for different reasons.</p>
             <p class="stack"><span>FastAPI</span><span>WebSocket</span><span>Silero VAD</span><span>faster-whisper</span><span>Groq</span><span>Piper TTS</span><span>AudioWorklet</span></p>
-            <p class="actions"><a href="https://github.com/KirtiK07/voice-triage-agent">Source</a><a href="https://github.com/KirtiK07/voice-triage-agent/blob/HEAD/eval/results/latest.json">Raw results</a><a href="https://github.com/KirtiK07/voice-triage-agent/blob/HEAD/DECISIONS.md">Design decisions</a></p>
+            <p class="actions"><a href="https://github.com/KirtiK07/voice-triage-agent">Source</a><a href="https://voice-triage-agent.vercel.app/">Live demo (currently offline)</a><a href="https://github.com/KirtiK07/voice-triage-agent/blob/HEAD/eval/results/latest.json">Raw results</a><a href="https://github.com/KirtiK07/voice-triage-agent/blob/HEAD/DECISIONS.md">Design decisions</a></p>
           </div>
           <figure>
             <figcaption>Each interruption, to scale<span>Milliseconds from barge-in detected. Recovery ends when the new reply's audio starts.</span></figcaption>
@@ -598,7 +596,8 @@ LIMIT 100;</code></pre>
           <tr><th scope="row"><a href="https://github.com/KirtiK07/AI-toned-writer-assistant">AI Writing Assistant</a></th><td class="cond">Local writing tool with six tones plus length, format and audience controls, exposed as a REST endpoint other products can call.</td><td class="mono">Flask, Ollama, JavaScript</td></tr>
           <tr><th scope="row"><a href="https://github.com/KirtiK07/RBFSS">RBFSS</a></th><td class="cond">File sharing with role-based access enforced in three layers: middleware, controller attributes and service-level ownership checks. Includes audit logs.</td><td class="mono">ASP.NET Core, EF Core, SQL Server</td></tr>
           <tr><th scope="row"><a href="https://github.com/KirtiK07/vector-search-mongodb">Vector Search</a></th><td class="cond">Similarity search over MongoDB records using GloVe embeddings and a FAISS index, so queries match on meaning.</td><td class="mono">Node.js, MongoDB, FAISS</td></tr>
-          <tr><th scope="row"><a href="https://github.com/KirtiK07/project-samarth">Project Samarth</a></th><td class="cond">Answers plain-English questions about Indian government crop and rainfall data, with source citations on every answer.</td><td class="mono">Flask, Groq, Llama 3</td></tr>
+          <tr><th scope="row"><a href="https://github.com/KirtiK07/project-samarth">Project Samarth</a><br><a href="https://project-samarth-chi.vercel.app/">Live demo</a></th><td class="cond">Answers plain-English questions about Indian government crop and rainfall data, with source citations on every answer.</td><td class="mono">Flask, Groq, Llama 3</td></tr>
+          <tr><th scope="row"><a href="https://github.com/KirtiK07/Food-recommendation-app">Food Recommendation App</a><br><a href="https://kirtik07.github.io/Food-recommendation-app/">Live demo</a></th><td class="cond">Front end for a food recommendation app, with sign-up, taste preferences, customer search, restaurant menu and feedback pages.</td><td class="mono">HTML, CSS, Bootstrap, JavaScript</td></tr>
         </tbody>
       </table>
     </div>

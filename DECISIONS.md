@@ -47,8 +47,8 @@ and dark-only decisions above.
 - **Voice agent "worst of 5" instead of p95.** The repo's p95 recovery (3,155 ms) comes from
   extrapolating over 5 samples and exceeds the slowest real run (2,800 ms), so the page shows the
   observed worst case.
-- **Voice agent demo not linked.** The hosted demo returned `FUNCTION_INVOCATION_FAILED` on
-  2026-11-09. Add the link back in `index.html` once it's fixed.
+- **Voice agent demo marked offline.** The hosted demo returned `FUNCTION_INVOCATION_FAILED` on
+  2026-11-09. Remove "(currently offline)" from both pages once it's fixed.
 - **Public resume has no phone number.** `public/Kirti-Kolare-Resume.pdf` is a copy with the number
   deleted from the file, not covered up. Remake it the same way whenever the resume changes.
 
