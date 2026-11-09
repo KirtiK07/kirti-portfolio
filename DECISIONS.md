@@ -51,3 +51,18 @@ and dark-only decisions above.
   2026-11-09. Add the link back in `index.html` once it's fixed.
 - **Public resume has no phone number.** `public/Kirti-Kolare-Resume.pdf` is a copy with the number
   deleted from the file, not covered up. Remake it the same way whenever the resume changes.
+
+## November 2026: 3D solar system
+The datasheet page read as dull, so the home page is now a one-screen 3D solar system. This
+supersedes the static layout and light/dark theme decisions in the redesign above.
+
+- **Three.js from a pinned CDN build (0.158.0).** It is the last convenient version with a plain
+  script build, so the page stays one file with no bundling. A move to ES modules is only needed if
+  the version has to change.
+- **Tabs instead of scrolling.** The metrics and errata all stayed. They moved into a panel so the
+  page fits one screen, with the errata tab marked in yellow so it stays easy to find.
+- **Planet features mean something.** For example, QueryPal has 16 satellites for its 16 safety
+  tests. Planet size and orbit carry no meaning.
+- **Dark only.** The subject is space, so a light theme would not suit it.
+- **Plain version kept at `/datasheet.html`.** It serves screen readers and slow devices. Devices
+  without WebGL fall back to the buttons and panels, and reduced-motion users get a still view.

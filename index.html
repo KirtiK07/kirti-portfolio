@@ -5,774 +5,1144 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kirti Kolare</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Kirti Kolare, AI/ML engineer and backend developer in Pune. LLM, agent and voice systems, each published with its benchmarks and its known weak spots.">
+<meta name="description" content="Kirti Kolare, AI/ML engineer and backend developer in Pune. Explore LLM, agent and voice projects as a 3D solar system, each with its benchmarks and known weak spots.">
 <meta property="og:title" content="Kirti Kolare, AI/ML Engineer">
-<meta property="og:description" content="LLM, agent and voice systems, each published with its benchmarks and its known weak spots.">
+<meta property="og:description" content="LLM, agent and voice projects as a 3D solar system, each with its benchmarks and known weak spots.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kirti-portfolio-zeta.vercel.app/">
 <link rel="canonical" href="https://kirti-portfolio-zeta.vercel.app/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231D3FCC'/%3E%3Cpath d='M9 7v18M23 7 12 16l11 9' fill='none' stroke='%23FFE45C' stroke-width='4'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#04060D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2304060D'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23FFD27A'/%3E%3Cellipse cx='16' cy='16' rx='14' ry='5' fill='none' stroke='%234FE0C8' stroke-width='1.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-/* Layout concept: the portfolio is a component datasheet. A cover with a
-   characteristics table, then one numbered sheet per project, each ending in a
-   highlighter-yellow errata band. */
+/* Layout concept: one fixed viewport. A live solar system fills the screen, a dock
+   names every planet, and a mission panel with tabs replaces page scrolling.
+   A single deliberate dark look, because the subject is space. */
 :root {
-  --paper: #E6EBF1;
-  --sheet: #F7F9FB;
-  --ink: #101A33;
-  --muted: #47536C;
-  --rule: #B6C1D0;
-  --accent: #1D3FCC;
-  --bar-2: #7A879E;
-  --track: #DFE5EC;
+  --void: #04060D;
+  --glass: rgba(9, 13, 26, .86);
+  --ink: #EEF2FB;
+  --muted: #A9B4CC;
+  --line: rgba(170, 185, 220, .24);
+  --track: rgba(170, 185, 220, .14);
+  --bar: #7C8AA8;
   --mark: #FFE45C;
   --mark-ink: #16171F;
+  --hue: #FFD27A;
   --display: "Archivo", "Arial Narrow", Arial, sans-serif;
   --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
-  --gutter: clamp(16px, 4vw, 48px);
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0A1120; --sheet: #111A2E; --ink: #E9EEF8; --muted: #A5B1C8; --rule: #2F3C57;
-    --accent: #9FB2FF; --bar-2: #76839C; --track: #1E2A42; --mark: #F7DC52; --mark-ink: #16171F;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #0A1120; --sheet: #111A2E; --ink: #E9EEF8; --muted: #A5B1C8; --rule: #2F3C57;
-  --accent: #9FB2FF; --bar-2: #76839C; --track: #1E2A42; --mark: #F7DC52; --mark-ink: #16171F;
+  --edge: max(16px, env(safe-area-inset-left, 0px));
+  --edge-r: max(16px, env(safe-area-inset-right, 0px));
   color-scheme: dark;
 }
-:root[data-theme="light"] { color-scheme: light; }
-
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+html, body { height: 100%; margin: 0; overflow: hidden; }
 body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font: 400 1.0625rem/1.6 var(--body);
-  -webkit-font-smoothing: antialiased;
+  background: var(--void); color: var(--ink);
+  font: 400 1rem/1.5 var(--body); -webkit-font-smoothing: antialiased;
 }
-a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
-a:hover { text-decoration-thickness: 2px; }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
-h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+h1, h2, h3, h4, p, ul, ol, figure { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
-.wrap {
-  max-width: 1240px;
-  margin-inline: auto;
-  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
-  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
-}
-.mono { font-family: var(--mono); font-size: .8125rem; letter-spacing: .01em; }
-.label {
-  font-family: var(--mono); font-size: .75rem; font-weight: 500;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
-}
-.skip { position: absolute; left: -999px; top: 0; background: var(--mark); color: var(--mark-ink); padding: 8px 12px; z-index: 20; }
-.skip:focus { left: 8px; top: 8px; }
+a { color: var(--hue); text-underline-offset: 3px; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--hue); outline-offset: 2px; }
+
+#space { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+#space.dragging { cursor: grabbing; }
+#space.hovering { cursor: pointer; }
+body.no-gl { background: radial-gradient(circle at 62% 42%, #2a2238 0, #0b0f1e 34%, var(--void) 70%); }
+body.no-gl #space { display: none; }
 
 /* Top bar */
-.bar {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
-  background: var(--paper); border-bottom: 1px solid var(--rule);
+.hud {
+  position: fixed; z-index: 5; top: env(safe-area-inset-top, 0px); left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px 18px; flex-wrap: wrap;
+  padding: 12px var(--edge-r) 12px var(--edge);
+  pointer-events: none;
 }
-.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-block: 10px; }
-.bar nav { display: flex; gap: 4px 18px; flex-wrap: wrap; align-items: center; }
-.bar a { color: var(--ink); text-decoration: none; font-family: var(--mono); font-size: .8125rem; }
-.bar a:hover { text-decoration: underline; }
-.bar .id { font-weight: 600; }
-#theme {
-  font: 500 .75rem var(--mono); color: var(--ink); background: transparent; cursor: pointer;
-  border: 1px solid var(--rule); padding: 6px 10px; min-height: 32px;
-}
-#theme:hover { border-color: var(--ink); }
+.hud > * { pointer-events: auto; }
+.brand { font: 600 .875rem var(--mono); padding: 6px 0; min-height: 32px; }
+.hud nav { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 16px; }
+.hud nav a, .hud nav button { color: var(--ink); text-decoration: none; font: 400 .8125rem var(--mono); padding: 6px 0; min-height: 32px; }
+.hud nav a:hover, .hud nav button:hover { color: var(--hue); }
+.hud nav .cta { border: 1px solid var(--ink); padding: 6px 12px; }
 
-/* Cover */
-.cover { padding-block: clamp(32px, 6vw, 72px) clamp(32px, 5vw, 56px); }
-.ruler {
-  height: 12px; margin-bottom: 16px;
-  background:
-    repeating-linear-gradient(90deg, var(--ink) 0 1px, transparent 1px 10%) 0 0/100% 12px no-repeat,
-    repeating-linear-gradient(90deg, var(--rule) 0 1px, transparent 1px 1%) 0 0/100% 6px no-repeat;
+/* Intro title */
+.intro {
+  position: fixed; z-index: 2; left: var(--edge); top: clamp(64px, 12vh, 120px);
+  width: min(46vw, 620px); pointer-events: none;
+  transition: opacity .45s, transform .6s;
 }
 .name {
   font-family: var(--display); font-weight: 800; font-stretch: 125%;
-  font-size: clamp(2.2rem, 9.3vw, 7.5rem); line-height: .94; letter-spacing: -.02em;
-  text-transform: uppercase; white-space: nowrap;
+  font-size: clamp(2.4rem, 6.2vw, 5.75rem); line-height: .92; letter-spacing: -.02em; text-transform: uppercase;
+  text-shadow: 0 0 40px rgba(4, 6, 13, .8);
 }
-.cover-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 5vw, 72px); margin-top: clamp(24px, 4vw, 44px); }
-.thesis {
-  font-family: var(--display); font-weight: 600; font-stretch: 88%;
-  font-size: clamp(1.625rem, 3.3vw, 2.625rem); line-height: 1.12; letter-spacing: -.005em; text-wrap: balance;
+.thesis { margin-top: 16px; font-family: var(--display); font-weight: 600; font-stretch: 88%; font-size: clamp(1.25rem, 2.2vw, 1.875rem); line-height: 1.15; max-width: 22em; text-wrap: balance; text-shadow: 0 0 18px var(--void); }
+.lede { margin-top: 10px; color: var(--muted); max-width: 44ch; font-size: .9375rem; text-shadow: 0 0 12px var(--void); }
+.hint { margin-top: 14px; font: 500 .75rem var(--mono); letter-spacing: .04em; color: #FFD27A; }
+.hint-touch { display: none; }
+@media (hover: none) { .hint-mouse { display: none; } .hint-touch { display: inline; } }
+body.open .intro { opacity: 0; transform: translateX(-24px); }
+.intro::before { content: ""; position: absolute; z-index: -1; inset: -40px -60px -40px calc(-1 * var(--edge) - 40px); background: radial-gradient(ellipse at 30% 50%, rgba(4, 6, 13, .78) 30%, rgba(4, 6, 13, 0) 72%); }
+
+/* Planet tags projected from 3D */
+#tags { position: fixed; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.tag {
+  position: absolute; left: 0; top: 0; pointer-events: auto; white-space: nowrap; text-align: left;
+  padding: 2px 8px; border-left: 2px solid var(--c); background: rgba(4, 6, 13, .55);
+  font: 500 .75rem/1.3 var(--mono); will-change: transform; transition: opacity .25s, background .2s;
 }
-.lede { margin-top: 18px; max-width: 58ch; color: var(--muted); }
-.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-.btn {
-  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px;
-  font: 500 .875rem var(--mono); text-decoration: none; cursor: pointer;
-  border: 1px solid var(--ink); color: var(--ink); background: transparent;
+.tag b { display: block; font: 600 .75rem/1.3 var(--mono); color: var(--c); }
+.tag small { display: none; font: 500 .6875rem/1.3 var(--mono); }
+.tag:hover small, .tag.hot small { display: block; }
+.tag:hover, .tag.hot { background: rgba(4, 6, 13, .92); z-index: 2; }
+body.open .tag { opacity: 0 !important; pointer-events: none; }
+
+/* Dock */
+.dock {
+  position: fixed; z-index: 4; left: var(--edge); right: var(--edge-r);
+  bottom: max(14px, env(safe-area-inset-bottom, 0px));
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px;
+  transition: right .5s cubic-bezier(.2,.8,.2,1);
 }
-.btn:hover { background: var(--ink); color: var(--paper); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--paper); }
-.btn.primary:hover { background: var(--ink); border-color: var(--ink); }
-.now { border-top: 2px solid var(--ink); padding-top: 10px; display: grid; gap: 14px; align-content: start; }
-.now li { font-size: .9688rem; line-height: 1.5; min-width: 0; }
-.now strong { display: block; font-weight: 600; }
-
-/* Tables */
-.scroll { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; }
-th, td { text-align: left; vertical-align: baseline; padding: 11px 16px 11px 0; border-bottom: 1px solid var(--rule); }
-th:last-child, td:last-child { padding-right: 0; }
-thead th { font: 500 .75rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); }
-tbody th { font-weight: 500; }
-.val { font: 600 1.125rem var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.cond { color: var(--muted); font-size: .9375rem; line-height: 1.4; }
-.chars { min-width: 680px; }
-.chars-wrap { margin-top: clamp(28px, 5vw, 48px); }
-.chars-title { font-family: var(--display); font-weight: 700; font-stretch: 100%; font-size: 1.125rem; margin-bottom: 10px; }
-
-/* Section head */
-.sect-head { padding-block: clamp(32px, 5vw, 56px) 20px; border-top: 2px solid var(--ink); }
-.sect-title { font-family: var(--display); font-weight: 800; font-stretch: 112%; font-size: clamp(1.625rem, 3.6vw, 2.5rem); line-height: 1.05; letter-spacing: -.01em; }
-.sect-note { margin-top: 10px; color: var(--muted); max-width: 66ch; }
-
-/* Datasheet */
-.sheets { display: grid; gap: clamp(24px, 3vw, 36px); padding-bottom: clamp(40px, 6vw, 72px); }
-.sheet { background: var(--sheet); border: 1px solid var(--rule); min-width: 0; }
-.sheet-head {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 4px 20px; flex-wrap: wrap;
-  padding: 10px clamp(16px, 2.5vw, 28px); border-bottom: 1px solid var(--rule);
+.dock button {
+  min-width: 0; min-height: 56px; padding: 7px 10px; text-align: left;
+  background: rgba(9, 13, 26, .72); border: 1px solid var(--line); border-top: 2px solid var(--c);
+  backdrop-filter: blur(6px); transition: background .2s, transform .2s;
 }
-.sheet-body { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 3.5vw, 48px); padding: clamp(20px, 2.8vw, 32px) clamp(16px, 2.5vw, 28px); }
-.sheet h3 { font-family: var(--display); font-weight: 800; font-stretch: 100%; font-size: clamp(1.625rem, 3vw, 2.25rem); line-height: 1.05; letter-spacing: -.01em; text-wrap: balance; }
-.claim { margin-top: 14px; font-weight: 500; }
-.detail { margin-top: 10px; color: var(--muted); }
-.stack { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 16px; color: var(--muted); font-family: var(--mono); font-size: .75rem; }
-.actions { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-family: var(--mono); font-size: .875rem; }
-.actions a { padding-block: 4px; }
-figure { min-width: 0; }
-figcaption { font-family: var(--display); font-weight: 700; font-size: 1rem; line-height: 1.3; margin-bottom: 12px; }
-figcaption span { display: block; font-family: var(--body); font-weight: 400; font-size: .875rem; color: var(--muted); margin-top: 2px; }
+.dock button:hover, .dock button.hot { background: rgba(30, 38, 66, .92); transform: translateY(-2px); }
+.dock button[aria-current="true"] { background: var(--c); color: var(--void); }
+.dock button[aria-current="true"] small { color: inherit; }
+.dock span, .dock small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dock span { font-weight: 600; font-size: .8125rem; line-height: 1.3; }
+.dock small { font: 400 .6875rem/1.4 var(--mono); color: var(--muted); }
+body.open .dock { right: calc(min(520px, 44vw) + 28px); }
+body.open .dock small { display: none; }
+body.open .dock button { min-height: 40px; padding: 6px 8px; }
+body.open .dock span { font-size: .75rem; }
 
-/* Bars: every chart shares one component, drawn on a zero baseline */
-.panels { display: grid; gap: 20px; }
+/* Mission panel */
+#panel {
+  position: fixed; z-index: 6; right: var(--edge-r); top: 60px;
+  bottom: max(14px, env(safe-area-inset-bottom, 0px)); width: min(520px, 44vw);
+  display: flex; flex-direction: column; min-height: 0;
+  background: var(--glass); border: 1px solid var(--line); border-top: 2px solid var(--hue);
+  backdrop-filter: blur(14px);
+  transform: translateX(calc(100% + 40px)); visibility: hidden;
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), visibility 0s .55s;
+}
+body.open #panel { transform: none; visibility: visible; transition: transform .55s cubic-bezier(.2,.8,.2,1), visibility 0s; }
+.p-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 8px 8px 0 18px; }
+.p-kicker { font: 500 .6875rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); overflow-wrap: anywhere; }
+.p-ctrl { display: flex; gap: 2px; flex: none; }
+.p-ctrl button { width: 36px; height: 36px; font: 500 1rem var(--mono); }
+.p-ctrl button:hover { color: var(--hue); }
+.p-head { padding: 2px 18px 10px; }
+.p-head h2 { font-family: var(--display); font-weight: 800; font-size: clamp(1.375rem, 2.4vw, 1.875rem); line-height: 1.05; letter-spacing: -.01em; text-wrap: balance; }
+.p-head h2:focus { outline: none; }
+.p-claim { margin-top: 6px; font-size: .9375rem; line-height: 1.4; font-weight: 500; }
+.tabs { display: flex; gap: 2px 14px; flex-wrap: wrap; padding: 0 18px; border-bottom: 1px solid var(--line); }
+.tabs button { padding: 7px 0; font: 500 .8125rem var(--mono); color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--hue); }
+.tabs button.err { color: var(--mark); }
+.tabs button.err[aria-selected="true"] { border-bottom-color: var(--mark); }
+.p-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 14px 18px 16px; display: grid; gap: 14px; align-content: start; overscroll-behavior: contain; animation: rise .35s ease-out; }
+@keyframes rise { from { opacity: .3; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.p-body p { font-size: .9375rem; line-height: 1.5; }
+.stack { display: flex; flex-wrap: wrap; gap: 4px 12px; font: 400 .75rem var(--mono) !important; color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.actions a { display: inline-flex; align-items: center; min-height: 36px; padding: 5px 12px; font: 500 .8125rem var(--mono); color: var(--ink); text-decoration: none; border: 1px solid var(--line); }
+.actions a:hover { border-color: var(--hue); color: var(--hue); }
+.actions a.go { background: var(--hue); color: var(--void); border-color: var(--hue); }
+.actions a.go:hover { background: var(--ink); border-color: var(--ink); color: var(--void); }
+.note { font-size: .8125rem !important; color: var(--muted); }
+
+/* Headline figures */
+.figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.figs div { border-top: 1px solid var(--line); padding-top: 6px; min-width: 0; }
+.figs b { display: block; font: 600 clamp(1.125rem, 2vw, 1.5rem)/1.15 var(--mono); color: var(--hue); font-variant-numeric: tabular-nums; }
+.figs span { display: block; font-size: .75rem; line-height: 1.3; color: var(--muted); margin-top: 3px; }
+
+/* Charts: one bar component on a zero baseline */
+figcaption { font-weight: 600; font-size: .9375rem; line-height: 1.3; margin-bottom: 8px; }
+figcaption span { display: block; font-weight: 400; font-size: .8125rem; color: var(--muted); margin-top: 2px; }
+.panels { display: grid; gap: 14px; }
 .panels.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .panels.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.panel-title { font: 500 .75rem var(--mono); color: var(--muted); margin-bottom: 8px; }
-.bars { display: grid; gap: 10px; }
-.row { display: grid; gap: 3px; cursor: default; }
-.row-top { display: flex; justify-content: space-between; gap: 8px; font-size: .8125rem; line-height: 1.3; }
-.row-top b { font: 600 .8125rem var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.track { height: 12px; background: var(--track); }
-.fill { display: block; height: 100%; background: var(--bar-2); border-radius: 0 4px 4px 0; }
-.row.hi .fill { background: var(--accent); }
+.panel-title { font: 500 .6875rem var(--mono) !important; color: var(--muted); margin-bottom: 6px; }
+.bars { display: grid; gap: 7px; }
+.row { display: grid; gap: 2px; cursor: default; }
+.row-top { display: flex; justify-content: space-between; gap: 6px; font-size: .75rem; line-height: 1.25; }
+.row-top b { font: 600 .75rem var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.track { height: 10px; background: var(--track); }
+.fill { display: block; height: 100%; background: var(--bar); border-radius: 0 4px 4px 0; transform-origin: left; animation: grow .7s cubic-bezier(.2,.8,.2,1); }
+.row.hi .fill { background: var(--hue); }
 .row.hi .row-top { font-weight: 600; }
-.row:hover .fill { filter: brightness(1.12); }
-.tip {
-  position: fixed; z-index: 30; max-width: 260px; padding: 6px 9px; pointer-events: none;
-  background: var(--ink); color: var(--paper); font: 400 .75rem/1.35 var(--mono);
-}
-
-/* Run timeline */
-.runs { display: grid; gap: 7px; }
-.run { display: grid; grid-template-columns: 44px minmax(0, 1fr) 62px; gap: 8px; align-items: center; font: 400 .75rem var(--mono); font-variant-numeric: tabular-nums; cursor: default; }
-.run-track { display: flex; gap: 2px; height: 14px; }
+@keyframes grow { from { transform: scaleX(0); } to { transform: none; } }
+.runs { display: grid; gap: 5px; }
+.run { display: grid; grid-template-columns: 40px minmax(0, 1fr) 42px; gap: 6px; align-items: center; font: 400 .6875rem var(--mono); font-variant-numeric: tabular-nums; }
+.run-track { display: flex; gap: 2px; height: 11px; }
 .run-track i { display: block; height: 100%; }
-.run-track .cut { background: var(--accent); min-width: 2px; }
-.run-track .rec { background: var(--bar-2); border-radius: 0 4px 4px 0; }
+.run-track .cut { background: var(--hue); min-width: 2px; }
+.run-track .rec { background: var(--bar); border-radius: 0 4px 4px 0; }
 .run span:last-child { text-align: right; }
-.legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 10px; font-size: .8125rem; color: var(--muted); }
-.legend i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; background: var(--bar-2); }
-.legend i.a { background: var(--accent); }
-
-/* Replay */
-.replay { margin-top: 24px; border-top: 2px solid var(--ink); padding-top: 14px; }
-.replay-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
-.replay h4 { font-family: var(--display); font-weight: 700; font-size: 1rem; }
-.turns { display: grid; gap: 8px; margin-top: 12px; }
-.turn { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 8px; font-size: .9375rem; line-height: 1.45; }
-.turn > span { font: 500 .75rem/1.9 var(--mono); color: var(--muted); }
-.turn.stopped p::after { content: " [audio stopped]"; font: 600 .75rem var(--mono); color: var(--accent); }
-#agentText .unsaid { color: var(--muted); opacity: .55; }
-.clock { height: 6px; background: var(--track); margin-top: 14px; }
-.clock i { display: block; height: 100%; width: 0; background: var(--accent); }
-#readout { margin-top: 8px; min-height: 2.8em; color: var(--muted); font-family: var(--mono); font-size: .8125rem; line-height: 1.4; }
-
-/* Waffle and coverage cells */
-.cells { display: flex; flex-wrap: wrap; gap: 4px; }
-.cells i { width: 22px; height: 22px; display: block; border: 2px solid var(--accent); }
-.cells i.on { background: var(--accent); }
-.cells.small i { width: 14px; height: 14px; border-width: 1.5px; }
-.cell-group { display: grid; gap: 6px; }
-.cell-group + .cell-group { margin-top: 16px; }
-.cell-group p { font-size: .875rem; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 7px; font-size: .75rem !important; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; margin-right: 5px; background: var(--bar); }
+.legend i.a { background: var(--hue); }
+table { border-collapse: collapse; width: 100%; font-size: .875rem; }
+th, td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--line); vertical-align: baseline; }
+thead th { font: 500 .6875rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+tbody th { font-weight: 500; }
+.val { font: 600 .875rem var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.scroll { overflow-x: auto; }
+.cells { display: flex; flex-wrap: wrap; gap: 3px; }
+.cells i { width: 18px; height: 18px; display: block; border: 2px solid var(--hue); }
+.cells i.on { background: var(--hue); }
+.cells.small i { width: 13px; height: 13px; border-width: 1.5px; }
+.cell-group { display: grid; gap: 4px; }
+.cell-group p { font-size: .8125rem; color: var(--muted); }
 .cell-group p b { color: var(--ink); font-weight: 600; }
-pre.sql {
-  margin: 16px 0 0; padding: 12px 14px; overflow-x: auto; background: var(--track);
-  font: 400 .8125rem/1.55 var(--mono); color: var(--ink);
-}
-
-/* Pipeline */
-.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; counter-reset: s; }
-.steps li { counter-increment: s; border: 1px solid var(--rule); padding: 8px 10px; font-size: .875rem; line-height: 1.3; min-width: 0; }
-.steps li::before { content: counter(s); display: block; font: 500 .75rem var(--mono); color: var(--muted); margin-bottom: 2px; }
-.steps li.check { background: var(--accent); border-color: var(--accent); color: var(--sheet); font-weight: 500; }
+pre { margin: 0; padding: 10px 12px; overflow-x: auto; background: var(--track); font: 400 .75rem/1.5 var(--mono); }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; counter-reset: s; }
+.steps li { counter-increment: s; border: 1px solid var(--line); padding: 6px 8px; font-size: .8125rem; line-height: 1.25; min-width: 0; }
+.steps li::before { content: counter(s); display: block; font: 500 .6875rem var(--mono); color: var(--muted); }
+.steps li.check { background: var(--hue); border-color: var(--hue); color: var(--void); font-weight: 500; }
 .steps li.check::before { color: inherit; }
 
 /* Errata */
-.errata { background: var(--mark); color: var(--mark-ink); display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px 16px; padding: 14px clamp(16px, 2.5vw, 28px); }
-.errata h4 { font: 600 .75rem/1.9 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-.errata ul { display: grid; gap: 6px; }
-.errata li { font-size: .9375rem; line-height: 1.45; }
+.errata { background: var(--mark); color: var(--mark-ink); padding: 12px 14px; display: grid; gap: 8px; }
+.errata li { font-size: .9375rem; line-height: 1.42; }
+.errata li + li { border-top: 1px solid rgba(22, 23, 31, .25); padding-top: 8px; }
 .errata code { font: 500 .8125rem var(--mono); overflow-wrap: anywhere; }
 
-/* Other builds, experience */
-.ledger th { font-weight: 600; white-space: nowrap; padding-right: 20px; }
-.ledger { min-width: 720px; }
-.ledger td.cond { min-width: 340px; }
-.cv { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 5vw, 72px); padding-bottom: clamp(40px, 6vw, 72px); }
-.job { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 20px; padding-block: 14px; border-top: 1px solid var(--rule); }
-.job:first-of-type { border-top: 2px solid var(--ink); }
-.job h4 { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
-.job p { color: var(--muted); font-size: .9688rem; line-height: 1.5; margin-top: 4px; }
-.job .mono { color: var(--muted); padding-top: 3px; }
-.side h3 { font-family: var(--display); font-weight: 700; font-size: 1.125rem; border-top: 2px solid var(--ink); padding-top: 12px; }
-.side-block + .side-block { margin-top: 28px; }
-.side li { padding-block: 8px; border-bottom: 1px solid var(--rule); font-size: .9688rem; line-height: 1.45; }
-.side li span { display: block; color: var(--muted); font-size: .875rem; }
+/* Replay */
+.turns { display: grid; gap: 7px; }
+.turn { display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 6px; font-size: .9375rem; line-height: 1.4; }
+.turn > span { font: 500 .6875rem/2 var(--mono); color: var(--muted); }
+.turn.stopped p::after { content: " [audio stopped]"; font: 600 .6875rem var(--mono); color: var(--hue); }
+.unsaid { color: var(--muted); opacity: .55; }
+.clock { height: 6px; background: var(--track); }
+.clock i { display: block; height: 100%; width: 0; background: var(--hue); }
+.readout { font: 400 .8125rem/1.4 var(--mono) !important; color: var(--muted); min-height: 3em; }
+.bigbtn { min-height: 46px; padding: 8px 16px; background: var(--hue); color: var(--void); font: 600 .875rem var(--mono); justify-self: start; }
+.bigbtn:hover { background: var(--ink); }
+.bigbtn:disabled { opacity: .55; cursor: wait; }
 
-/* Contact */
-.contact { background: var(--accent); color: var(--paper); }
-.contact .wrap { padding-block: clamp(32px, 5vw, 56px); display: grid; gap: 18px; }
-.contact h2 { font-family: var(--display); font-weight: 800; font-stretch: 112%; font-size: clamp(1.625rem, 4vw, 2.75rem); line-height: 1.05; text-wrap: balance; max-width: 22ch; }
-.contact a, .contact button { color: inherit; }
-.mail { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font: 500 clamp(.9375rem, 2.2vw, 1.25rem) var(--mono); }
-.mail a { overflow-wrap: anywhere; }
-#copy { font: 500 .75rem var(--mono); min-height: 36px; padding: 6px 12px; background: transparent; border: 1px solid currentColor; cursor: pointer; }
-.contact-links { display: flex; flex-wrap: wrap; gap: 6px 20px; font: 400 .875rem var(--mono); }
-.contact :focus-visible { outline-color: var(--paper); }
-footer { padding-block: 16px; color: var(--muted); }
+/* Lists in the star and belt panels */
+.log { display: grid; }
+.log li { padding: 9px 0; border-top: 1px solid var(--line); font-size: .9063rem; line-height: 1.42; }
+.log li:first-child { border-top: 0; padding-top: 0; }
+.log b { font-weight: 600; display: block; }
+.log small { display: block; font: 400 .75rem var(--mono); color: var(--muted); margin-bottom: 1px; }
+.log p { color: var(--muted); font-size: .875rem; }
+.log li.lit a { color: var(--ink); text-decoration-color: var(--hue); text-decoration-thickness: 2px; }
+.log a { font-weight: 600; }
+.sub { font: 500 .6875rem var(--mono) !important; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.mail { font: 500 1rem var(--mono) !important; overflow-wrap: anywhere; }
 
-@media (max-width: 860px) {
-  .cover-grid, .sheet-body, .cv { grid-template-columns: minmax(0, 1fr); }
+.tip { position: fixed; z-index: 9; max-width: 260px; padding: 5px 8px; pointer-events: none; background: var(--ink); color: var(--void); font: 400 .75rem/1.35 var(--mono); }
+
+#glnote { position: fixed; z-index: 3; left: var(--edge); bottom: 88px; max-width: 44ch; font-size: .875rem; color: var(--muted); }
+
+/* Phone and small tablet: the panel becomes a bottom sheet */
+@media (max-width: 820px) {
+  .intro { width: auto; right: var(--edge-r); top: 58px; }
+  .name { font-size: clamp(2.1rem, 11vw, 4rem); }
+  .thesis { margin-top: 10px; font-size: 1.125rem; }
+  .lede { display: none; }
+  .hint { margin-top: 8px; }
+  .hud nav .opt { display: none; }
+  .tag { display: none; }
+  .dock { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .dock::-webkit-scrollbar { display: none; }
+  .dock button { flex: 0 0 auto; width: 128px; min-height: 50px; }
+  body.open .dock { display: none; }
+  #panel { left: var(--edge); right: var(--edge-r); width: auto; top: auto; height: 64%; bottom: max(8px, env(safe-area-inset-bottom, 0px)); transform: translateY(calc(100% + 40px)); }
   .panels.three { grid-template-columns: minmax(0, 1fr); }
-  .errata { grid-template-columns: minmax(0, 1fr); }
+  #glnote { bottom: 84px; right: var(--edge-r); }
 }
-@media (max-width: 520px) {
-  .panels.two { grid-template-columns: minmax(0, 1fr); }
-  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .job { grid-template-columns: minmax(0, 1fr); }
-  .bar nav a.opt { display: none; }
+@media (max-height: 620px) and (min-width: 821px) {
+  .lede { display: none; }
+  .name { font-size: clamp(2rem, 4.6vw, 3.5rem); }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: reduce) {
+  .fill, .p-body { animation: none; }
+  #panel, .intro, .dock { transition: none !important; }
+}
 </style>
 </head>
 <body>
-<a class="skip" href="#work">Skip to projects</a>
+<canvas id="space" aria-hidden="true"></canvas>
 
-<header class="bar">
-  <div class="wrap">
-    <a class="id" href="#top">Kirti Kolare</a>
-    <nav aria-label="Sections">
-      <a href="#work">Work</a>
-      <a class="opt" href="#other">Other builds</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-      <button id="theme" type="button">Dark</button>
-    </nav>
-  </div>
+<header class="hud">
+  <button class="brand" id="home" type="button">Kirti Kolare</button>
+  <nav aria-label="Main">
+    <button type="button" data-open="star" data-tab="About">About</button>
+    <button type="button" class="opt" data-open="star" data-tab="Experience">Experience</button>
+    <button type="button" data-open="star" data-tab="Contact">Contact</button>
+    <a class="opt" href="datasheet.html">Plain version</a>
+    <a class="cta" href="Kirti-Kolare-Resume.pdf" download>Resume</a>
+  </nav>
 </header>
 
-<main id="top">
-  <section class="cover wrap">
-    <div class="ruler" aria-hidden="true"></div>
-    <h1 class="name">Kirti Kolare</h1>
-    <div class="cover-grid">
-      <div>
-        <p class="thesis">I build LLM, agent and voice systems, then measure them.</p>
-        <p class="lede">I'm an AI/ML engineer and backend developer in Pune, with four internships behind me. The figures below come from benchmarks and tests in each project's public repo. Every project also lists its errata: the numbers that came out weak and the things it can't do yet.</p>
-        <div class="links">
-          <a class="btn primary" href="#work">Read the project sheets</a>
-          <a class="btn" href="Kirti-Kolare-Resume.pdf" download>Resume (PDF)</a>
-          <a class="btn" href="https://github.com/KirtiK07">GitHub</a>
-          <a class="btn" href="https://linkedin.com/in/kirtikolare">LinkedIn</a>
-        </div>
-      </div>
-      <ul class="now" aria-label="Current and recent work">
-        <li><strong>MSc Computer Science, Indira University</strong>CGPA 9.0/10, finishing July 2027.</li>
-        <li><strong>Most recently: AI/ML Engineering Intern, Wrrk.ai</strong>Analytics, unified inbox, email and residential-proxy modules for an AI workspace that combines CRM, WhatsApp and voice/chat. July to October 2026.</li>
-        <li><strong>Exploring long-context agent memory</strong>A rolling-summary and retrieval hybrid reached 100% recall on a needle-in-a-haystack test where plain truncation got 37.5%, at the same token budget. That benchmark isn't public yet.</li>
-      </ul>
-    </div>
-
-    <div class="chars-wrap">
-      <h2 class="chars-title">Typical characteristics</h2>
-      <div class="scroll" tabindex="0" role="region" aria-label="Headline benchmark results">
-        <table class="chars">
-          <thead><tr><th scope="col">Parameter</th><th scope="col">Value</th><th scope="col">Test conditions</th><th scope="col">Sheet</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Time for agent audio to stop when interrupted, median</th><td class="val">77 ms</td><td class="cond">5 scripted barge-ins, real STT, LLM and TTS</td><td><a href="#voice">Voice agent</a></td></tr>
-            <tr><th scope="row">LLM cost against an always-capable model</th><td class="val">&minus;23%</td><td class="cond">40 distinct queries, real API calls</td><td><a href="#router">LLM router</a></td></tr>
-            <tr><th scope="row">Hallucinations caught, recall</th><td class="val">96.7%</td><td class="cond">60 hand-built entries, precision 58%</td><td><a href="#guardrail">RAG guardrail</a></td></tr>
-            <tr><th scope="row">SQL safety checks classified correctly</th><td class="val">16/16</td><td class="cond">11 must block, 5 must allow</td><td><a href="#querypal">QueryPal</a></td></tr>
-            <tr><th scope="row">Defect-risk model ROC-AUC</th><td class="val">0.731</td><td class="cond">2,177 held-out NASA JM1 modules</td><td><a href="#codesense">CodeSense AI</a></td></tr>
-            <tr><th scope="row">Cost per tailored resume</th><td class="val">~$0.01</td><td class="cond">Typical run on gpt-4.1-mini</td><td><a href="#candor">Candor</a></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section id="work" class="wrap">
-    <div class="sect-head">
-      <h2 class="sect-title">Project sheets</h2>
-      <p class="sect-note">Hosted demos run on free tiers, so one may ask you to wake it up first, which can take about a minute.</p>
-    </div>
-
-    <div class="sheets">
-
-      <!-- demo intentionally not linked: voice-triage-agent.vercel.app returned FUNCTION_INVOCATION_FAILED on 2026-11-09. Add it to .actions once fixed. -->
-      <article class="sheet" id="voice">
-        <div class="sheet-head"><span class="label">Sheet 1 of 6</span><span class="mono">voice-triage-agent</span></div>
-        <div class="sheet-body">
-          <div>
-            <h3>Interruptible Voice Agent</h3>
-            <p class="claim">A support-triage agent that stops talking the moment a caller cuts in, then answers what they just said.</p>
-            <p class="detail">Most voice demos talk over the caller or lose track of the turn. Here a voice activity detector listens during playback in 32 ms frames and cancels the in-flight LLM and speech stream, and transcription only starts after that. Cutoff and recovery are reported separately because they fail for different reasons.</p>
-            <p class="stack"><span>FastAPI</span><span>WebSocket</span><span>Silero VAD</span><span>faster-whisper</span><span>Groq</span><span>Piper TTS</span><span>AudioWorklet</span></p>
-            <p class="actions"><a href="https://github.com/KirtiK07/voice-triage-agent">Source</a><a href="https://github.com/KirtiK07/voice-triage-agent/blob/HEAD/eval/results/latest.json">Raw results</a><a href="https://github.com/KirtiK07/voice-triage-agent/blob/HEAD/DECISIONS.md">Design decisions</a></p>
-          </div>
-          <figure>
-            <figcaption>Each interruption, to scale<span>Milliseconds from barge-in detected. Recovery ends when the new reply's audio starts.</span></figcaption>
-            <div class="runs">
-              <div class="run" data-tip="Run 1: audio stopped at 6 ms, new reply at 1,866 ms"><span>Run 1</span><div class="run-track"><i class="cut" style="width:.22%"></i><i class="rec" style="width:66.43%"></i></div><span>1,866</span></div>
-              <div class="run" data-tip="Run 2: audio stopped at 108 ms, new reply at 2,207 ms"><span>Run 2</span><div class="run-track"><i class="cut" style="width:3.85%"></i><i class="rec" style="width:74.97%"></i></div><span>2,207</span></div>
-              <div class="run" data-tip="Run 3: audio stopped at 107 ms, new reply at 2,294 ms"><span>Run 3</span><div class="run-track"><i class="cut" style="width:3.81%"></i><i class="rec" style="width:78.1%"></i></div><span>2,294</span></div>
-              <div class="run" data-tip="Run 4: audio stopped at 77 ms, new reply at 2,800 ms"><span>Run 4</span><div class="run-track"><i class="cut" style="width:2.76%"></i><i class="rec" style="width:97.24%"></i></div><span>2,800</span></div>
-              <div class="run" data-tip="Run 5: audio stopped at 1 ms, new reply at 2,193 ms"><span>Run 5</span><div class="run-track"><i class="cut" style="width:.03%"></i><i class="rec" style="width:78.3%"></i></div><span>2,193</span></div>
-            </div>
-            <p class="legend"><span><i class="a"></i>Audio stops</span><span><i></i>Until the new reply starts</span></p>
-            <div class="scroll" style="margin-top:18px">
-              <table>
-                <thead><tr><th scope="col">Parameter</th><th scope="col">Median</th><th scope="col">Worst of 5</th></tr></thead>
-                <tbody>
-                  <tr><th scope="row">Cutoff latency</th><td class="val">77 ms</td><td class="val">108 ms</td></tr>
-                  <tr><th scope="row">Recovery latency</th><td class="val">2,207 ms</td><td class="val">2,800 ms</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="replay" id="replay">
-              <div class="replay-head">
-                <h4>Try the timing</h4>
-                <button class="btn primary" id="replayBtn" type="button">Play the call</button>
-              </div>
-              <div class="turns">
-                <div class="turn"><span>Caller</span><p>Our invoices page has been down since this morning.</p></div>
-                <div class="turn" id="agentTurn"><span>Agent</span><p id="agentText">Thanks for reporting this. I'm marking the ticket as high urgency under billing, and I'll need your account ID to continue.</p></div>
-                <div class="turn" id="callerTwo" hidden><span>Caller</span><p>Wait, it's the whole dashboard, not only invoices.</p></div>
-                <div class="turn" id="agentTwo" hidden><span>Agent</span><p id="agentTwoText"></p></div>
-              </div>
-              <div class="clock" aria-hidden="true"><i id="clockFill"></i></div>
-              <p id="readout" aria-live="polite">Press play, then interrupt whenever you like. The script is illustrative and no model is running. The delays are the measured medians, at real speed.</p>
-            </div>
-          </figure>
-        </div>
-        <div class="errata"><h4>Errata</h4><ul>
-          <li>A new reply takes over two seconds to start. The STT, LLM and TTS round trip is the bottleneck, and a caller will notice the gap.</li>
-          <li>Five scripted scenarios are enough to show the design works. They are too few to predict real tail latency.</li>
-        </ul></div>
-      </article>
-
-      <article class="sheet" id="router">
-        <div class="sheet-head"><span class="label">Sheet 2 of 6</span><span class="mono">llm-cost-router</span></div>
-        <div class="sheet-body">
-          <div>
-            <h3>Cost-Aware LLM Router</h3>
-            <p class="claim">Sends each query to the cheapest model that can handle it, and answers near-duplicates from a semantic cache.</p>
-            <p class="detail">Teams often send every request to their most expensive model. This gateway checks the cache first, because a hit needs no model call. On a miss, a logistic regression over local embeddings picks the tier. Providers and cache backends sit behind interfaces, so adding a provider means adding one file.</p>
-            <p class="stack"><span>FastAPI</span><span>Redis Stack</span><span>sentence-transformers</span><span>scikit-learn</span><span>Groq</span><span>Gemini</span><span>Streamlit</span></p>
-            <p class="actions"><a href="https://xfybiaxpku9llzdj2wjrpj.streamlit.app/">Live demo</a><a href="https://github.com/KirtiK07/llm-cost-router">Source</a><a href="https://github.com/KirtiK07/llm-cost-router/blob/HEAD/eval/results/latest.json">Raw results</a></p>
-          </div>
-          <figure>
-            <figcaption>Router against the two single-model options<span>40 queries, half simple and half complex. The classifier routed 40 of 40 correctly.</span></figcaption>
-            <div class="panels three">
-              <div><p class="panel-title">$ per 1,000 queries</p><div class="bars">
-                <div class="row hi" data-tip="Router: $1.332 per 1,000 queries, 23% below always capable"><div class="row-top"><span>Router</span><b>$1.332</b></div><div class="track"><i class="fill" style="width:76.8%"></i></div></div>
-                <div class="row" data-tip="Always capable (Gemini): $1.733 per 1,000 queries"><div class="row-top"><span>Always capable</span><b>$1.733</b></div><div class="track"><i class="fill" style="width:100%"></i></div></div>
-                <div class="row" data-tip="Always cheap (Groq): $0.375 per 1,000 queries"><div class="row-top"><span>Always cheap</span><b>$0.375</b></div><div class="track"><i class="fill" style="width:21.7%"></i></div></div>
-              </div></div>
-              <div><p class="panel-title">p50 latency, ms</p><div class="bars">
-                <div class="row hi" data-tip="Router: 4,135 ms median, the lowest of the three"><div class="row-top"><span>Router</span><b>4,135</b></div><div class="track"><i class="fill" style="width:63.3%"></i></div></div>
-                <div class="row" data-tip="Always capable (Gemini): 5,157 ms median"><div class="row-top"><span>Always capable</span><b>5,157</b></div><div class="track"><i class="fill" style="width:78.9%"></i></div></div>
-                <div class="row" data-tip="Always cheap (Groq): 6,537 ms median"><div class="row-top"><span>Always cheap</span><b>6,537</b></div><div class="track"><i class="fill" style="width:100%"></i></div></div>
-              </div></div>
-              <div><p class="panel-title">p95 latency, ms</p><div class="bars">
-                <div class="row hi" data-tip="Router: 9,978 ms at p95, slower than always capable"><div class="row-top"><span>Router</span><b>9,978</b></div><div class="track"><i class="fill" style="width:59.9%"></i></div></div>
-                <div class="row" data-tip="Always capable (Gemini): 7,453 ms at p95"><div class="row-top"><span>Always capable</span><b>7,453</b></div><div class="track"><i class="fill" style="width:44.7%"></i></div></div>
-                <div class="row" data-tip="Always cheap (Groq): 16,660 ms at p95"><div class="row-top"><span>Always cheap</span><b>16,660</b></div><div class="track"><i class="fill" style="width:100%"></i></div></div>
-              </div></div>
-            </div>
-          </figure>
-        </div>
-        <div class="errata"><h4>Errata</h4><ul>
-          <li>The router's p95 latency (9,978 ms) is worse than always using the capable model (7,453 ms), because simple queries inherit the cheap tier's slow tail.</li>
-          <li>Cache hit rate in this benchmark is 0%. The eval set has no duplicates by design, so the cache's savings remain unmeasured.</li>
-          <li>100% classifier accuracy is on a small hand-labeled set of 40. Real traffic will be messier.</li>
-        </ul></div>
-      </article>
-
-      <article class="sheet" id="guardrail">
-        <div class="sheet-head"><span class="label">Sheet 3 of 6</span><span class="mono">rag-hallucination-guardrail</span></div>
-        <div class="sheet-body">
-          <div>
-            <h3>RAG Hallucination Guardrail</h3>
-            <p class="claim">Checks every RAG answer against the text it was retrieved from and flags claims that text doesn't support.</p>
-            <p class="detail">Two verifiers are benchmarked against each other: an NLI cross-encoder that treats support as an entailment problem, and an embedding-similarity baseline that reuses the retriever's own model. Every eval entry runs real retrieval, so a retrieval miss can cause a false negative, as it would in production.</p>
-            <p class="stack"><span>FastAPI</span><span>sentence-transformers</span><span>NLI cross-encoder</span><span>Groq</span><span>scikit-learn</span><span>Streamlit</span></p>
-            <p class="actions"><a href="https://github.com/KirtiK07/rag-hallucination-guardrail">Source</a><a href="https://github.com/KirtiK07/rag-hallucination-guardrail/blob/HEAD/eval/results/latest.json">Raw results</a><a href="https://github.com/KirtiK07/rag-hallucination-guardrail/blob/HEAD/DECISIONS.md">Design decisions</a></p>
-          </div>
-          <figure>
-            <figcaption>Two verifiers on the same 60 entries<span>"Unsupported" is the positive class. Thresholds were not tuned on this set. With no guardrail, all four scores are 0 except accuracy at 0.50.</span></figcaption>
-            <div class="panels two">
-              <div><p class="panel-title">Recall</p><div class="bars">
-                <div class="row hi" data-tip="NLI cross-encoder recall: 0.967"><div class="row-top"><span>NLI cross-encoder</span><b>0.967</b></div><div class="track"><i class="fill" style="width:96.7%"></i></div></div>
-                <div class="row" data-tip="Embedding similarity recall: 0.700"><div class="row-top"><span>Embedding similarity</span><b>0.700</b></div><div class="track"><i class="fill" style="width:70%"></i></div></div>
-              </div></div>
-              <div><p class="panel-title">Precision</p><div class="bars">
-                <div class="row hi" data-tip="NLI cross-encoder precision: 0.580"><div class="row-top"><span>NLI cross-encoder</span><b>0.580</b></div><div class="track"><i class="fill" style="width:58%"></i></div></div>
-                <div class="row" data-tip="Embedding similarity precision: 0.656"><div class="row-top"><span>Embedding similarity</span><b>0.656</b></div><div class="track"><i class="fill" style="width:65.6%"></i></div></div>
-              </div></div>
-              <div><p class="panel-title">F1</p><div class="bars">
-                <div class="row hi" data-tip="NLI cross-encoder F1: 0.725"><div class="row-top"><span>NLI cross-encoder</span><b>0.725</b></div><div class="track"><i class="fill" style="width:72.5%"></i></div></div>
-                <div class="row" data-tip="Embedding similarity F1: 0.677"><div class="row-top"><span>Embedding similarity</span><b>0.677</b></div><div class="track"><i class="fill" style="width:67.7%"></i></div></div>
-              </div></div>
-              <div><p class="panel-title">Accuracy</p><div class="bars">
-                <div class="row hi" data-tip="NLI cross-encoder accuracy: 0.633"><div class="row-top"><span>NLI cross-encoder</span><b>0.633</b></div><div class="track"><i class="fill" style="width:63.3%"></i></div></div>
-                <div class="row" data-tip="Embedding similarity accuracy: 0.667"><div class="row-top"><span>Embedding similarity</span><b>0.667</b></div><div class="track"><i class="fill" style="width:66.7%"></i></div></div>
-              </div></div>
-            </div>
-          </figure>
-        </div>
-        <div class="errata"><h4>Errata</h4><ul>
-          <li>The NLI verifier catches almost everything but is noisy: 42% of what it flags is actually supported.</li>
-          <li>It verifies the whole answer at once, so it can't point to which claim is unsupported.</li>
-          <li>The corpus is small, drawn from the docs of two sibling projects, and the eval set has only 60 entries.</li>
-        </ul></div>
-      </article>
-
-      <article class="sheet" id="querypal">
-        <div class="sheet-head"><span class="label">Sheet 4 of 6</span><span class="mono">QueryPal</span></div>
-        <div class="sheet-body">
-          <div>
-            <h3>QueryPal</h3>
-            <p class="claim">Upload a spreadsheet, ask a question in plain English, and get the SQL, a results table, a chart and a one-line takeaway.</p>
-            <p class="detail">Each account gets its own Postgres schema, so tenants can't see each other's data. If a query fails on a schema mismatch, the real database error goes back to the model for one automatic correction. A separate validator allows only reads, whatever the model was told to do.</p>
-            <p class="stack"><span>Streamlit</span><span>LangChain</span><span>Groq (Llama 3.3)</span><span>Supabase Postgres</span><span>SQLAlchemy</span><span>Plotly</span></p>
-            <p class="actions"><a href="https://6j5dr9asfjw4ooeqwlhvp5.streamlit.app/">Live demo</a><a href="https://github.com/KirtiK07/QueryPal">Source</a><a href="https://github.com/KirtiK07/QueryPal/blob/HEAD/tests/test_validator.py">Safety tests</a></p>
-          </div>
-          <figure>
-            <figcaption>Safety validator: 16 of 16 correct<span>Each square is one labeled test query, and every one was classified correctly.</span></figcaption>
-            <div class="cell-group" data-tip="Non-SELECT statements, stacked or smuggled DROP and TRUNCATE, empty input">
-              <div class="cells" role="img" aria-label="11 of 11 queries correctly blocked"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
-              <p><b>11 blocked.</b> Non-SELECT statements, smuggled DROP and TRUNCATE, empty input.</p>
-            </div>
-            <div class="cell-group" data-tip="Plain SELECTs, an aggregate with GROUP BY and LIMIT, a column name containing a blocked word">
-              <div class="cells" role="img" aria-label="5 of 5 queries correctly allowed"><i></i><i></i><i></i><i></i><i></i></div>
-              <p><b>5 allowed.</b> Plain SELECTs, an aggregate, a column name that contains a blocked word.</p>
-            </div>
-            <pre class="sql" tabindex="0"><code>You:  How many companies are in each region?
-
-SELECT region, COUNT(*) AS company_count
-FROM companies
-GROUP BY region
-ORDER BY company_count DESC
-LIMIT 100;</code></pre>
-          </figure>
-        </div>
-        <div class="errata"><h4>Errata</h4><ul>
-          <li>The validator scans with a regex, so it wrongly rejects <code>WHERE status = 'update pending'</code>. A test tracks this, and a real SQL parser would fix it.</li>
-          <li>The 16/16 covers safety only. End-to-end SQL accuracy and how often the retry rescues a query are not benchmarked yet.</li>
-        </ul></div>
-      </article>
-
-      <article class="sheet" id="codesense">
-        <div class="sheet-head"><span class="label">Sheet 5 of 6</span><span class="mono">CodeSense-AI</span></div>
-        <div class="sheet-body">
-          <div>
-            <h3>CodeSense AI</h3>
-            <p class="claim">Code review with two independent opinions: a risk score learned from real defect history, and an LLM reviewer that reads the code.</p>
-            <p class="detail">A Random Forest trained on 10,885 NASA JM1 modules scores code from its complexity metrics. Gemini reviews the code separately and never sees that score. SMOTE is applied only to the training split, so the test set keeps its real class imbalance. Built as my MSc research project.</p>
-            <p class="stack"><span>scikit-learn</span><span>imbalanced-learn</span><span>Radon</span><span>Lizard</span><span>Gemini</span><span>Streamlit</span></p>
-            <p class="actions"><a href="https://codesense-ai-46bajkw35e5m7xtpvwtwvj.streamlit.app/">Live demo</a><a href="https://github.com/KirtiK07/CodeSense-AI">Source</a><a href="https://github.com/KirtiK07/CodeSense-AI#model-performance">Model performance</a></p>
-          </div>
-          <figure>
-            <figcaption>Model performance<span>Held-out test split of 2,177 JM1 modules. Precision, recall and F1 are for the defective class.</span></figcaption>
-            <div class="bars">
-              <div class="row" data-tip="Accuracy 0.783"><div class="row-top"><span>Accuracy</span><b>0.783</b></div><div class="track"><i class="fill" style="width:78.3%"></i></div></div>
-              <div class="row hi" data-tip="ROC-AUC 0.731, in line with published Random Forest results on JM1"><div class="row-top"><span>ROC-AUC</span><b>0.731</b></div><div class="track"><i class="fill" style="width:73.1%"></i></div></div>
-              <div class="row" data-tip="Precision on the defective class 0.430"><div class="row-top"><span>Precision</span><b>0.430</b></div><div class="track"><i class="fill" style="width:43%"></i></div></div>
-              <div class="row" data-tip="F1 on the defective class 0.404"><div class="row-top"><span>F1</span><b>0.404</b></div><div class="track"><i class="fill" style="width:40.4%"></i></div></div>
-              <div class="row" data-tip="Recall on the defective class 0.380"><div class="row-top"><span>Recall</span><b>0.380</b></div><div class="track"><i class="fill" style="width:38%"></i></div></div>
-            </div>
-            <div style="margin-top:22px">
-              <p class="panel-title">Model features measured directly, by language</p>
-              <div class="cell-group">
-                <div class="cells small" role="img" aria-label="20 of 21 features measured for Python"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
-                <p><b>Python: 20 of 21</b> (Radon)</p>
-              </div>
-              <div class="cell-group">
-                <div class="cells small" role="img" aria-label="4 of 21 features measured for other languages"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                <p><b>Java, JS, TS, C, C++: 4 of 21</b> (Lizard). The rest use training-set medians.</p>
-              </div>
-            </div>
-          </figure>
-        </div>
-        <div class="errata"><h4>Errata</h4><ul>
-          <li>Recall on defective code is 0.38, so at the default threshold the model misses more than half of defective modules. The app uses risk bands instead of a hard cutoff, and tuning those bands for recall is the next fix.</li>
-          <li>Risk scores outside Python rest mostly on estimated features. The UI tells users this directly.</li>
-        </ul></div>
-      </article>
-
-      <article class="sheet" id="candor">
-        <div class="sheet-head"><span class="label">Sheet 6 of 6</span><span class="mono">candor</span></div>
-        <div class="sheet-body">
-          <div>
-            <h3>Candor</h3>
-            <p class="claim">Tailors a resume to a job description, works in only what the resume supports, and fact-checks every change.</p>
-            <p class="detail">Skills you don't have are listed as gaps and blocked if the model tries to add them. You get ATS-safe DOCX and PDF files, a diff of every change with reasons, and a fact-check report. If a provider runs out of credit or hits a rate limit, the run continues on the next one and tells you it switched.</p>
-            <p class="stack"><span>Streamlit</span><span>Gemini</span><span>Groq</span><span>OpenAI</span><span>Supabase</span><span>SQLite</span></p>
-            <p class="actions"><a href="https://candor-fyobbhgqtb3m7ntsdhwdte.streamlit.app/">Live app (sign-in required)</a><a href="https://github.com/KirtiK07/candor">Source</a></p>
-          </div>
-          <figure>
-            <figcaption>The tailoring pipeline<span>Highlighted steps exist to catch invented claims.</span></figcaption>
-            <ol class="steps">
-              <li>Extract the resume</li>
-              <li>Analyze the JD, gaps and keyword evidence</li>
-              <li>Rewrite under hard rules</li>
-              <li>Fit to the page limit</li>
-              <li class="check">AI fact check of every change</li>
-              <li class="check">Repair flagged claims</li>
-              <li class="check">Rule-based fact check</li>
-              <li>ATS score</li>
-              <li>Cover letter (optional)</li>
-            </ol>
-            <div class="scroll" style="margin-top:16px">
-              <table>
-                <tbody>
-                  <tr><th scope="row">LLM providers, with automatic failover</th><td class="val">3</td></tr>
-                  <tr><th scope="row">Regional resume formats</th><td class="val">4</td></tr>
-                  <tr><th scope="row">Typical cost per run, gpt-4.1-mini</th><td class="val">~$0.01</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </figure>
-        </div>
-        <div class="errata"><h4>Errata</h4><ul>
-          <li>There's no published benchmark of how many invented claims the fact checks catch. The test suite runs offline against a fake LLM.</li>
-          <li>Scanned, image-only PDFs can't be parsed, so that text has to be pasted in.</li>
-          <li>The hosted app sits behind a login to protect API credit, so you can't try it without an account.</li>
-        </ul></div>
-      </article>
-    </div>
-  </section>
-
-  <section id="other" class="wrap">
-    <div class="sect-head">
-      <h2 class="sect-title">Other builds</h2>
-      <p class="sect-note">Smaller or earlier projects, without formal benchmarks.</p>
-    </div>
-    <div class="scroll" tabindex="0" role="region" aria-label="Other projects" style="padding-bottom:clamp(40px,6vw,72px)">
-      <table class="ledger">
-        <thead><tr><th scope="col">Project</th><th scope="col">What it does</th><th scope="col">Built with</th></tr></thead>
-        <tbody>
-          <tr><th scope="row"><a href="https://github.com/KirtiK07/SchemaCraft">SchemaCraft</a></th><td class="cond">Turns a plain-English app description into a JSON database schema. Runs fully offline, at no cost per generation.</td><td class="mono">Ollama, Llama 3, LangChain, Gradio</td></tr>
-          <tr><th scope="row"><a href="https://github.com/KirtiK07/AI-toned-writer-assistant">AI Writing Assistant</a></th><td class="cond">Local writing tool with six tones plus length, format and audience controls, exposed as a REST endpoint other products can call.</td><td class="mono">Flask, Ollama, JavaScript</td></tr>
-          <tr><th scope="row"><a href="https://github.com/KirtiK07/RBFSS">RBFSS</a></th><td class="cond">File sharing with role-based access enforced in three layers: middleware, controller attributes and service-level ownership checks. Includes audit logs.</td><td class="mono">ASP.NET Core, EF Core, SQL Server</td></tr>
-          <tr><th scope="row"><a href="https://github.com/KirtiK07/vector-search-mongodb">Vector Search</a></th><td class="cond">Similarity search over MongoDB records using GloVe embeddings and a FAISS index, so queries match on meaning.</td><td class="mono">Node.js, MongoDB, FAISS</td></tr>
-          <tr><th scope="row"><a href="https://github.com/KirtiK07/project-samarth">Project Samarth</a></th><td class="cond">Answers plain-English questions about Indian government crop and rainfall data, with source citations on every answer.</td><td class="mono">Flask, Groq, Llama 3</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section id="experience" class="wrap">
-    <div class="sect-head"><h2 class="sect-title">Experience</h2></div>
-    <div class="cv">
-      <div>
-        <div class="job"><span class="mono">Jul &ndash; Oct 2026</span><div><h4>AI/ML Engineering Intern, Wrrk.ai</h4><p>Built and maintained analytics, unified inbox, email and residential-proxy modules for an all-in-one AI workspace that brings together CRM, WhatsApp and voice/chat. Guided new interns and potential clients through product demos.</p></div></div>
-        <div class="job"><span class="mono">Jan &ndash; Mar 2025</span><div><h4>AI Intern, Enzigma Solutions LLP</h4><p>Built a semantic vector search pipeline on MongoDB to replace keyword matching. Redesigned LLM prompt templates across production use cases to make outputs more consistent and accurate. Evaluated model outputs with engineers and presented findings to stakeholders.</p></div></div>
-        <div class="job"><span class="mono">Jun &ndash; Aug 2024</span><div><h4>Python Developer Intern, JhaMobi Technologies</h4><p>Built and deployed a full-stack book rental platform in Django and Bootstrap during an 8-week internship, covering catalog, checkout and accounts.</p></div></div>
-        <div class="job"><span class="mono">Jun &ndash; Aug 2023</span><div><h4>UI/UX Designer, Marva AI LLP</h4><p>Designed a food recommendation app in Figma from user flows to high-fidelity prototypes, then built the responsive front end.</p></div></div>
-      </div>
-      <div class="side">
-        <div class="side-block">
-          <h3>Education</h3>
-          <ul>
-            <li>MSc Computer Science, CGPA 9.0/10<span>School of Information Technology, Indira University, 2025&ndash;2027</span></li>
-            <li>BSc Data Science, CGPA 8.9/10<span>Symbiosis Skills &amp; Professional University, 2022&ndash;2025</span></li>
-          </ul>
-        </div>
-        <div class="side-block">
-          <h3>Also</h3>
-          <ul>
-            <li>Climate Corps Summer School 2026<span>Represented Indira University at Korea University, Seoul, in a cohort from 49 countries. Wrote an AI &amp; Energy research proposal.</span></li>
-            <li>PG LinkedIn Learning Ambassador<span>Indira University</span></li>
-          </ul>
-        </div>
-        <div class="side-block">
-          <h3>Tools</h3>
-          <ul>
-            <li>Languages &amp; frameworks<span>Python, Java, JavaScript, SQL, C++, FastAPI, Flask, Django, Streamlit</span></li>
-            <li>AI/ML<span>LLM APIs (Claude, Gemini, Groq), LangChain, RAG, prompt engineering, embeddings, vector search, scikit-learn</span></li>
-            <li>Data &amp; analytics<span>Pandas, NumPy, Power BI, Tableau, Excel</span></li>
-            <li>Databases &amp; infrastructure<span>PostgreSQL, MySQL, MongoDB, Redis, Supabase, SQLAlchemy, Docker, AWS, WebSockets</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<main class="intro" id="intro">
+  <h1 class="name">Kirti<br>Kolare</h1>
+  <p class="thesis">I build LLM, agent and voice systems, then measure them.</p>
+  <p class="lede">AI/ML engineer and backend developer in Pune. Every planet is a project, with its benchmarks and its known weak spots.</p>
+  <p class="hint"><span class="hint-mouse">Select a planet. Drag to look around, scroll to zoom.</span><span class="hint-touch">Tap a planet. Drag to look around.</span></p>
 </main>
 
-<section class="contact" id="contact">
-  <div class="wrap">
-    <h2>Building something that has to work outside the demo? Let's talk.</h2>
-    <p class="mail"><a id="mail" href="mailto:kirti.kolare.work@gmail.com">kirti.kolare.work@gmail.com</a><button id="copy" type="button">Copy address</button></p>
-    <p class="contact-links"><a href="Kirti-Kolare-Resume.pdf" download>Resume (PDF)</a><a href="https://github.com/KirtiK07">GitHub</a><a href="https://linkedin.com/in/kirtikolare">LinkedIn</a><span>Pune, India</span></p>
-  </div>
-</section>
-<footer class="wrap mono">Results checked against each repo's published eval files on 9 November 2026.</footer>
+<div id="tags"></div>
+<nav class="dock" id="dock" aria-label="Projects"></nav>
+<p id="glnote" hidden>This device can't show the 3D view, but every project still opens from the buttons below. You can also read the <a href="datasheet.html">plain version</a>.</p>
 
+<aside id="panel" aria-label="Project details">
+  <div class="p-top">
+    <span class="p-kicker" id="pKicker"></span>
+    <div class="p-ctrl">
+      <button type="button" id="pPrev" aria-label="Previous">&larr;</button>
+      <button type="button" id="pNext" aria-label="Next">&rarr;</button>
+      <button type="button" id="pClose" aria-label="Close and return to the system">&times;</button>
+    </div>
+  </div>
+  <div class="p-head"><h2 id="pTitle" tabindex="-1"></h2><p class="p-claim" id="pClaim"></p></div>
+  <div class="tabs" id="pTabs" role="tablist"></div>
+  <div class="p-body" id="pBody" role="tabpanel" tabindex="0"></div>
+</aside>
 <div class="tip" id="tip" hidden></div>
 
+<script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 <script>
 (function () {
-  var root = document.documentElement;
+  'use strict';
 
-  // Theme
-  var themeBtn = document.getElementById('theme');
-  function isDark() {
-    var t = root.getAttribute('data-theme');
-    return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  /* ---------- Content. Every figure comes from the project's public repo. ---------- */
+  function bar(label, value, pct, hi) {
+    return '<div class="row' + (hi ? ' hi' : '') + '" data-tip="' + label + ': ' + value + '"><div class="row-top"><span>' + label + '</span><b>' + value + '</b></div><div class="track"><i class="fill" style="width:' + pct + '%"></i></div></div>';
   }
-  function syncTheme() { themeBtn.textContent = isDark() ? 'Light' : 'Dark'; }
-  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
-  syncTheme();
-  themeBtn.addEventListener('click', function () {
-    var next = isDark() ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    syncTheme();
+  function barGroup(title, rows) {
+    return '<div><p class="panel-title">' + title + '</p><div class="bars">' + rows.join('') + '</div></div>';
+  }
+  function run(n, stop, reply, cutPct, recPct) {
+    return '<div class="run" data-tip="Run ' + n + ': audio stopped at ' + stop + ' ms, new reply at ' + reply + ' ms"><span>Run ' + n + '</span><div class="run-track"><i class="cut" style="width:' + cutPct + '%"></i><i class="rec" style="width:' + recPct + '%"></i></div><span>' + reply + '</span></div>';
+  }
+  function cells(on, total, cls, label) {
+    var s = '';
+    for (var i = 0; i < total; i++) s += '<i' + (i < on ? ' class="on"' : '') + '></i>';
+    return '<div class="cells ' + (cls || '') + '" role="img" aria-label="' + label + '">' + s + '</div>';
+  }
+  function list(items) { return '<ul class="errata">' + items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul>'; }
+  function figs(items) { return '<div class="figs">' + items.map(function (f) { return '<div><b>' + f[0] + '</b><span>' + f[1] + '</span></div>'; }).join('') + '</div>'; }
+  function actions(items) { return '<p class="actions">' + items.map(function (a) { return '<a' + (a[2] ? ' class="go"' : '') + ' href="' + a[1] + '" target="_blank" rel="noopener">' + a[0] + '</a>'; }).join('') + '</p>'; }
+  function stack(items) { return '<p class="stack">' + items.map(function (s) { return '<span>' + s + '</span>'; }).join('') + '</p>'; }
+  var GH = 'https://github.com/KirtiK07/';
+  var WAKE = '<p class="note">Hosted demos run on free tiers, so one may ask you to wake it up first. That can take about a minute.</p>';
+
+  var PROJECTS = [
+    {
+      id: 'voice', name: 'Voice Agent', title: 'Interruptible Voice Agent', repo: 'voice-triage-agent', hue: '#4FE0C8', metric: '77 ms cutoff',
+      claim: 'A support-triage agent that stops talking the moment a caller cuts in, then answers what they just said.',
+      tabs: {
+        Overview: figs([['77 ms', 'Audio stops after an interruption, median'], ['2.2 s', 'New reply starts, median'], ['5', 'Scripted barge-ins with real STT, LLM and TTS']]) +
+          '<p>Most voice demos talk over the caller or lose track of the turn. Here a voice activity detector listens during playback in 32 ms frames and cancels the in-flight LLM and speech stream. Transcription only starts after that.</p>' +
+          stack(['FastAPI', 'WebSocket', 'Silero VAD', 'faster-whisper', 'Groq', 'Piper TTS', 'AudioWorklet']) +
+          actions([['Source', GH + 'voice-triage-agent', 1], ['Raw results', GH + 'voice-triage-agent/blob/HEAD/eval/results/latest.json'], ['Design decisions', GH + 'voice-triage-agent/blob/HEAD/DECISIONS.md']]),
+        Results: '<figure><figcaption>Each interruption, to scale<span>Milliseconds from barge-in detected. Recovery ends when the new reply\'s audio starts.</span></figcaption><div class="runs">' +
+          run(1, '6', '1,866', .22, 66.43) + run(2, '108', '2,207', 3.85, 74.97) + run(3, '107', '2,294', 3.81, 78.1) + run(4, '77', '2,800', 2.76, 97.24) + run(5, '1', '2,193', .03, 78.3) +
+          '</div><p class="legend"><span><i class="a"></i>Audio stops</span><span><i></i>Until the new reply starts</span></p></figure>' +
+          '<div class="scroll"><table><thead><tr><th scope="col">Parameter</th><th scope="col">Median</th><th scope="col">Worst of 5</th></tr></thead><tbody><tr><th scope="row">Cutoff latency</th><td class="val">77 ms</td><td class="val">108 ms</td></tr><tr><th scope="row">Recovery latency</th><td class="val">2,207 ms</td><td class="val">2,800 ms</td></tr></tbody></table></div>',
+        'Try it': '<div class="turns"><div class="turn"><span>Caller</span><p>Our invoices page has been down since this morning.</p></div><div class="turn" id="agentTurn"><span>Agent</span><p id="agentText">Thanks for reporting this. I\'m marking the ticket as high urgency under billing, and I\'ll need your account ID to continue.</p></div><div class="turn" id="callerTwo" hidden><span>Caller</span><p>Wait, it\'s the whole dashboard, not only invoices.</p></div><div class="turn" id="agentTwo" hidden><span>Agent</span><p id="agentTwoText"></p></div></div>' +
+          '<div class="clock" aria-hidden="true"><i id="clockFill"></i></div><p class="readout" id="readout" aria-live="polite">Press play, then interrupt whenever you like. The script is illustrative and no model is running. The delays are the measured medians, at real speed.</p><button class="bigbtn" id="replayBtn" type="button">Play the call</button>',
+        Errata: list(['A new reply takes over two seconds to start. The STT, LLM and TTS round trip is the bottleneck, and a caller will notice the gap.', 'Five scripted scenarios are enough to show the design works. They are too few to predict real tail latency.'])
+      }
+    },
+    {
+      id: 'router', name: 'LLM Router', title: 'Cost-Aware LLM Router', repo: 'llm-cost-router', hue: '#FF8F6B', metric: '23% cheaper',
+      claim: 'Sends each query to the cheapest model that can handle it, and answers near-duplicates from a semantic cache.',
+      tabs: {
+        Overview: figs([['&minus;23%', 'Cost against always using the capable model'], ['40/40', 'Queries routed to the expected tier'], ['4.1 s', 'Median latency, lowest of the three modes']]) +
+          '<p>Teams often send every request to their most expensive model. This gateway checks the cache first, because a hit needs no model call. On a miss, a logistic regression over local embeddings picks the tier. The two moons on this planet stand for those two tiers.</p>' +
+          stack(['FastAPI', 'Redis Stack', 'sentence-transformers', 'scikit-learn', 'Groq', 'Gemini', 'Streamlit']) +
+          actions([['Live demo', 'https://xfybiaxpku9llzdj2wjrpj.streamlit.app/', 1], ['Source', GH + 'llm-cost-router'], ['Raw results', GH + 'llm-cost-router/blob/HEAD/eval/results/latest.json']]) + WAKE,
+        Results: '<figure><figcaption>Router against the two single-model options<span>40 queries, half simple and half complex.</span></figcaption><div class="panels three">' +
+          barGroup('$ per 1,000 queries', [bar('Router', '$1.332', 76.8, 1), bar('Capable', '$1.733', 100), bar('Cheap', '$0.375', 21.7)]) +
+          barGroup('p50 latency, ms', [bar('Router', '4,135', 63.3, 1), bar('Capable', '5,157', 78.9), bar('Cheap', '6,537', 100)]) +
+          barGroup('p95 latency, ms', [bar('Router', '9,978', 59.9, 1), bar('Capable', '7,453', 44.7), bar('Cheap', '16,660', 100)]) + '</div></figure>',
+        Errata: list(['The router\'s p95 latency (9,978 ms) is worse than always using the capable model (7,453 ms), because simple queries inherit the cheap tier\'s slow tail.', 'Cache hit rate in this benchmark is 0%. The eval set has no duplicates by design, so the cache\'s savings remain unmeasured.', '100% classifier accuracy is on a small hand-labeled set of 40. Real traffic will be messier.'])
+      }
+    },
+    {
+      id: 'guardrail', name: 'RAG Guardrail', title: 'RAG Hallucination Guardrail', repo: 'rag-hallucination-guardrail', hue: '#B9A0FF', metric: '96.7% recall',
+      claim: 'Checks every RAG answer against the text it was retrieved from and flags claims that text doesn\'t support.',
+      tabs: {
+        Overview: figs([['96.7%', 'Hallucinations caught by the NLI verifier'], ['58%', 'Precision of those flags'], ['0.725', 'F1, against 0.0 with no guardrail']]) +
+          '<p>Two verifiers are benchmarked against each other: an NLI cross-encoder that treats support as an entailment problem, and an embedding-similarity baseline. Every eval entry runs real retrieval, so a retrieval miss can cause a false negative, as it would in production.</p>' +
+          stack(['FastAPI', 'sentence-transformers', 'NLI cross-encoder', 'Groq', 'scikit-learn', 'Streamlit']) +
+          actions([['Source', GH + 'rag-hallucination-guardrail', 1], ['Raw results', GH + 'rag-hallucination-guardrail/blob/HEAD/eval/results/latest.json'], ['Design decisions', GH + 'rag-hallucination-guardrail/blob/HEAD/DECISIONS.md']]),
+        Results: '<figure><figcaption>Two verifiers on the same 60 entries<span>"Unsupported" is the positive class. Thresholds were not tuned on this set.</span></figcaption><div class="panels two">' +
+          barGroup('Recall', [bar('NLI cross-encoder', '0.967', 96.7, 1), bar('Embedding similarity', '0.700', 70)]) +
+          barGroup('Precision', [bar('NLI cross-encoder', '0.580', 58, 1), bar('Embedding similarity', '0.656', 65.6)]) +
+          barGroup('F1', [bar('NLI cross-encoder', '0.725', 72.5, 1), bar('Embedding similarity', '0.677', 67.7)]) +
+          barGroup('Accuracy', [bar('NLI cross-encoder', '0.633', 63.3, 1), bar('Embedding similarity', '0.667', 66.7)]) + '</div></figure>' +
+          '<p class="note">With no guardrail, precision, recall and F1 are all 0, and accuracy is 0.50.</p>',
+        Errata: list(['The NLI verifier catches almost everything but is noisy: 42% of what it flags is actually supported.', 'It verifies the whole answer at once, so it can\'t point to which claim is unsupported.', 'The corpus is small, drawn from the docs of two sibling projects, and the eval set has only 60 entries.'])
+      }
+    },
+    {
+      id: 'querypal', name: 'QueryPal', title: 'QueryPal', repo: 'QueryPal', hue: '#74BCFF', metric: '16/16 safety',
+      claim: 'Upload a spreadsheet, ask a question in plain English, and get the SQL, a results table, a chart and a one-line takeaway.',
+      tabs: {
+        Overview: figs([['16/16', 'SQL safety checks classified correctly'], ['11 + 5', 'Queries it must block and must allow'], ['1', 'Private Postgres schema per account']]) +
+          '<p>Each account gets its own Postgres schema, so tenants can\'t see each other\'s data. A separate validator allows only reads, whatever the model was told to do. If a query fails on a schema mismatch, the real database error goes back to the model for one correction. The 16 satellites here stand for the 16 safety tests.</p>' +
+          stack(['Streamlit', 'LangChain', 'Groq (Llama 3.3)', 'Supabase Postgres', 'SQLAlchemy', 'Plotly']) +
+          actions([['Live demo', 'https://6j5dr9asfjw4ooeqwlhvp5.streamlit.app/', 1], ['Source', GH + 'QueryPal'], ['Safety tests', GH + 'QueryPal/blob/HEAD/tests/test_validator.py']]) + WAKE,
+        Results: '<figure><figcaption>Safety validator: 16 of 16 correct<span>Each square is one labeled test query.</span></figcaption><div class="panels"><div class="cell-group">' +
+          cells(11, 11, '', '11 of 11 queries correctly blocked') + '<p><b>11 blocked.</b> Non-SELECT statements, smuggled DROP and TRUNCATE, empty input.</p></div><div class="cell-group">' +
+          cells(0, 5, '', '5 of 5 queries correctly allowed') + '<p><b>5 allowed.</b> Plain SELECTs, an aggregate, a column name that contains a blocked word.</p></div></div></figure>' +
+          '<pre tabindex="0"><code>You:  How many companies are in each region?\n\nSELECT region, COUNT(*) AS company_count\nFROM companies\nGROUP BY region\nORDER BY company_count DESC\nLIMIT 100;</code></pre>',
+        Errata: list(['The validator scans with a regex, so it wrongly rejects <code>WHERE status = \'update pending\'</code>. A test tracks this, and a real SQL parser would fix it.', 'The 16/16 covers safety only. End-to-end SQL accuracy and how often the retry rescues a query are not benchmarked yet.'])
+      }
+    },
+    {
+      id: 'codesense', name: 'CodeSense AI', title: 'CodeSense AI', repo: 'CodeSense-AI', hue: '#93E56F', metric: '0.731 ROC-AUC',
+      claim: 'Code review with two independent opinions: a risk score learned from real defect history, and an LLM reviewer that reads the code.',
+      tabs: {
+        Overview: figs([['0.731', 'ROC-AUC on held-out modules'], ['10,885', 'NASA JM1 modules in the dataset'], ['2,177', 'Modules in the held-out test split']]) +
+          '<p>A Random Forest scores code from its complexity metrics. Gemini reviews the code separately and never sees that score, which is why this planet has two halves. SMOTE is applied only to the training split, so the test set keeps its real class imbalance. Built as my MSc research project.</p>' +
+          stack(['scikit-learn', 'imbalanced-learn', 'Radon', 'Lizard', 'Gemini', 'Streamlit']) +
+          actions([['Live demo', 'https://codesense-ai-46bajkw35e5m7xtpvwtwvj.streamlit.app/', 1], ['Source', GH + 'CodeSense-AI'], ['Model performance', GH + 'CodeSense-AI#model-performance']]) + WAKE,
+        Results: '<figure><figcaption>Model performance<span>2,177 held-out JM1 modules. Precision, recall and F1 are for the defective class.</span></figcaption><div class="bars">' +
+          bar('Accuracy', '0.783', 78.3) + bar('ROC-AUC', '0.731', 73.1, 1) + bar('Precision', '0.430', 43) + bar('F1', '0.404', 40.4) + bar('Recall', '0.380', 38) + '</div></figure>' +
+          '<div class="panels"><p class="panel-title" style="margin:0">Model features measured directly, by language</p><div class="cell-group">' + cells(20, 21, 'small', '20 of 21 features measured for Python') + '<p><b>Python: 20 of 21</b> (Radon)</p></div><div class="cell-group">' + cells(4, 21, 'small', '4 of 21 features measured for other languages') + '<p><b>Java, JS, TS, C, C++: 4 of 21</b> (Lizard). The rest use training-set medians.</p></div></div>',
+        Errata: list(['Recall on defective code is 0.38, so at the default threshold the model misses more than half of defective modules. The app uses risk bands instead of a hard cutoff, and tuning those bands for recall is the next fix.', 'Risk scores outside Python rest mostly on estimated features. The UI tells users this directly.'])
+      }
+    },
+    {
+      id: 'candor', name: 'Candor', title: 'Candor', repo: 'candor', hue: '#FFB4D2', metric: '~$0.01 per run',
+      claim: 'Tailors a resume to a job description, works in only what the resume supports, and fact-checks every change.',
+      tabs: {
+        Overview: figs([['~$0.01', 'Typical cost per run on gpt-4.1-mini'], ['3', 'LLM providers with automatic failover'], ['4', 'Regional resume formats']]) +
+          '<p>Skills you don\'t have are listed as gaps and blocked if the model tries to add them. You get ATS-safe DOCX and PDF files, a diff of every change with reasons, and a fact-check report.</p>' +
+          stack(['Streamlit', 'Gemini', 'Groq', 'OpenAI', 'Supabase', 'SQLite']) +
+          actions([['Live app (sign-in required)', 'https://candor-fyobbhgqtb3m7ntsdhwdte.streamlit.app/', 1], ['Source', GH + 'candor']]),
+        Results: '<figure><figcaption>The tailoring pipeline<span>Highlighted steps exist to catch invented claims. They are the three bright markers on this planet\'s ring.</span></figcaption><ol class="steps"><li>Extract the resume</li><li>Analyze the JD, gaps and keyword evidence</li><li>Rewrite under hard rules</li><li>Fit to the page limit</li><li class="check">AI fact check of every change</li><li class="check">Repair flagged claims</li><li class="check">Rule-based fact check</li><li>ATS score</li><li>Cover letter (optional)</li></ol></figure>',
+        Errata: list(['There\'s no published benchmark of how many invented claims the fact checks catch. The test suite runs offline against a fake LLM.', 'Scanned, image-only PDFs can\'t be parsed, so that text has to be pasted in.', 'The hosted app sits behind a login to protect API credit, so you can\'t try it without an account.'])
+      }
+    }
+  ];
+
+  var BUILDS = [
+    ['SchemaCraft', 'SchemaCraft', 'Turns a plain-English app description into a JSON database schema. Runs fully offline, at no cost per generation.', 'Ollama, Llama 3, LangChain, Gradio'],
+    ['AI Writing Assistant', 'AI-toned-writer-assistant', 'Local writing tool with six tones plus length, format and audience controls, exposed as a REST endpoint other products can call.', 'Flask, Ollama, JavaScript'],
+    ['RBFSS', 'RBFSS', 'File sharing with role-based access enforced in three layers: middleware, controller attributes and service-level ownership checks.', 'ASP.NET Core, EF Core, SQL Server'],
+    ['Vector Search', 'vector-search-mongodb', 'Similarity search over MongoDB records using GloVe embeddings and a FAISS index, so queries match on meaning.', 'Node.js, MongoDB, FAISS'],
+    ['Project Samarth', 'project-samarth', 'Answers plain-English questions about Indian government crop and rainfall data, with source citations on every answer.', 'Flask, Groq, Llama 3']
+  ];
+  function buildsHtml(lit) {
+    return '<ul class="log">' + BUILDS.map(function (b, i) {
+      return '<li' + (i === lit ? ' class="lit"' : '') + '><a href="' + GH + b[1] + '" target="_blank" rel="noopener">' + b[0] + '</a><p>' + b[2] + '</p><small>' + b[3] + '</small></li>';
+    }).join('') + '</ul>';
+  }
+  var BELT = { id: 'belt', name: 'Other builds', title: 'The outer belt', repo: 'smaller and earlier projects', hue: '#D8C7A6', metric: '5 more projects', claim: 'Five smaller projects, without formal benchmarks.', tabs: {} };
+
+  var STAR = {
+    id: 'star', name: 'About me', title: 'Kirti Kolare', repo: 'the star at the center', hue: '#FFD27A', metric: 'About, contact',
+    claim: 'AI/ML engineer and backend developer in Pune, with four internships behind me.',
+    tabs: {
+      About: '<p>I build LLM applications end to end and benchmark them: cost-aware model routing, real-time voice agents, RAG guardrails and NL-to-SQL. When a number comes out weak, I publish it next to the good ones.</p>' +
+        '<ul class="log"><li><small>Now</small><b>MSc Computer Science, Indira University</b><p>CGPA 9.0/10, finishing July 2027.</p></li><li><small>July to October 2026</small><b>AI/ML Engineering Intern, Wrrk.ai</b><p>Analytics, unified inbox, email and residential-proxy modules for an AI workspace.</p></li><li><small>Exploring</small><b>Long-context agent memory</b><p>A rolling-summary and retrieval hybrid reached 100% recall on a needle-in-a-haystack test where plain truncation got 37.5%, at the same token budget. That benchmark isn\'t public yet.</p></li></ul>',
+      Experience: '<ul class="log"><li><small>Jul &ndash; Oct 2026</small><b>AI/ML Engineering Intern, Wrrk.ai</b><p>Built and maintained analytics, unified inbox, email and residential-proxy modules. Guided new interns and potential clients through product demos.</p></li><li><small>Jan &ndash; Mar 2025</small><b>AI Intern, Enzigma Solutions LLP</b><p>Built a semantic vector search pipeline on MongoDB and redesigned LLM prompt templates across production use cases.</p></li><li><small>Jun &ndash; Aug 2024</small><b>Python Developer Intern, JhaMobi Technologies</b><p>Built and deployed a full-stack book rental platform in Django and Bootstrap in 8 weeks.</p></li><li><small>Jun &ndash; Aug 2023</small><b>UI/UX Designer, Marva AI LLP</b><p>Designed a food recommendation app in Figma, then built the responsive front end.</p></li></ul>',
+      Background: '<p class="sub">Education</p><ul class="log"><li><b>MSc Computer Science, CGPA 9.0/10</b><p>School of Information Technology, Indira University, 2025&ndash;2027</p></li><li><b>BSc Data Science, CGPA 8.9/10</b><p>Symbiosis Skills &amp; Professional University, 2022&ndash;2025</p></li></ul><p class="sub">Also</p><ul class="log"><li><b>Climate Corps Summer School 2026</b><p>Represented Indira University at Korea University, Seoul, in a cohort from 49 countries.</p></li><li><b>PG LinkedIn Learning Ambassador</b><p>Indira University</p></li></ul><p class="sub">Tools</p><ul class="log"><li><p>Python, Java, JavaScript, SQL, C++, FastAPI, Flask, Django, Streamlit</p></li><li><p>LLM APIs (Claude, Gemini, Groq), LangChain, RAG, prompt engineering, embeddings, vector search, scikit-learn</p></li><li><p>Pandas, NumPy, Power BI, Tableau, PostgreSQL, MySQL, MongoDB, Redis, Supabase, SQLAlchemy, Docker, AWS, WebSockets</p></li></ul>',
+      Contact: '<p>Building something that has to work outside the demo? Let\'s talk.</p><p class="mail"><a id="mail" href="mailto:kirti.kolare.work@gmail.com">kirti.kolare.work@gmail.com</a></p><button class="bigbtn" id="copy" type="button">Copy address</button>' +
+        '<p class="actions"><a href="Kirti-Kolare-Resume.pdf" download class="go">Download resume</a><a href="https://github.com/KirtiK07" target="_blank" rel="noopener">GitHub</a><a href="https://linkedin.com/in/kirtikolare" target="_blank" rel="noopener">LinkedIn</a></p><p class="note">Pune, India. Results checked against each repo\'s published eval files on 9 November 2026.</p>'
+    }
+  };
+
+  var ALL = PROJECTS.concat([BELT, STAR]);
+  var byId = {};
+  ALL.forEach(function (x) { byId[x.id] = x; });
+  var ORDER = PROJECTS.map(function (p) { return p.id; }).concat(['belt', 'star']);
+
+  /* ---------- Panel and navigation ---------- */
+  var $ = function (id) { return document.getElementById(id); };
+  var pBody = $('pBody'), pTabs = $('pTabs');
+  var current = null, litBuild = -1, lastFocus = null;
+  var scene3d = null;
+
+  var dock = $('dock');
+  PROJECTS.concat([BELT]).forEach(function (p) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.dataset.id = p.id; b.style.setProperty('--c', p.hue);
+    b.innerHTML = '<span>' + p.name + '</span><small>' + p.metric + '</small>';
+    b.addEventListener('click', function () { open(p.id); });
+    b.addEventListener('mouseenter', function () { setHot(p.id); });
+    b.addEventListener('mouseleave', function () { setHot(null); });
+    dock.appendChild(b);
   });
 
-  // Chart tooltips
-  var tip = document.getElementById('tip');
+  function setHot(id) {
+    document.querySelectorAll('.tag, .dock button').forEach(function (el) { el.classList.toggle('hot', el.dataset.id === id); });
+    if (scene3d) scene3d.hot = id;
+  }
+
+  function open(id, tab, lit) {
+    var item = byId[id];
+    if (!item) return;
+    if (!current) lastFocus = document.activeElement;
+    current = id;
+    litBuild = lit === undefined ? -1 : lit;
+    document.body.classList.add('open');
+    document.documentElement.style.setProperty('--hue', item.hue);
+    var pos = ORDER.indexOf(id);
+    $('pKicker').textContent = id === 'star' ? 'The star at the center' : id === 'belt' ? 'Outer belt' : 'Planet ' + (pos + 1) + ' of 6 / ' + item.repo;
+    $('pTitle').textContent = item.title;
+    $('pClaim').textContent = item.claim;
+    var names = id === 'belt' ? ['Projects'] : Object.keys(item.tabs);
+    pTabs.innerHTML = names.map(function (n) {
+      return '<button type="button" role="tab" data-t="' + n + '"' + (n === 'Errata' ? ' class="err"' : '') + '>' + n + '</button>';
+    }).join('');
+    showTab(tab && names.indexOf(tab) >= 0 ? tab : names[0]);
+    dock.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-current', b.dataset.id === id ? 'true' : 'false'); });
+    if (scene3d) scene3d.focusOn(id, lit);
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    $('pTitle').focus({ preventScroll: true });
+  }
+
+  function close() {
+    if (!current) return;
+    stopReplay();
+    current = null;
+    document.body.classList.remove('open');
+    document.documentElement.style.setProperty('--hue', '#FFD27A');
+    dock.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-current', 'false'); });
+    if (scene3d) scene3d.focusOn(null);
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+
+  function showTab(name) {
+    stopReplay();
+    pTabs.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.t === name ? 'true' : 'false'); });
+    pBody.innerHTML = current === 'belt' ? buildsHtml(litBuild) : byId[current].tabs[name];
+    pBody.style.animation = 'none'; void pBody.offsetWidth; pBody.style.animation = '';
+    pBody.scrollTop = 0;
+    if ($('replayBtn')) bindReplay();
+    if ($('copy')) bindCopy();
+  }
+
+  function step(dir) {
+    if (!current) return open(ORDER[0]);
+    var i = ORDER.indexOf(current);
+    open(ORDER[(i + dir + ORDER.length) % ORDER.length]);
+  }
+
+  pTabs.addEventListener('click', function (e) { var t = e.target.closest('button'); if (t) showTab(t.dataset.t); });
+  $('pClose').addEventListener('click', close);
+  $('pPrev').addEventListener('click', function () { step(-1); });
+  $('pNext').addEventListener('click', function () { step(1); });
+  $('home').addEventListener('click', close);
+  document.querySelectorAll('[data-open]').forEach(function (b) {
+    b.addEventListener('click', function () { open(b.dataset.open, b.dataset.tab); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowRight') step(1);
+    else if (e.key === 'ArrowLeft') step(-1);
+  });
+
+  /* Chart tooltips */
+  var tip = $('tip');
   document.addEventListener('pointermove', function (e) {
     var el = e.target.closest ? e.target.closest('[data-tip]') : null;
     if (!el) { tip.hidden = true; return; }
     tip.textContent = el.getAttribute('data-tip');
     tip.hidden = false;
-    var x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8);
+    tip.style.left = Math.max(8, Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8)) + 'px';
     var y = e.clientY - tip.offsetHeight - 12;
-    tip.style.left = Math.max(8, x) + 'px';
     tip.style.top = (y < 8 ? e.clientY + 18 : y) + 'px';
   });
 
-  // Copy email
-  var copyBtn = document.getElementById('copy');
-  copyBtn.addEventListener('click', function () {
-    var addr = document.getElementById('mail').textContent;
-    function done() { copyBtn.textContent = 'Copied'; setTimeout(function () { copyBtn.textContent = 'Copy address'; }, 1800); }
-    function fallback() {
-      var r = document.createRange(); r.selectNodeContents(document.getElementById('mail'));
-      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
-      copyBtn.textContent = 'Press Ctrl+C';
-    }
-    if (navigator.clipboard) navigator.clipboard.writeText(addr).then(done, fallback); else fallback();
-  });
+  function bindCopy() {
+    var btn = $('copy');
+    btn.addEventListener('click', function () {
+      var addr = $('mail').textContent;
+      function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy address'; }, 1800); }
+      function fallback() {
+        var r = document.createRange(); r.selectNodeContents($('mail'));
+        var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Press Ctrl+C';
+      }
+      if (navigator.clipboard) navigator.clipboard.writeText(addr).then(done, fallback); else fallback();
+    });
+  }
 
-  // Barge-in replay. Delays are the measured medians from the repo's eval results.
+  /* Barge-in replay. Delays are the measured medians from the repo's eval results. */
   var CUTOFF_MS = 77, RECOVERY_MS = 2207, WORD_MS = 170;
   var FIRST = "Thanks for reporting this. I'm marking the ticket as high urgency under billing, and I'll need your account ID to continue.".split(' ');
   var SECOND = "Understood, the whole dashboard is down. I've changed this to critical urgency, category outage.".split(' ');
-  var btn = document.getElementById('replayBtn'), agentTurn = document.getElementById('agentTurn');
-  var agentText = document.getElementById('agentText'), callerTwo = document.getElementById('callerTwo');
-  var agentTwo = document.getElementById('agentTwo'), agentTwoText = document.getElementById('agentTwoText');
-  var fill = document.getElementById('clockFill'), readout = document.getElementById('readout');
-  var state = 'idle', timers = [], raf = 0, said = 0;
-
-  function clearAll() { timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(raf); }
-  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
-  function renderFirst() {
-    agentText.textContent = FIRST.slice(0, said).join(' ');
-    if (said < FIRST.length) {
-      var rest = document.createElement('span');
-      rest.className = 'unsaid';
-      rest.textContent = ' ' + FIRST.slice(said).join(' ');
-      agentText.appendChild(rest);
+  var rTimers = [], rRaf = 0;
+  function stopReplay() {
+    rTimers.forEach(clearTimeout); rTimers = []; cancelAnimationFrame(rRaf);
+    if (scene3d) scene3d.voicePulse = 0;
+  }
+  function bindReplay() {
+    var btn = $('replayBtn'), agentTurn = $('agentTurn'), agentText = $('agentText'), callerTwo = $('callerTwo');
+    var agentTwo = $('agentTwo'), agentTwoText = $('agentTwoText'), fill = $('clockFill'), readout = $('readout');
+    var state = 'idle', said = 0;
+    function later(fn, ms) { rTimers.push(setTimeout(fn, ms)); }
+    function renderFirst() {
+      agentText.textContent = FIRST.slice(0, said).join(' ');
+      if (said < FIRST.length) {
+        var rest = document.createElement('span');
+        rest.className = 'unsaid';
+        rest.textContent = ' ' + FIRST.slice(said).join(' ');
+        agentText.appendChild(rest);
+      }
     }
-  }
-  function stream(words, onWord, onEnd) {
-    var i = 0;
-    (function next() {
-      i++;
-      onWord(i);
-      if (i < words.length) later(next, WORD_MS); else onEnd();
-    })();
-  }
-  function play() {
-    clearAll();
-    state = 'playing';
-    said = 0;
-    agentTurn.classList.remove('stopped');
-    callerTwo.hidden = agentTwo.hidden = true;
-    agentTwoText.textContent = '';
-    fill.style.width = '0';
-    btn.textContent = 'Interrupt the agent';
-    readout.textContent = 'The agent is speaking. Cut in whenever you like.';
-    stream(FIRST, function (i) { said = i; renderFirst(); }, function () {
-      state = 'done';
-      btn.textContent = 'Play again';
-      readout.textContent = 'You let it finish. Play again and cut in mid-sentence.';
+    function stream(words, onWord, onEnd) {
+      var i = 0;
+      (function next() { i++; onWord(i); if (i < words.length) later(next, WORD_MS); else onEnd(); })();
+    }
+    function play() {
+      stopReplay();
+      state = 'playing'; said = 0;
+      agentTurn.classList.remove('stopped');
+      callerTwo.hidden = agentTwo.hidden = true;
+      agentTwoText.textContent = '';
+      fill.style.width = '0';
+      btn.textContent = 'Interrupt the agent';
+      readout.textContent = 'The agent is speaking. Cut in whenever you like.';
+      if (scene3d) scene3d.voicePulse = 1;
+      stream(FIRST, function (i) { said = i; renderFirst(); }, function () {
+        state = 'done';
+        btn.textContent = 'Play again';
+        readout.textContent = 'You let it finish. Play again and cut in mid-sentence.';
+        if (scene3d) scene3d.voicePulse = 0;
+      });
+    }
+    function interrupt() {
+      stopReplay();
+      if (scene3d) scene3d.voicePulse = 1;
+      state = 'recovering';
+      btn.disabled = true;
+      btn.textContent = 'Agent is recovering';
+      callerTwo.hidden = false;
+      var start = performance.now();
+      later(function () {
+        agentTurn.classList.add('stopped');
+        agentText.textContent = FIRST.slice(0, said).join(' ');
+        readout.textContent = 'Audio stopped at 77 ms. Transcribing and generating a new reply.';
+        if (scene3d) scene3d.voicePulse = 0;
+      }, CUTOFF_MS);
+      (function tick() {
+        var t = performance.now() - start;
+        fill.style.width = Math.min(100, t / RECOVERY_MS * 100) + '%';
+        if (t < RECOVERY_MS) rRaf = requestAnimationFrame(tick);
+      })();
+      later(function () {
+        agentTwo.hidden = false;
+        if (scene3d) scene3d.voicePulse = 1;
+        readout.textContent = 'Audio stopped at 77 ms. New reply started at 2,207 ms. Both are measured medians.';
+        stream(SECOND, function (i) { agentTwoText.textContent = SECOND.slice(0, i).join(' '); }, function () {
+          state = 'done';
+          btn.disabled = false;
+          btn.textContent = 'Play again';
+          if (scene3d) scene3d.voicePulse = 0;
+        });
+      }, RECOVERY_MS);
+    }
+    btn.addEventListener('click', function () {
+      if (state === 'playing') interrupt(); else if (state !== 'recovering') play();
     });
   }
-  function interrupt() {
-    clearAll();
-    state = 'recovering';
-    btn.disabled = true;
-    btn.textContent = 'Agent is recovering';
-    callerTwo.hidden = false;
-    var start = performance.now();
-    later(function () {
-      agentTurn.classList.add('stopped');
-      agentText.textContent = FIRST.slice(0, said).join(' ');
-      readout.textContent = 'Audio stopped at 77 ms. Transcribing and generating a new reply.';
-    }, CUTOFF_MS);
-    (function tick() {
-      var t = performance.now() - start;
-      fill.style.width = Math.min(100, t / RECOVERY_MS * 100) + '%';
-      if (t < RECOVERY_MS) raf = requestAnimationFrame(tick);
-    })();
-    later(function () {
-      agentTwo.hidden = false;
-      readout.textContent = 'Audio stopped at 77 ms. New reply started at 2,207 ms. Both are measured medians.';
-      stream(SECOND, function (i) { agentTwoText.textContent = SECOND.slice(0, i).join(' '); }, function () {
-        state = 'done';
-        btn.disabled = false;
-        btn.textContent = 'Play again';
-      });
-    }, RECOVERY_MS);
+
+  /* ---------- The solar system ---------- */
+  var NOISE = [
+    'vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}vec4 mod289(vec4 x){return x-floor(x*(1./289.))*289.;}',
+    'vec4 permute(vec4 x){return mod289(((x*34.)+1.)*x);}vec4 tis(vec4 r){return 1.79284291400159-.85373472095314*r;}',
+    'float snoise(vec3 v){const vec2 C=vec2(1./6.,1./3.);const vec4 D=vec4(0.,.5,1.,2.);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);',
+    'vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;',
+    'i=mod289(i);vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));',
+    'float n_=.142857142857;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.*x_);',
+    'vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);',
+    'vec4 s0=floor(b0)*2.+1.;vec4 s1=floor(b1)*2.+1.;vec4 sh=-step(h,vec4(0.));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;',
+    'vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=tis(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));',
+    'p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);m=m*m;',
+    'return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}',
+    'float fbm(vec3 p){float f=0.,a=.5;for(int i=0;i<4;i++){f+=a*snoise(p);p*=2.03;a*=.5;}return f;}'
+  ].join('\n');
+
+  var VERT = 'varying vec3 vN,vW,vO;void main(){vO=position;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;vN=mat3(modelMatrix)*normal;gl_Position=projectionMatrix*viewMatrix*w;}';
+
+  /* Each surface says something about its project. */
+  var SURFACES = {
+    voice: 'float n=fbm(P*2.5+t*.03);float w=sin(P.y*26.+n*5.-t*(1.4+pulse*5.));alb=mix(cA,cB,.5+.5*w);emi=cC*pow(max(w,0.),10.)*(.5+pulse*.9);',
+    router: 'float n=fbm(vec3(P.x*2.,P.y*7.,P.z*2.)+t*.04);float m=fbm(P*4.+n*2.);alb=mix(cA,cB,smoothstep(.25,.75,.5+.5*sin(P.y*9.+n*6.)));alb=mix(alb,cC,smoothstep(.5,.85,.5+.5*m)*.4);',
+    guardrail: 'float r=1.-abs(fbm(P*3.2));alb=mix(cA,cB,fbm(P*6.)*.5+.5);emi=cC*pow(r,12.)*(.7+.35*sin(t*1.3));',
+    querypal: 'float lat=asin(clamp(P.y,-1.,1.));float lon=atan(P.z,P.x);vec2 q=vec2(lon*(8./3.14159),lat*(10./3.14159));vec2 g=abs(fract(q)-.5);float line=smoothstep(.45,.49,max(g.x,g.y));alb=mix(cA,cB,fbm(P*3.+t*.02)*.5+.5);float glow=step(.72,fract(sin(dot(floor(q),vec2(12.9,78.2)))*43758.5));emi=cC*line*.75+cC*glow*(.28+.2*sin(t*2.+q.x))*(1.-line);',
+    codesense: 'float e=P.x+.1*sin(P.y*6.+t*.2);float s=smoothstep(-.015,.015,e);vec3 q=floor(P*14.);float c=fract(sin(dot(q,vec3(12.9,78.2,37.7)))*43758.5);vec3 ml=mix(cA,cA*1.7,step(.55,c));vec3 lm=mix(cB,cB*1.5,.5+.5*sin(fbm(P*3.+t*.05)*8.));alb=mix(ml,lm,s);emi=cC*(1.-smoothstep(0.,.05,abs(e)))*1.1;',
+    candor: 'float n=fbm(P*2.+t*.015);alb=mix(cA,cB,n*.6+.5);float v=1.-smoothstep(0.,.03,abs(snoise(P*2.6+n)));emi=cC*v*.5;'
+  };
+  function PLANET_FRAG(surface) {
+    return 'precision highp float;uniform float t,pulse,boost;uniform vec3 cA,cB,cC;varying vec3 vN,vW,vO;' + NOISE +
+      '\nvoid main(){vec3 N=normalize(vN);vec3 L=normalize(-vW);vec3 V=normalize(cameraPosition-vW);vec3 P=normalize(vO);vec3 alb=cA;vec3 emi=vec3(0.);' + surface +
+      'float l=dot(N,L);float wrap=smoothstep(-.25,.75,l);vec3 col=alb*(.3+.95*wrap)+emi;float f=pow(1.-max(dot(N,V),0.),3.);col+=cC*f*(.2+.65*wrap);col*=1.+boost*.25;gl_FragColor=vec4(col,1.);}';
   }
-  btn.addEventListener('click', function () {
-    if (state === 'playing') interrupt(); else if (state !== 'recovering') play();
-  });
+  var ATMO_FRAG = 'precision mediump float;uniform vec3 cC;uniform float boost;varying vec3 vN,vW,vO;void main(){vec3 N=normalize(vN);vec3 V=normalize(cameraPosition-vW);vec3 L=normalize(-vW);float f=pow(max(dot(-N,V),0.),2.6);float lit=.35+.65*smoothstep(-.4,.6,dot(N,L));gl_FragColor=vec4(cC*f*lit*(.85+boost*.7),1.);}';
+  var STAR_FRAG = 'precision highp float;uniform float t;varying vec3 vN,vW,vO;' + NOISE + '\nvoid main(){vec3 P=normalize(vO);vec3 N=normalize(vN);vec3 V=normalize(cameraPosition-vW);float n=fbm(P*2.6+vec3(0.,t*.05,t*.03));float m=fbm(P*7.+n*1.6-t*.06);float h=.55+.5*n+.28*m;vec3 c=mix(vec3(1.,.42,.1),vec3(1.,.82,.42),smoothstep(.15,.7,h));c=mix(c,vec3(1.,.97,.84),smoothstep(.65,1.05,h));float limb=pow(max(dot(N,V),0.),.6);gl_FragColor=vec4(c*(.75+.45*limb),1.);}';
+  var SKY_VERT = 'attribute float size;attribute vec3 tint;attribute float phase;uniform float t,dpr;varying vec3 vC;void main(){vec4 mv=modelViewMatrix*vec4(position,1.);float tw=.7+.3*sin(t*(.6+phase)+phase*20.);vC=tint*tw;gl_PointSize=size*dpr*(1.+.3*tw);gl_Position=projectionMatrix*mv;}';
+  var SKY_FRAG = 'precision mediump float;varying vec3 vC;void main(){float d=length(gl_PointCoord-.5);float a=smoothstep(.5,.05,d);gl_FragColor=vec4(vC*a,a);}';
+
+  function glowTexture(stops) {
+    var c = document.createElement('canvas'); c.width = c.height = 256;
+    var g = c.getContext('2d');
+    var r = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    stops.forEach(function (s) { r.addColorStop(s[0], s[1]); });
+    g.fillStyle = r; g.fillRect(0, 0, 256, 256);
+    var t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  }
+  function nebulaTexture(rgb, seed) {
+    var c = document.createElement('canvas'); c.width = c.height = 512;
+    var g = c.getContext('2d');
+    g.filter = 'blur(14px)';
+    var rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    g.globalCompositeOperation = 'lighter';
+    for (var i = 0; i < 70; i++) {
+      var a = rnd() * 6.283, d = Math.pow(rnd(), .7) * 170, x = 256 + Math.cos(a) * d, y = 256 + Math.sin(a) * d * .7, r = 30 + rnd() * 95;
+      var gr = g.createRadialGradient(x, y, 0, x, y, r);
+      gr.addColorStop(0, 'rgba(' + rgb + ',' + (.05 + rnd() * .08).toFixed(3) + ')');
+      gr.addColorStop(1, 'rgba(' + rgb + ',0)');
+      g.fillStyle = gr; g.fillRect(x - r, y - r, r * 2, r * 2);
+    }
+    var t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    return t;
+  }
+
+  function startScene() {
+    if (typeof THREE === 'undefined') throw new Error('3D library unavailable');
+    var canvas = $('space');
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, powerPreference: 'high-performance' });
+    var calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var small = innerWidth < 820;
+    var dpr = Math.min(devicePixelRatio || 1, 2);
+    renderer.setPixelRatio(dpr);
+    renderer.setClearColor(0x04060D, 1);
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(50, 1, .1, 1200);
+    var api = { hot: null, voicePulse: 0, focusOn: focusOn };
+
+    /* Sky */
+    [['90,70,190', 11, [-260, 90, -330], 720, .34], ['30,130,150', 23, [300, -60, -300], 680, .2], ['170,60,120', 37, [40, 200, -400], 640, .26], ['40,70,170', 53, [-120, -210, 260], 760, .3], ['120,60,170', 71, [340, 110, 220], 700, .28]].forEach(function (n) {
+      var m = new THREE.SpriteMaterial({ map: nebulaTexture(n[0], n[1]), blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, opacity: n[4] });
+      var s = new THREE.Sprite(m); s.position.fromArray(n[2]); s.scale.setScalar(n[3]); scene.add(s);
+    });
+    var COUNT = small ? 1800 : 3600, pos = new Float32Array(COUNT * 3), size = new Float32Array(COUNT), tint = new Float32Array(COUNT * 3), phase = new Float32Array(COUNT);
+    var hues = [[1, 1, 1], [.75, .85, 1], [1, .9, .72], [.8, .95, 1]], i;
+    for (i = 0; i < COUNT; i++) {
+      var u0 = Math.random() * 2 - 1, th = Math.random() * 6.283, rad = 240 + Math.random() * 500, sq = Math.sqrt(1 - u0 * u0);
+      pos[i * 3] = rad * sq * Math.cos(th); pos[i * 3 + 1] = rad * u0; pos[i * 3 + 2] = rad * sq * Math.sin(th);
+      size[i] = .9 + Math.pow(Math.random(), 5) * 3.6;
+      var hu = hues[i % 4], b0 = .45 + Math.random() * .55;
+      tint[i * 3] = hu[0] * b0; tint[i * 3 + 1] = hu[1] * b0; tint[i * 3 + 2] = hu[2] * b0;
+      phase[i] = Math.random();
+    }
+    var starGeo = new THREE.BufferGeometry();
+    starGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    starGeo.setAttribute('size', new THREE.BufferAttribute(size, 1));
+    starGeo.setAttribute('tint', new THREE.BufferAttribute(tint, 3));
+    starGeo.setAttribute('phase', new THREE.BufferAttribute(phase, 1));
+    var skyU = { t: { value: 0 }, dpr: { value: dpr } };
+    scene.add(new THREE.Points(starGeo, new THREE.ShaderMaterial({ uniforms: skyU, vertexShader: SKY_VERT, fragmentShader: SKY_FRAG, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false })));
+
+    /* Star */
+    var system = new THREE.Group(); scene.add(system);
+    var timeU = { value: 0 };
+    var starMesh = new THREE.Mesh(new THREE.SphereGeometry(2.3, 64, 48), new THREE.ShaderMaterial({ uniforms: { t: timeU }, vertexShader: VERT, fragmentShader: STAR_FRAG }));
+    system.add(starMesh);
+    var coronaTex = glowTexture([[0, 'rgba(255,214,140,.95)'], [.16, 'rgba(255,170,80,.55)'], [.42, 'rgba(255,110,50,.13)'], [1, 'rgba(255,90,40,0)']]);
+    var corona = new THREE.Sprite(new THREE.SpriteMaterial({ map: coronaTex, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false }));
+    corona.scale.setScalar(15); system.add(corona);
+    var corona2 = new THREE.Sprite(new THREE.SpriteMaterial({ map: coronaTex, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, opacity: .32 }));
+    corona2.scale.setScalar(34); system.add(corona2);
+    scene.add(new THREE.AmbientLight(0x8090b0, .5));
+    scene.add(new THREE.PointLight(0xffe0b0, 3.2, 0, 0));
+    var starHit = new THREE.Mesh(new THREE.SphereGeometry(3.1, 12, 8), new THREE.MeshBasicMaterial({ visible: false }));
+    starHit.userData.id = 'star'; system.add(starHit);
+
+    /* Planets. Shader colors are display values, so they skip color management. */
+    function C(h) { var c = new THREE.Color(); c.setStyle(h, THREE.LinearSRGBColorSpace); return new THREE.Vector3(c.r, c.g, c.b); }
+    var DEFS = {
+      voice: { r: 1.05, orbit: 5.9, speed: .34, a: .6, inc: .03, cA: '#0B3B44', cB: '#1F8F85', cC: '#6FFFE4' },
+      router: { r: 1.45, orbit: 8.5, speed: .24, a: 2.6, inc: -.04, cA: '#7A2E1E', cB: '#E98A5A', cC: '#FFD0A6' },
+      guardrail: { r: 1.2, orbit: 11.1, speed: .18, a: 4.6, inc: .05, cA: '#1C1538', cB: '#4B3B86', cC: '#C8B0FF' },
+      querypal: { r: 1.3, orbit: 13.7, speed: .135, a: 1.4, inc: -.03, cA: '#0B2448', cB: '#1C568F', cC: '#8CCBFF' },
+      codesense: { r: 1.35, orbit: 16.3, speed: .105, a: 3.6, inc: .035, cA: '#2B5A22', cB: '#6B4FB0', cC: '#BCFF94' },
+      candor: { r: 1.15, orbit: 18.9, speed: .085, a: 5.5, inc: -.05, cA: '#9A6E86', cB: '#F4DCE6', cC: '#FFD9A0' }
+    };
+    var planets = {}, hitTargets = [starHit], updaters = [];
+    function additive(color, opacity) { return new THREE.MeshBasicMaterial({ color: color, transparent: true, opacity: opacity, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }); }
+
+    PROJECTS.forEach(function (p) {
+      var d = DEFS[p.id];
+      var pivot = new THREE.Group(); pivot.rotation.x = d.inc; system.add(pivot);
+      var pts = [];
+      for (var k = 0; k <= 180; k++) { var an = k / 180 * Math.PI * 2; pts.push(new THREE.Vector3(Math.cos(an) * d.orbit, 0, Math.sin(an) * d.orbit)); }
+      var orbitLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: p.hue, transparent: true, opacity: .2, blending: THREE.AdditiveBlending, depthWrite: false }));
+      pivot.add(orbitLine);
+      var holder = new THREE.Group(); pivot.add(holder);
+      var u = { t: timeU, pulse: { value: 0 }, boost: { value: 0 }, cA: { value: C(d.cA) }, cB: { value: C(d.cB) }, cC: { value: C(d.cC) } };
+      var geo = new THREE.SphereGeometry(d.r, small ? 48 : 72, small ? 32 : 54);
+      var mesh = new THREE.Mesh(geo, new THREE.ShaderMaterial({ uniforms: u, vertexShader: VERT, fragmentShader: PLANET_FRAG(SURFACES[p.id]) }));
+      mesh.rotation.z = .25; holder.add(mesh);
+      var atmo = new THREE.Mesh(new THREE.SphereGeometry(d.r * 1.2, 40, 28), new THREE.ShaderMaterial({ uniforms: { cC: u.cC, boost: u.boost }, vertexShader: VERT, fragmentShader: ATMO_FRAG, side: THREE.BackSide, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false }));
+      holder.add(atmo);
+      var hit = new THREE.Mesh(new THREE.SphereGeometry(d.r * 1.9, 12, 8), new THREE.MeshBasicMaterial({ visible: false }));
+      hit.userData.id = p.id; holder.add(hit); hitTargets.push(hit);
+      holder.position.set(Math.cos(d.a) * d.orbit, 0, Math.sin(d.a) * d.orbit);
+      planets[p.id] = { def: d, holder: holder, mesh: mesh, u: u, line: orbitLine, scale: 1 };
+    });
+
+    /* Features with meaning. */
+    (function voiceRings() {
+      var g = planets.voice, rings = [];
+      for (var n = 0; n < 3; n++) {
+        var r = new THREE.Mesh(new THREE.RingGeometry(1, 1.02, 96), additive('#6FFFE4', .5));
+        r.rotation.x = Math.PI / 2 + .3; g.holder.add(r); rings.push(r);
+      }
+      updaters.push(function (t) {
+        var fast = api.voicePulse ? 1.6 : 1;
+        rings.forEach(function (r, n) {
+          var k = (t * .28 * fast + n / 3) % 1;
+          r.scale.setScalar(g.def.r * (1.15 + k * 1.5));
+          r.material.opacity = (1 - k) * .55 * (api.voicePulse ? 1.4 : 1);
+        });
+      });
+    })();
+    (function routerMoons() {
+      var g = planets.router;
+      var cheap = new THREE.Mesh(new THREE.SphereGeometry(.2, 20, 14), new THREE.MeshLambertMaterial({ color: 0xffc9a0, emissive: 0x552211 }));
+      var capable = new THREE.Mesh(new THREE.SphereGeometry(.36, 24, 16), new THREE.MeshLambertMaterial({ color: 0xfff0dc, emissive: 0x332a22 }));
+      g.holder.add(cheap); g.holder.add(capable);
+      updaters.push(function (t) {
+        cheap.position.set(Math.cos(t * 1.15) * 2.05, Math.sin(t * 1.15) * .35, Math.sin(t * 1.15) * 2.05);
+        capable.position.set(Math.cos(-t * .55 + 2) * 2.9, Math.sin(-t * .55 + 2) * -.5, Math.sin(-t * .55 + 2) * 2.9);
+      });
+    })();
+    (function guardShell() {
+      var g = planets.guardrail;
+      var shell = new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(g.def.r * 1.5, 1)), new THREE.LineBasicMaterial({ color: '#C8B0FF', transparent: true, opacity: .4, blending: THREE.AdditiveBlending, depthWrite: false }));
+      g.holder.add(shell);
+      updaters.push(function (t) { shell.rotation.y = t * .22; shell.rotation.x = t * .1; shell.material.opacity = .28 + .2 * Math.sin(t * 1.3); });
+    })();
+    (function querySats() {
+      var g = planets.querypal, ring = new THREE.Group(); ring.rotation.set(.45, 0, .2); g.holder.add(ring);
+      var solid = new THREE.SphereGeometry(.075, 10, 8), mat = new THREE.MeshBasicMaterial({ color: '#8CCBFF' });
+      var hollow = new THREE.MeshBasicMaterial({ color: '#FFFFFF', wireframe: true });
+      for (var n = 0; n < 16; n++) {
+        var a = n / 16 * Math.PI * 2, s = new THREE.Mesh(solid, n < 11 ? mat : hollow);
+        s.position.set(Math.cos(a) * 2.1, 0, Math.sin(a) * 2.1); ring.add(s);
+      }
+      updaters.push(function (t) { ring.rotation.y = t * .35; });
+    })();
+    (function codeMoons() {
+      var g = planets.codesense;
+      var ml = new THREE.Mesh(new THREE.OctahedronGeometry(.3), new THREE.MeshLambertMaterial({ color: 0xbcff94, emissive: 0x224411, flatShading: true }));
+      var llm = new THREE.Mesh(new THREE.SphereGeometry(.26, 20, 14), new THREE.MeshLambertMaterial({ color: 0xc3b0ff, emissive: 0x221a55 }));
+      g.holder.add(ml); g.holder.add(llm);
+      updaters.push(function (t) {
+        ml.position.set(Math.cos(t * .6) * 2.3, .25, Math.sin(t * .6) * 2.3); ml.rotation.y = t;
+        llm.position.set(Math.cos(t * .6 + Math.PI) * 2.3, -.25, Math.sin(t * .6 + Math.PI) * 2.3);
+      });
+    })();
+    (function candorRing() {
+      var g = planets.candor, ring = new THREE.Group(); ring.rotation.set(1.28, .18, 0); g.holder.add(ring);
+      ring.add(new THREE.Mesh(new THREE.RingGeometry(g.def.r * 1.45, g.def.r * 2.05, 128), new THREE.ShaderMaterial({
+        vertexShader: 'varying vec3 vO;void main(){vO=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+        fragmentShader: 'precision mediump float;varying vec3 vO;void main(){float r=length(vO.xy);float b=.5+.5*sin(r*46.)*sin(r*17.);gl_FragColor=vec4(vec3(1.,.82,.86)*b*.42,b*.5+.12);}',
+        side: THREE.DoubleSide, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+      })));
+      var mk = new THREE.SphereGeometry(.07, 10, 8);
+      for (var n = 0; n < 9; n++) {
+        var a = n / 9 * Math.PI * 2, check = n >= 4 && n <= 6;
+        var m = new THREE.Mesh(mk, new THREE.MeshBasicMaterial({ color: check ? '#FFD27A' : '#FFFFFF' }));
+        m.scale.setScalar(check ? 1.7 : .8);
+        m.position.set(Math.cos(a) * g.def.r * 1.76, Math.sin(a) * g.def.r * 1.76, 0); ring.add(m);
+      }
+      updaters.push(function (t) { ring.rotation.z = t * .12; });
+    })();
+
+    /* Outer belt */
+    var beltGroup = new THREE.Group(); system.add(beltGroup);
+    var BELT_N = small ? 260 : 620;
+    var rock = new THREE.InstancedMesh(new THREE.DodecahedronGeometry(.1, 0), new THREE.MeshLambertMaterial({ color: 0xa89a86, flatShading: true }), BELT_N);
+    var dummy = new THREE.Object3D();
+    for (i = 0; i < BELT_N; i++) {
+      var ang = Math.random() * 6.283, rr = 22 + Math.random() * 3.2 + Math.sin(ang * 5) * .4;
+      dummy.position.set(Math.cos(ang) * rr, (Math.random() - .5) * .9, Math.sin(ang) * rr);
+      dummy.rotation.set(Math.random() * 6, Math.random() * 6, Math.random() * 6);
+      dummy.scale.setScalar(.35 + Math.pow(Math.random(), 3) * 2.2);
+      dummy.updateMatrix(); rock.setMatrixAt(i, dummy.matrix);
+    }
+    beltGroup.add(rock);
+    var dwarfs = BUILDS.map(function (b, k) {
+      var a = k / BUILDS.length * Math.PI * 2 + .5, m = new THREE.Mesh(new THREE.IcosahedronGeometry(.42, 1), new THREE.MeshLambertMaterial({ color: 0xe2d2b4, emissive: 0x2a241a, flatShading: true }));
+      m.position.set(Math.cos(a) * 23.6, 0, Math.sin(a) * 23.6);
+      m.scale.set(1, .8, 1.1); beltGroup.add(m);
+      var h = new THREE.Mesh(new THREE.SphereGeometry(1, 8, 6), new THREE.MeshBasicMaterial({ visible: false }));
+      h.position.copy(m.position); h.userData.id = 'belt'; h.userData.lit = k; beltGroup.add(h); hitTargets.push(h);
+      return m;
+    });
+
+    /* Shooting star */
+    var comet = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3(1, 0, 0)]), new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+    scene.add(comet);
+    var cometState = { next: 4, life: 0, from: new THREE.Vector3(), dir: new THREE.Vector3() }, xAxis = new THREE.Vector3(1, 0, 0);
+
+    /* Tags */
+    var tagsEl = $('tags'), tags = {};
+    function addTag(id, html, hue) {
+      var el = document.createElement('button');
+      el.type = 'button'; el.className = 'tag'; el.dataset.id = id; el.style.setProperty('--c', hue); el.tabIndex = -1;
+      el.innerHTML = html;
+      el.addEventListener('click', function () { open(id); });
+      el.addEventListener('mouseenter', function () { setHot(id); });
+      el.addEventListener('mouseleave', function () { setHot(null); });
+      tagsEl.appendChild(el); tags[id] = el;
+    }
+    PROJECTS.forEach(function (p) { addTag(p.id, '<b>' + p.name + '</b><small>' + p.metric + '</small>', p.hue); });
+    addTag('star', '<b>About me</b>', '#FFD27A');
+
+    /* Camera rig */
+    var rig = { theta: -.55, phi: 1.12, dist: calm ? 33 : 78, tTheta: -.55, tPhi: 1.12, tDist: 32, focus: new THREE.Vector3(), offX: 0, offY: 0, kick: 0 };
+    var focusId = null, focusObj = null, W = 1, H = 1, panel = $('panel');
+    function homeDist() {
+      var aspect = W / H, base = 32;
+      return aspect < 1.25 ? Math.min(base * 1.25 / aspect, 96) : base;
+    }
+    function resize() {
+      W = innerWidth; H = innerHeight;
+      renderer.setSize(W, H, false);
+      camera.aspect = W / H;
+      if (!focusId) rig.tDist = homeDist();
+    }
+    function focusOn(id, lit) {
+      focusId = id;
+      focusObj = id && planets[id] ? planets[id].holder : id === 'star' ? starMesh : id === 'belt' ? dwarfs[lit > -1 ? lit : 0] : null;
+      var r = id && planets[id] ? planets[id].def.r : 1;
+      var extra = id === 'router' ? 1.9 : id === 'candor' ? 1.5 : id === 'querypal' ? 1.4 : id === 'codesense' ? 1.35 : 1.2;
+      rig.tDist = id ? (r * 4.4 + 2.2) * extra * (W < 820 ? 1.35 : 1) : homeDist();
+      if (id === 'belt') rig.tDist = 7;
+      if (id === 'star') rig.tDist = 13;
+      if (!calm && id) rig.kick = 1;
+      rig.tPhi = id ? 1.3 : 1.12;
+      if (id && planets[id]) {
+        // Swing round to the planet's sunlit side so it opens lit, not as a silhouette.
+        focusObj.getWorldPosition(lookPos);
+        var lit0 = Math.atan2(lookPos.x, lookPos.z) - .6, two = Math.PI * 2, diff = ((lit0 - rig.tTheta) % two + two) % two;
+        if (diff > Math.PI) diff -= two;
+        rig.tTheta += diff;
+      }
+    }
+
+    /* Pointer */
+    var ray = new THREE.Raycaster(), mouse = new THREE.Vector2(), pointers = new Map(), dragged = 0, pinch = 0, lastHoverId = null;
+    function pick(x, y) {
+      mouse.set(x / W * 2 - 1, -(y / H) * 2 + 1);
+      ray.setFromCamera(mouse, camera);
+      var hit = ray.intersectObjects(hitTargets, false)[0];
+      return hit ? hit.object.userData : null;
+    }
+    function clampDist(d) { return focusId ? Math.max(3, Math.min(30, d)) : Math.max(12, Math.min(homeDist() * 1.6, d)); }
+    canvas.addEventListener('pointerdown', function (e) {
+      pointers.set(e.pointerId, [e.clientX, e.clientY]);
+      try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+      dragged = 0; pinch = 0;
+      canvas.classList.add('dragging');
+    });
+    canvas.addEventListener('pointermove', function (e) {
+      var prev = pointers.get(e.pointerId);
+      if (prev) {
+        var dx = e.clientX - prev[0], dy = e.clientY - prev[1];
+        pointers.set(e.pointerId, [e.clientX, e.clientY]);
+        if (pointers.size === 2) {
+          var v = Array.from(pointers.values()), d = Math.hypot(v[0][0] - v[1][0], v[0][1] - v[1][1]);
+          if (pinch) rig.tDist = clampDist(rig.tDist * pinch / d);
+          pinch = d; dragged += 10;
+        } else {
+          dragged += Math.abs(dx) + Math.abs(dy);
+          rig.tTheta -= dx * .0052;
+          rig.tPhi = Math.max(.32, Math.min(2.5, rig.tPhi - dy * .0042));
+        }
+      } else if (e.pointerType === 'mouse') {
+        var h = pick(e.clientX, e.clientY), id = h ? h.id : null;
+        if (id !== lastHoverId) { lastHoverId = id; setHot(id); }
+        canvas.classList.toggle('hovering', !!id);
+      }
+    });
+    function endPointer(e) {
+      var wasPress = pointers.has(e.pointerId) && pointers.size === 1 && dragged < 7;
+      pointers.delete(e.pointerId);
+      if (!pointers.size) canvas.classList.remove('dragging');
+      if (wasPress && e.type === 'pointerup') {
+        var h = pick(e.clientX, e.clientY);
+        if (h && h.id) open(h.id, undefined, h.lit);
+        else if (current) close();
+      }
+    }
+    canvas.addEventListener('pointerup', endPointer);
+    canvas.addEventListener('pointercancel', endPointer);
+    canvas.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      rig.tDist = clampDist(rig.tDist * Math.exp(e.deltaY * .0011));
+    }, { passive: false });
+    addEventListener('resize', function () { resize(); if (focusId) focusOn(focusId); });
+
+    /* Frame loop */
+    var clock = new THREE.Clock(), simT = 0, simSpeed = calm ? 0 : 1, lookPos = new THREE.Vector3(), tmp = new THREE.Vector3(), frames = 0, slowSum = 0, lowered = false;
+    function damp(a, b, k, dt) { return a + (b - a) * (1 - Math.exp(-k * dt)); }
+
+    var placed = [];
+    function place(el, world, radius) {
+      var depth = camera.position.distanceTo(world);
+      var v = world.clone().project(camera);
+      if (v.z > 1) { el.style.opacity = 0; return; }
+      el.style.opacity = '';
+      var px = radius / (depth * Math.tan(camera.fov * Math.PI / 360)) * H / 2;
+      placed.push({ el: el, x: (v.x + 1) / 2 * W + px + 6, y: (1 - v.y) / 2 * H - 10 });
+    }
+    function settleTags(dt) {
+      placed.sort(function (a, b) { return a.y - b.y; });
+      placed.forEach(function (p, n) {
+        for (var m = 0; m < n; m++) {
+          var q = placed[m];
+          if (Math.abs(p.x - q.x) < 118 && p.y - q.y < 22) p.y = q.y + 22;
+        }
+        var el = p.el;
+        el._y = el._y === undefined ? p.y : damp(el._y, p.y, 10, dt);
+        el.style.transform = 'translate(' + p.x.toFixed(1) + 'px,' + el._y.toFixed(1) + 'px)';
+      });
+      placed.length = 0;
+    }
+
+    function frame() {
+      requestAnimationFrame(frame);
+      var dt = Math.min(clock.getDelta(), .12);
+      if (!calm && !lowered) {
+        frames++; slowSum += dt;
+        if (frames === 90) {
+          lowered = true;
+          if (slowSum / 90 > .03 && dpr > 1) { dpr = 1; renderer.setPixelRatio(1); renderer.setSize(W, H, false); skyU.dpr.value = 1; }
+        }
+      }
+      var isOpen = !!focusId;
+      var wantSpeed = calm ? 0 : (isOpen ? .06 : api.hot ? .28 : 1);
+      simSpeed = damp(simSpeed, wantSpeed, 2.5, dt);
+      simT += dt * simSpeed;
+      var t = calm ? 8 : performance.now() * .001;
+      timeU.value = t; skyU.t.value = t;
+
+      PROJECTS.forEach(function (p) {
+        var g = planets[p.id], d = g.def;
+        var a = d.a + simT * d.speed;
+        g.holder.position.set(Math.cos(a) * d.orbit, 0, Math.sin(a) * d.orbit);
+        g.mesh.rotation.y = t * .12;
+        var hot = api.hot === p.id || focusId === p.id;
+        g.scale = damp(g.scale, hot && !isOpen ? 1.22 : 1, 8, dt);
+        g.holder.scale.setScalar(g.scale);
+        g.u.boost.value = damp(g.u.boost.value, hot ? 1 : 0, 6, dt);
+        g.line.material.opacity = damp(g.line.material.opacity, hot ? .75 : isOpen ? .08 : .2, 6, dt);
+        if (p.id === 'voice') g.u.pulse.value = damp(g.u.pulse.value, api.voicePulse ? 1 : 0, 10, dt);
+      });
+      updaters.forEach(function (f) { f(t); });
+      beltGroup.rotation.y = simT * .018;
+      // The camera sits among the rocks for the outer planets, so clear them from the shot.
+      beltGroup.visible = !(focusId === 'querypal' || focusId === 'codesense' || focusId === 'candor');
+      var cs = 1 + .025 * Math.sin(t * .7);
+      corona.scale.setScalar(15 * cs * (api.hot === 'star' ? 1.2 : 1));
+      corona2.scale.setScalar(34 / cs);
+
+      /* Comet */
+      if (!calm) {
+        cometState.next -= dt;
+        if (cometState.next < 0 && cometState.life <= 0) {
+          cometState.life = 1; cometState.next = 6 + Math.random() * 9;
+          cometState.from.set((Math.random() - .5) * 90, 10 + Math.random() * 18, (Math.random() - .5) * 90);
+          cometState.dir.set(Math.random() - .5, -.2 - Math.random() * .3, Math.random() - .5).normalize();
+        }
+        if (cometState.life > 0) {
+          cometState.life -= dt * .9;
+          var k = 1 - cometState.life;
+          comet.position.copy(cometState.from).addScaledVector(cometState.dir, k * 70);
+          comet.scale.setScalar(5 + 7 * Math.sin(k * 3.14));
+          comet.quaternion.setFromUnitVectors(xAxis, tmp.copy(cometState.dir).negate());
+          comet.material.opacity = Math.sin(Math.max(k, 0) * 3.14) * .9;
+        } else comet.material.opacity = 0;
+      }
+
+      /* Camera */
+      if (!focusId && !calm && !pointers.size) rig.tTheta += dt * .012;
+      var kFly = calm ? 60 : 2.3;
+      rig.theta = damp(rig.theta, rig.tTheta, pointers.size ? 14 : kFly + 1, dt);
+      rig.phi = damp(rig.phi, rig.tPhi, pointers.size ? 14 : kFly + 1, dt);
+      rig.dist = damp(rig.dist, rig.tDist, kFly, dt);
+      if (focusObj) focusObj.getWorldPosition(lookPos); else lookPos.set(0, 0, 0);
+      rig.focus.x = damp(rig.focus.x, lookPos.x, kFly + 1, dt);
+      rig.focus.y = damp(rig.focus.y, lookPos.y, kFly + 1, dt);
+      rig.focus.z = damp(rig.focus.z, lookPos.z, kFly + 1, dt);
+      var sp = Math.sin(rig.phi);
+      camera.position.set(rig.focus.x + rig.dist * sp * Math.sin(rig.theta), rig.focus.y + rig.dist * Math.cos(rig.phi), rig.focus.z + rig.dist * sp * Math.cos(rig.theta));
+      camera.lookAt(rig.focus);
+
+      /* Shift the view so the subject sits clear of the panel or title. */
+      var wantX = 0, wantY = 0, sheet = W <= 820;
+      if (isOpen) {
+        if (sheet) wantY = panel.offsetHeight / 2;
+        else wantX = (panel.offsetWidth + 16) / 2;
+      } else if (W > 1000) wantX = -W * .13;
+      else if (sheet) wantY = -H * .1;
+      rig.offX = damp(rig.offX, wantX, kFly + 1, dt);
+      rig.offY = damp(rig.offY, wantY, kFly + 1, dt);
+      rig.kick = damp(rig.kick, 0, 2.2, dt);
+      camera.fov = 50 + rig.kick * 11 * Math.sin(Math.min(rig.kick, 1) * 3.14);
+      camera.setViewOffset(W, H, rig.offX, rig.offY, W, H);
+      camera.updateMatrixWorld();
+
+      /* Tags */
+      PROJECTS.forEach(function (p) {
+        var g = planets[p.id];
+        g.holder.getWorldPosition(tmp);
+        place(tags[p.id], tmp, g.def.r * g.scale);
+      });
+      tmp.set(0, 0, 0); place(tags.star, tmp, 2.3);
+      settleTags(dt);
+
+      renderer.render(scene, camera);
+    }
+
+    resize();
+    requestAnimationFrame(frame);
+    return api;
+  }
+
+  try {
+    scene3d = startScene();
+  } catch (err) {
+    document.body.classList.add('no-gl');
+    $('glnote').hidden = false;
+  }
+
+  /* Deep link, such as #voice */
+  var start = (location.hash || '').replace('#', '');
+  if (byId[start]) open(start);
 })();
 </script>
 </body>

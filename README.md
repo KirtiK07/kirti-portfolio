@@ -8,9 +8,13 @@ metrics and real links. Most portfolios only show the flattering numbers, so thi
 each project's weak spots.
 
 ## Architecture
-A single static page laid out like a component datasheet: a cover with a characteristics table,
-one sheet per project, and an errata band on each sheet. There is no backend and no runtime
-dependency. All content, CSS and JS live in `index.html`; Vite only builds it for Vercel.
+A single static page: a live 3D solar system built with Three.js, loaded from a pinned CDN URL.
+Each planet is a project, the star is the about and contact section, and the asteroid belt holds
+the smaller projects. Selecting one flies the camera to it and opens a panel with tabs, so the page
+itself never scrolls. All content, CSS and JS live in `index.html`; Vite only builds it for Vercel.
+
+`public/datasheet.html` is the plain version, for slow devices and screen readers. Devices without
+WebGL still get the project buttons and panels.
 
 Every project figure comes from that project's own repo (eval results, tests or README). The
 voice agent replay is scripted and runs no model, but it uses the measured median delays.
@@ -28,4 +32,5 @@ npm run preview
 ```
 
 ## Updating content
-Edit `index.html`. Pushing to `master` deploys to Vercel.
+Project content is in the `PROJECTS` array in `index.html`. Keep `public/datasheet.html` in step
+with it. Pushing to `master` deploys to Vercel.
