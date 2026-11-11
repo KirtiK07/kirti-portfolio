@@ -348,7 +348,7 @@ pre { margin: 0; padding: 10px 12px; overflow-x: auto; background: var(--track);
           '<p>Most voice demos talk over the caller or lose track of the turn. Here a voice activity detector listens during playback in 32 ms frames and cancels the in-flight LLM and speech stream. Transcription only starts after that.</p>' +
           look('This resident has one big eye and two antennae that light up when it talks. Open "Try it" and interrupt it.') +
           stack(['FastAPI', 'WebSocket', 'Silero VAD', 'faster-whisper', 'Groq', 'Piper TTS', 'AudioWorklet']) +
-          actions([['Source', GH + 'voice-triage-agent', 1], ['Live demo (currently offline)', 'https://voice-triage-agent.vercel.app/'], ['Raw results', GH + 'voice-triage-agent/blob/HEAD/eval/results/latest.json'], ['Design decisions', GH + 'voice-triage-agent/blob/HEAD/DECISIONS.md']]),
+          actions([['Live demo', 'https://voice-triage-agent.vercel.app/', 1], ['Source', GH + 'voice-triage-agent'], ['Raw results', GH + 'voice-triage-agent/blob/HEAD/eval/results/latest.json'], ['Design decisions', GH + 'voice-triage-agent/blob/HEAD/DECISIONS.md']]),
         Results: '<figure><figcaption>Each interruption, to scale<span>Milliseconds from barge-in detected. Recovery ends when the new reply\'s audio starts.</span></figcaption><div class="runs">' +
           run(1, '6', '1,866', .22, 66.43) + run(2, '108', '2,207', 3.85, 74.97) + run(3, '107', '2,294', 3.81, 78.1) + run(4, '77', '2,800', 2.76, 97.24) + run(5, '1', '2,193', .03, 78.3) +
           '</div><p class="legend"><span><i class="a"></i>Audio stops</span><span><i></i>Until the new reply starts</span></p></figure>' +
